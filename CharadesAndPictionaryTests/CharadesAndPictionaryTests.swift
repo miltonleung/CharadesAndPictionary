@@ -32,5 +32,19 @@ class CharadesAndPictionaryTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+    func testDownloadURL() {
+        let page1 = "http://www.boxofficemojo.com/alltime/world/?pagenum=1&p=.htm"
+//        let myURLString = "http://www.google.ca/"
+        guard let page1URL = NSURL(string: page1) else {
+            print("Error: \(page1) doesn't seem to be a valid URL")
+            return
+        }
+        
+        do {
+            let myHTMLString = try String(contentsOfURL: page1URL, encoding: NSUTF8StringEncoding)
+            print("HTML : \(myHTMLString)")
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+    }
 }
