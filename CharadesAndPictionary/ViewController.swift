@@ -69,12 +69,28 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         ref = FIRDatabase.database().reference()
-        //        fetchMovies()
+        
+        let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
+        if !firstRun {
+            reset()
+        }
+        
+        
+//        fetchMovies()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func reset() {
+        let moviesRef = ref.child("modules/public/movies")
+        moviesRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let moviesList = snapshot.value as! [String]
+            NSUserDefaults.standardUserDefaults().setObject(moviesList, forKey: "movies")
+            
+        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,10 +114,13 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    var listMovies = [String]()
     func fetchMovies() {
         for i in 1...7 {
             fetchPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
         }
+        self.ref.child("modules/public/movies").setValue(listMovies)
     }
     
     func fetchPage(URL: String) {
@@ -118,7 +137,8 @@ class ViewController: UIViewController {
         
         if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
             for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
-                print(link.text)
+                listMovies.append(link.text!)
+                
             }
         }
     }
