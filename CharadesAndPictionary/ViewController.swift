@@ -14,12 +14,15 @@ class ViewController: UIViewController {
     
     var ref = FIRDatabaseReference.init()
     
+    var lobbyRoom:String?
+    
     @IBOutlet weak var roomField: UITextField!
     @IBAction func submit(sender: AnyObject) {
         print(roomField.text)
-        if roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "" {
-            if checkForRoom(roomField.text!) {
-                
+        let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if editedText != "" {
+            if checkForRoom(editedText!) {
+                lobbyRoom = editedText
                 
                 self.performSegueWithIdentifier("lobbySegue", sender: nil)
             } else {
@@ -45,6 +48,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "lobbySegue") {
             let lobby = segue.destinationViewController as! LobbyViewController
+            lobby.roomName = lobbyRoom
         }
         else {
             super.prepareForSegue(segue, sender: sender)

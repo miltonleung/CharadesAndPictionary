@@ -16,7 +16,7 @@ class LobbyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        roomNameLabel.text = roomName
         // Do any additional setup after loading the view.
     }
 
