@@ -16,18 +16,30 @@ class ViewController: UIViewController {
     
     var lobbyRoom:String?
     
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var roomField: UITextField!
     @IBAction func submit(sender: AnyObject) {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        if editedText != "" {
+        if editedText != "" && passwordField.text != "" {
             checkForRoom({ room -> Void in
-                if self.checkForExisting(editedText!, room: room) {
+                if self.isAvailable(editedText!, room: room) {
                     self.lobbyRoom = editedText
+                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
+                    self.ref.child("rooms").child(editedText!).setValue(password)
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
-                    //write new room to Firebase
+                    let attributes = room[editedText!] as! [String: AnyObject]
+//                    for (existingRoom, child) in room {
+                        self.lobbyRoom = editedText!
+//                        let password:String = attributes["password"] as! String
+                        print(attributes["password"] as! String)
+                        print(self.passwordField.text!)
+                        if self.passwordField.text! == attributes["password"] as! String {
+                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                        }
+//                    }
                     
                 }
             })
@@ -35,7 +47,7 @@ class ViewController: UIViewController {
         
     }
     
-    func checkForExisting(roomName :String, room: [String: AnyObject]) -> Bool {
+    func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
         if room.isEmpty {
             return true
         }

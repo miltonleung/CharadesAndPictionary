@@ -33,16 +33,25 @@
                                     <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a2e-2f-aTo"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CB0-dn-wFa">
+                                <rect key="frame" x="250" y="348" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2Qd-Hj-XZF"/>
+                            <constraint firstItem="CB0-dn-wFa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6dj-Cx-g5m"/>
+                            <constraint firstItem="CB0-dn-wFa" firstAttribute="width" secondItem="HDJ-dZ-IuE" secondAttribute="width" id="DDu-ot-Syr"/>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RXc-Kc-TCF"/>
+                            <constraint firstItem="CB0-dn-wFa" firstAttribute="top" secondItem="HDJ-dZ-IuE" secondAttribute="bottom" constant="33" id="tf9-B5-ywm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lJO-tX-a85" secondAttribute="trailing" id="wYd-Qb-aDW"/>
                             <constraint firstItem="lJO-tX-a85" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="zgI-gH-OAQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="passwordField" destination="CB0-dn-wFa" id="Wkz-Gk-0kH"/>
                         <outlet property="roomField" destination="HDJ-dZ-IuE" id="c4N-9v-Z6N"/>
                         <segue destination="5dO-jh-rTK" kind="show" identifier="lobbySegue" id="HOg-Ik-fyM"/>
                     </connections>
@@ -69,11 +78,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYM-s6-heQ">
+                                <rect key="frame" x="26" y="28" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="YOD-Oi-doW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="24" id="8Zv-uH-m23"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="WYM-s6-heQ" secondAttribute="leading" id="a7V-ZV-y1k"/>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="oHw-Eg-04e"/>
+                            <constraint firstItem="WYM-s6-heQ" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="8" id="rsi-L5-51J"/>
                         </constraints>
                     </view>
                     <connections>
