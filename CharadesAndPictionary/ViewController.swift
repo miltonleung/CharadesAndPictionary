@@ -21,15 +21,35 @@ class ViewController: UIViewController {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if editedText != "" {
-            if checkForRoom(editedText!) {
-                lobbyRoom = editedText
-                
-                self.performSegueWithIdentifier("lobbySegue", sender: nil)
-            } else {
-                //write new room to Firebase
-            }
+            checkForRoom({ room -> Void in
+                if self.checkForExisting(editedText!, room: room) {
+                    self.lobbyRoom = editedText
+                    
+                    self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                } else {
+                    //write new room to Firebase
+                    
+                }
+            })
         }
         
+    }
+    
+    func checkForExisting(roomName :String, room: [String: AnyObject]) -> Bool {
+        if room.isEmpty {
+            return true
+        }
+        else {
+            for (existingName, _) in room {
+                if existingName == roomName {
+                    return false
+                }
+                else {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     override func viewDidLoad() {
@@ -55,30 +75,15 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkForRoom(roomName :String) -> Bool {
-        var isRoomAvailable = false
+    func checkForRoom(completion: [String: AnyObject] -> Void) {
         ref.child("rooms").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             let roomData = snapshot.value as! [String: AnyObject]
             print(snapshot.value)
-            if snapshot.value == nil {
-                isRoomAvailable = true
-            } else {
-                for (existingName, _) in roomData {
-                    if existingName == roomName {
-                        isRoomAvailable = false
-                    }
-                    else {
-                        isRoomAvailable = true
-                    }
-                }
-            }
-            
-            
+            completion(roomData)
         }) { (error) in
             print(error.localizedDescription)
         }
-        return isRoomAvailable
     }
     
     func fetchMovies() {
