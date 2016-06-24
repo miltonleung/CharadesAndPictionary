@@ -24,28 +24,29 @@ class ViewController: UIViewController {
     
     func fetchMovies() {
         
-        let page1 = "http://www.boxofficemojo.com/alltime/world/?pagenum=1&p=.htm"
-        //        let myURLString = "http://www.google.ca/"
-        guard let page1URL = NSURL(string: page1) else {
-            print("Error: \(page1) doesn't seem to be a valid URL")
+        for i in 1...7 {
+            fetchPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
+        }
+        
+    }
+    
+    func fetchPage(URL: String) {
+        guard let pageURL = NSURL(string: URL) else {
+            print("Error: \(URL) doesn't seem to be a valid URL")
             return
         }
-        var page1HTML:String?
+        var pageHTML:String?
         do {
-            page1HTML = try String(contentsOfURL: page1URL, encoding: NSUTF8StringEncoding)
-//            print("HTML : \(page1HTML)")
+            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
         } catch let error as NSError {
             print("Error: \(error)")
         }
         
-        if let doc = Kanna.HTML(html: page1HTML!, encoding: NSUTF8StringEncoding) {
-            
+        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
             for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
-//            for link in doc.xpath("//a/b") {
                 print(link.text)
             }
         }
-        
     }
 
 
