@@ -8,26 +8,79 @@
 
 import UIKit
 import Kanna
+import Firebase
 
 class ViewController: UIViewController {
-
+    
+    var ref = FIRDatabaseReference.init()
+    
+    @IBOutlet weak var roomField: UITextField!
+    @IBAction func submit(sender: AnyObject) {
+        print(roomField.text)
+        if roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "" {
+            if checkForRoom(roomField.text!) {
+                
+                
+                self.performSegueWithIdentifier("lobbySegue", sender: nil)
+            } else {
+                //write new room to Firebase
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        fetchMovies()
+        
+        ref = FIRDatabase.database().reference()
+        //        fetchMovies()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "lobbySegue") {
+            let lobby = segue.destinationViewController as! LobbyViewController
+        }
+        else {
+            super.prepareForSegue(segue, sender: sender)
+        }
+    }
+    
+    func checkForRoom(roomName :String) -> Bool {
+        var isRoomAvailable = false
+        ref.child("rooms").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            let roomData = snapshot.value as! [String: AnyObject]
+            print(snapshot.value)
+            if snapshot.value == nil {
+                isRoomAvailable = true
+            } else {
+                for (existingName, _) in roomData {
+                    if existingName == roomName {
+                        isRoomAvailable = false
+                    }
+                    else {
+                        isRoomAvailable = true
+                    }
+                }
+            }
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        return isRoomAvailable
+    }
+    
     func fetchMovies() {
-        
         for i in 1...7 {
             fetchPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
         }
-        
     }
     
     func fetchPage(URL: String) {
@@ -48,7 +101,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
 }
 
