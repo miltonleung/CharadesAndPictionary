@@ -28,26 +28,22 @@ class ViewController: UIViewController {
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
                     self.addRoom(editedText!)
-//                    self.lobbyRoom = editedText
-//                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
-//                    let ready:[String: AnyObject] = ["ready": 0]
-//                    self.ref.child("rooms/\(editedText!)/password").setValue(self.passwordField.text!)
                     //                    self.ref.child("rooms").child(editedText!).setValue(ready)
                     
                     //                    let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
                     //                    self.ref.child("rooms/\(editedText!)/scores").setValue(myPlayer)
                     
-                    //                    let playerResults = [String:String]()
-                    //                    let myPlayer:[String: AnyObject] = [self.nameField.text!: playerResults]
-                    //
-                    //                    let playerUpdates = ["rooms/\(editedText!)/scores": myPlayer]
-                    
-                    //                    self.ref.updateChildValues(playerUpdates)
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
                     if self.passwordField.text! == attributes["password"] as! String {
+//                        let myPlayer:[String: AnyObject] = [self.nameField.text!: ["Threat Level Midnight"]]
+//                        
+                        let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
+                        
+                        self.ref.updateChildValues(playerUpdates)
+                        
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)
                     }
                 }
@@ -77,12 +73,9 @@ class ViewController: UIViewController {
                 if existingName == roomName {
                     return false
                 }
-                else {
-                    return true
-                }
             }
         }
-        return false
+        return true
     }
     
     override func viewDidLoad() {
