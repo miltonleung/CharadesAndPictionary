@@ -58,9 +58,14 @@ class ViewController: UIViewController {
     
     func addRoom(editedText: String) {
         self.lobbyRoom = editedText
-        let password:[String: AnyObject] = ["password": self.passwordField.text!]
-        let ready:[String: AnyObject] = ["ready": 0]
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
+        self.ref.child("rooms/\(editedText)/ready").setValue(0)
+        let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
+        self.ref.child("rooms/\(editedText)/scores").setValue(myPlayer)
+    }
+    
+    func addFillerRoom() {
+        self.ref.child("rooms/capfill/password").setValue("123")
     }
     
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
@@ -96,7 +101,7 @@ class ViewController: UIViewController {
             name = nameExists as? String
             nameField.text = name
         }
-        
+        addFillerRoom()
         //        fetchMovies()
     }
     
