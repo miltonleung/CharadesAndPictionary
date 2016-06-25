@@ -12,6 +12,10 @@ class GameViewController: UIViewController {
 
     var movies:[String]?
     
+    @IBOutlet weak var player1: UIButton!
+    @IBAction func player1(sender: AnyObject) {
+        sender.setTitle("1", forState: UIControlState.Normal)
+    }
     @IBAction func next(sender: AnyObject) {
         newPick()
     }
