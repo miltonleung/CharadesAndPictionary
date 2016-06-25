@@ -13,38 +13,54 @@ import Firebase
 class ViewController: UIViewController {
     
     var ref = FIRDatabaseReference.init()
+    var name:String?
     
     var lobbyRoom:String?
     
+    @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var roomField: UITextField!
     @IBAction func submit(sender: AnyObject) {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        if editedText != "" && passwordField.text != "" {
+        if editedText != "" && passwordField.text != "" && nameField != "" {
+            NSUserDefaults.standardUserDefaults().setObject(nameField.text, forKey: "name")
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
-                    self.lobbyRoom = editedText
-                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
-                    self.ref.child("rooms").child(editedText!).setValue(password)
+                    self.addRoom(editedText!)
+//                    self.lobbyRoom = editedText
+//                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
+//                    let ready:[String: AnyObject] = ["ready": 0]
+//                    self.ref.child("rooms/\(editedText!)/password").setValue(self.passwordField.text!)
+                    //                    self.ref.child("rooms").child(editedText!).setValue(ready)
                     
+                    //                    let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
+                    //                    self.ref.child("rooms/\(editedText!)/scores").setValue(myPlayer)
+                    
+                    //                    let playerResults = [String:String]()
+                    //                    let myPlayer:[String: AnyObject] = [self.nameField.text!: playerResults]
+                    //
+                    //                    let playerUpdates = ["rooms/\(editedText!)/scores": myPlayer]
+                    
+                    //                    self.ref.updateChildValues(playerUpdates)
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
-//                    for (existingRoom, child) in room {
-                        self.lobbyRoom = editedText!
-//                        let password:String = attributes["password"] as! String
-                        print(attributes["password"] as! String)
-                        print(self.passwordField.text!)
-                        if self.passwordField.text! == attributes["password"] as! String {
-                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
-                        }
-//                    }
-                    
+                    self.lobbyRoom = editedText!
+                    if self.passwordField.text! == attributes["password"] as! String {
+                        self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                    }
                 }
             })
         }
         
+    }
+    
+    func addRoom(editedText: String) {
+        self.lobbyRoom = editedText
+        let password:[String: AnyObject] = ["password": self.passwordField.text!]
+        let ready:[String: AnyObject] = ["ready": 0]
+        self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
     }
     
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
@@ -75,8 +91,13 @@ class ViewController: UIViewController {
             reset()
         }
         
+        let nameExists = NSUserDefaults.standardUserDefaults().objectForKey("name")
+        if nameExists != nil {
+            name = nameExists as? String
+            nameField.text = name
+        }
         
-//        fetchMovies()
+        //        fetchMovies()
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,11 +125,13 @@ class ViewController: UIViewController {
     }
     
     func checkForRoom(completion: [String: AnyObject] -> Void) {
-        ref.child("rooms").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        let roomPath = self.ref.child("rooms")
+        roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
-            let roomData = snapshot.value as! [String: AnyObject]
-            print(snapshot.value)
-            completion(roomData)
+                let roomData = snapshot.value as! [String: AnyObject]
+                print(snapshot.value)
+                completion(roomData)
+            
         }) { (error) in
             print(error.localizedDescription)
         }
