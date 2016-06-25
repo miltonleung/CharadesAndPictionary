@@ -12,9 +12,6 @@ class LobbyViewController: UIViewController {
 
     @IBOutlet weak var roomNameLabel: UILabel!
     
-    @IBAction func movies(sender: AnyObject) {
-        performSegueWithIdentifier("movieSegue", sender: nil)
-    }
     var roomName:String?
     
     override func viewDidLoad() {
@@ -26,12 +23,6 @@ class LobbyViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "movieSegue" {
-            let movie = segue.destinationViewController as! GameViewController
-        }
     }
     
 

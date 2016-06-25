@@ -13,54 +13,38 @@ import Firebase
 class ViewController: UIViewController {
     
     var ref = FIRDatabaseReference.init()
-    var name:String?
     
     var lobbyRoom:String?
     
-    @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var roomField: UITextField!
     @IBAction func submit(sender: AnyObject) {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        if editedText != "" && passwordField.text != "" && nameField != "" {
-            NSUserDefaults.standardUserDefaults().setObject(nameField.text, forKey: "name")
+        if editedText != "" && passwordField.text != "" {
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
-                    self.addRoom(editedText!)
-//                    self.lobbyRoom = editedText
-//                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
-//                    let ready:[String: AnyObject] = ["ready": 0]
-//                    self.ref.child("rooms/\(editedText!)/password").setValue(self.passwordField.text!)
-                    //                    self.ref.child("rooms").child(editedText!).setValue(ready)
+                    self.lobbyRoom = editedText
+                    let password:[String: AnyObject] = ["password": self.passwordField.text!]
+                    self.ref.child("rooms").child(editedText!).setValue(password)
                     
-                    //                    let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
-                    //                    self.ref.child("rooms/\(editedText!)/scores").setValue(myPlayer)
-                    
-                    //                    let playerResults = [String:String]()
-                    //                    let myPlayer:[String: AnyObject] = [self.nameField.text!: playerResults]
-                    //
-                    //                    let playerUpdates = ["rooms/\(editedText!)/scores": myPlayer]
-                    
-                    //                    self.ref.updateChildValues(playerUpdates)
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
-                    self.lobbyRoom = editedText!
-                    if self.passwordField.text! == attributes["password"] as! String {
-                        self.performSegueWithIdentifier("lobbySegue", sender: nil)
-                    }
+//                    for (existingRoom, child) in room {
+                        self.lobbyRoom = editedText!
+//                        let password:String = attributes["password"] as! String
+                        print(attributes["password"] as! String)
+                        print(self.passwordField.text!)
+                        if self.passwordField.text! == attributes["password"] as! String {
+                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                        }
+//                    }
+                    
                 }
             })
         }
         
-    }
-    
-    func addRoom(editedText: String) {
-        self.lobbyRoom = editedText
-        let password:[String: AnyObject] = ["password": self.passwordField.text!]
-        let ready:[String: AnyObject] = ["ready": 0]
-        self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
     }
     
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
@@ -85,33 +69,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         ref = FIRDatabase.database().reference()
-        
-        let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
-        if !firstRun {
-            reset()
-        }
-        
-        let nameExists = NSUserDefaults.standardUserDefaults().objectForKey("name")
-        if nameExists != nil {
-            name = nameExists as? String
-            nameField.text = name
-        }
-        
         //        fetchMovies()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func reset() {
-        let moviesRef = ref.child("modules/public/movies")
-        moviesRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let moviesList = snapshot.value as! [String]
-            NSUserDefaults.standardUserDefaults().setObject(moviesList, forKey: "movies")
-            
-        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -125,25 +88,20 @@ class ViewController: UIViewController {
     }
     
     func checkForRoom(completion: [String: AnyObject] -> Void) {
-        let roomPath = self.ref.child("rooms")
-        roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        ref.child("rooms").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
-                let roomData = snapshot.value as! [String: AnyObject]
-                print(snapshot.value)
-                completion(roomData)
-            
+            let roomData = snapshot.value as! [String: AnyObject]
+            print(snapshot.value)
+            completion(roomData)
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    
-    var listMovies = [String]()
     func fetchMovies() {
         for i in 1...7 {
             fetchPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
         }
-        self.ref.child("modules/public/movies").setValue(listMovies)
     }
     
     func fetchPage(URL: String) {
@@ -160,8 +118,7 @@ class ViewController: UIViewController {
         
         if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
             for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
-                listMovies.append(link.text!)
-                
+                print(link.text)
             }
         }
     }
