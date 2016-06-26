@@ -31,6 +31,7 @@ class LobbyViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "movieSegue" {
             let movie = segue.destinationViewController as! GameViewController
+            movie.roomName = roomName
         }
     }
     
