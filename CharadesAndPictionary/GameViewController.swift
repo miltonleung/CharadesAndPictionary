@@ -16,26 +16,32 @@ class GameViewController: UIViewController {
     @IBOutlet weak var player1: UIButton!
     @IBAction func player1(sender: AnyObject) {
         sender.setTitle("1", forState: UIControlState.Normal)
+        updateButtons()
         newPick()
     }
     @IBOutlet weak var player2: UIButton!
     @IBAction func player2(sender: AnyObject) {
+        updateButtons()
         newPick()
     }
     @IBOutlet weak var player3: UIButton!
     @IBAction func player3(sender: AnyObject) {
+        updateButtons()
         newPick()
     }
     @IBOutlet weak var player4: UIButton!
     @IBAction func player4(sender: AnyObject) {
+        updateButtons()
         newPick()
     }
     @IBOutlet weak var player5: UIButton!
     @IBAction func player5(sender: AnyObject) {
+        updateButtons()
         newPick()
     }
     @IBOutlet weak var player6: UIButton!
     @IBAction func player6(sender: AnyObject) {
+        updateButtons()
         newPick()
     }
     @IBAction func next(sender: AnyObject) {
@@ -59,6 +65,9 @@ class GameViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func updateButtons() {
+        
     }
     func setupButtons() {
         var names = [String]()
