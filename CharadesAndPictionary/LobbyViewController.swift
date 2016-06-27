@@ -13,34 +13,43 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var roomNameLabel: UILabel!
     
     @IBAction func movies(sender: AnyObject) {
-        if isLeader == true {
-            setupGame("movies")
-        }
+        
         performSegueWithIdentifier("movieSegue", sender: nil)
     }
     var roomName:String?
     var movies:[String]?
+    var rand:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         roomNameLabel.text = roomName
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-        
+        if isLeader == true {
+            setupGame("movies")
+        }
     }
 
     // Sets up the first person to go and the first thing to see
     func setupGame(category: String) {
-        var rand:Int?
+        
         if category == "movies" {
             rand = Int(arc4random_uniform(UInt32(movies!.count)))
             
         }
-        ModelInterface.sharedInstance.updateRoom(roomName!, completion: { room -> Void in
+//        ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
+//            let players = room["scores"] as! [String: [String]]
+//            let currentPlayer = players.first?.0
+//            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer!, category: "movies")
+//            
+//        })
+        
+        ModelInterface.sharedInstance.readRoomOnce(roomName!, completion: { room -> Void in
             let players = room["scores"] as! [String: [String]]
             let currentPlayer = players.first?.0
-            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: rand!, currentPlayer: currentPlayer!, category: "movies")
+            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer!, category: "movies")
             
         })
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +62,7 @@ class LobbyViewController: UIViewController {
             let movie = segue.destinationViewController as! GameViewController
             movie.roomName = roomName
             movie.movies = movies
+            movie.firstMovie = self.rand
         }
     }
     

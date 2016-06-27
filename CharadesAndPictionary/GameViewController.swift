@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     var scores:[String: [String]]?
     var roomName: String?
     var done:[Int]?
+    var firstMovie:Int?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -76,25 +77,24 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-        movies = ["The Other Guys", "Wolf of Wall Street"]
+        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
+//        movies = ["The Other Guys", "Wolf of Wall Street"]
         
         
         //        scores = ["Milton": ["Threat Level Midnight"]]
-        ModelInterface.sharedInstance.updateRoom(roomName!, completion: { players -> Void in
-            print(players)
+        ModelInterface.sharedInstance.readRoom(roomName!, completion: { players -> Void in
             let playersDict = players["scores"] as! [String: [String]]
             self.scores = playersDict
             self.hideButtons()
             self.setupButtons()
+            let index = players["currentSelection"] as! Int
+            self.label.text = self.movies![index]
             self.done = players["done"] as? [Int]
-            
-            
         })
         
     }
     override func viewDidAppear(animated: Bool) {
-        newPick()
+        
     }
     
     func updateButtonOnTap(sender: AnyObject, number: Int) {
@@ -213,6 +213,7 @@ class GameViewController: UIViewController {
             done?.append(rand!)
             ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
             label.text = movies![rand!]
+            ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: rand!, currentPlayer: myName, category: "movies")
             
         } else {
             label.text = "We're all out of movies"
