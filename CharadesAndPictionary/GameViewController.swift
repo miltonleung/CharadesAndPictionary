@@ -9,10 +9,11 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
+    
     var movies:[String]?
     var scores:[String: [String]]?
     var roomName: String?
+    var done:[Int]?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -53,14 +54,15 @@ class GameViewController: UIViewController {
         
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
         movies = ["The Other Guys", "Wolf of Wall Street"]
-//        scores = ["Milton": ["Threat Level Midnight"]]
+        //        scores = ["Milton": ["Threat Level Midnight"]]
         ModelInterface.sharedInstance.updatePlayers(roomName!, completion: { players -> Void in
+            print(players)
             let playersDict = players as! [String: [String]]
             self.scores = playersDict
             self.hideButtons()
             self.setupButtons()
         })
-        
+        done = [Int]()
         
         
         
@@ -71,12 +73,11 @@ class GameViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     func updateButtonOnTap(sender: AnyObject, number: Int) {
         
         if let currentNumber = NSNumberFormatter().numberFromString(sender.currentTitle!!) {
             sender.setTitle("\(currentNumber.integerValue + 1)", forState: UIControlState.Normal)
-            
             switch number {
             case 1:
                 scores![name1.text!]!.append(label.text!)
@@ -99,6 +100,7 @@ class GameViewController: UIViewController {
             default: break
             }
         }
+        
         updateButtons()
         newPick()
     }
@@ -180,8 +182,17 @@ class GameViewController: UIViewController {
     }
     
     func newPick() {
-        let rand = Int(arc4random_uniform(UInt32(movies!.count)))
-        label.text = movies![rand]
-    }
+        var rand:Int?
+        if done?.count != movies?.count {
+            repeat {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            }  while done!.contains(rand!)
+            done?.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+            label.text = movies![rand!]
 
+        } else {
+            label.text = "We're all out of movies"
+        }    }
+    
 }

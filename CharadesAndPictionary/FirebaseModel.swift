@@ -26,4 +26,8 @@ extension ModelInterface: FirebaseModelProtocol {
             completion(playersDict)
         })
     }
+    func updateDone(roomName: String, done: [Int]) {
+        let ref = FIRDatabase.database().reference()
+        ref.child("rooms/\(roomName)/done").setValue(done)
+    }
 }
