@@ -62,7 +62,9 @@ class LobbyViewController: UIViewController {
             let movie = segue.destinationViewController as! GameViewController
             movie.roomName = roomName
             movie.movies = movies
-            movie.firstMovie = self.rand
+            if isLeader == true {
+                movie.firstMovie = self.rand
+            }
         }
     }
     
