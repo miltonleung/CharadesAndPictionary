@@ -13,16 +13,36 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var roomNameLabel: UILabel!
     
     @IBAction func movies(sender: AnyObject) {
+        if isLeader == true {
+            setupGame("movies")
+        }
         performSegueWithIdentifier("movieSegue", sender: nil)
     }
     var roomName:String?
+    var movies:[String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         roomNameLabel.text = roomName
-        // Do any additional setup after loading the view.
+        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
+        
     }
 
+    // Sets up the first person to go and the first thing to see
+    func setupGame(category: String) {
+        var rand:Int?
+        if category == "movies" {
+            rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            
+        }
+        ModelInterface.sharedInstance.updateRoom(roomName!, completion: { room -> Void in
+            let players = room["scores"] as! [String: [String]]
+            let currentPlayer = players.first?.0
+            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: rand!, currentPlayer: currentPlayer!, category: "movies")
+            
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,6 +52,7 @@ class LobbyViewController: UIViewController {
         if segue.identifier == "movieSegue" {
             let movie = segue.destinationViewController as! GameViewController
             movie.roomName = roomName
+            movie.movies = movies
         }
     }
     

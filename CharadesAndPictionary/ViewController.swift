@@ -25,13 +25,11 @@ class ViewController: UIViewController {
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if editedText != "" && passwordField.text != "" && nameField != "" {
             NSUserDefaults.standardUserDefaults().setObject(nameField.text, forKey: "name")
+            myName = nameField.text!
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
                     self.addRoom(editedText!)
-                    //                    self.ref.child("rooms").child(editedText!).setValue(ready)
-                    
-                    //                    let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
-                    //                    self.ref.child("rooms/\(editedText!)/scores").setValue(myPlayer)
+                    isLeader = true                    
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
@@ -41,7 +39,7 @@ class ViewController: UIViewController {
 //                        let myPlayer:[String: AnyObject] = [self.nameField.text!: ["Threat Level Midnight"]]
 //                        
                         let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
-                        
+                        isLeader = false
                         self.ref.updateChildValues(playerUpdates)
                         
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)
@@ -57,6 +55,10 @@ class ViewController: UIViewController {
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
         self.ref.child("rooms/\(editedText)/ready").setValue(0)
         self.ref.child("rooms/\(editedText)/done").setValue([-1])
+        self.ref.child("rooms/\(editedText)/category").setValue(" ")
+        self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
+        self.ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
+//        self.ref.child("rooms/\(editedText)/leader").setValue(myName)
         let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
         self.ref.child("rooms/\(editedText)/scores").setValue(myPlayer)
     }

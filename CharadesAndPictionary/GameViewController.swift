@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
         
         
         //        scores = ["Milton": ["Threat Level Midnight"]]
-        ModelInterface.sharedInstance.updatePlayers(roomName!, completion: { players -> Void in
+        ModelInterface.sharedInstance.updateRoom(roomName!, completion: { players -> Void in
             print(players)
             let playersDict = players["scores"] as! [String: [String]]
             self.scores = playersDict
