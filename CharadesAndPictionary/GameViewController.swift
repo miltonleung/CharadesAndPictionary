@@ -23,27 +23,51 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name6: UILabel!
     @IBOutlet weak var player1: UIButton!
     @IBAction func player1(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 1)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 1)
+        } else {
+            newPick()
+        }
     }
     @IBOutlet weak var player2: UIButton!
     @IBAction func player2(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 2)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 2)
+        } else {
+            newPick()
+        }
     }
     @IBOutlet weak var player3: UIButton!
     @IBAction func player3(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 3)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 3)
+        } else {
+            newPick()
+        }
     }
     @IBOutlet weak var player4: UIButton!
     @IBAction func player4(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 4)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 4)
+        } else {
+            newPick()
+        }
     }
     @IBOutlet weak var player5: UIButton!
     @IBAction func player5(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 5)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 5)
+        } else {
+            newPick()
+        }
     }
     @IBOutlet weak var player6: UIButton!
     @IBAction func player6(sender: AnyObject) {
-        updateButtonOnTap(sender, number: 6)
+        if done!.count - 1 != movies?.count {
+            updateButtonOnTap(sender, number: 6)
+        } else {
+            newPick()
+        }
     }
     @IBAction func next(sender: AnyObject) {
         newPick()
@@ -52,26 +76,25 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
+//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
         movies = ["The Other Guys", "Wolf of Wall Street"]
+        
+        
         //        scores = ["Milton": ["Threat Level Midnight"]]
         ModelInterface.sharedInstance.updatePlayers(roomName!, completion: { players -> Void in
             print(players)
-            let playersDict = players as! [String: [String]]
+            let playersDict = players["scores"] as! [String: [String]]
             self.scores = playersDict
             self.hideButtons()
             self.setupButtons()
+            self.done = players["done"] as? [Int]
+            
+            
         })
-        done = [Int]()
         
-        
-        
-        
-        
+    }
+    override func viewDidAppear(animated: Bool) {
         newPick()
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func updateButtonOnTap(sender: AnyObject, number: Int) {
@@ -183,16 +206,17 @@ class GameViewController: UIViewController {
     
     func newPick() {
         var rand:Int?
-        if done?.count != movies?.count {
+        if (done?.count)! - 1 != (movies?.count)! {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(movies!.count)))
             }  while done!.contains(rand!)
             done?.append(rand!)
             ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
             label.text = movies![rand!]
-
+            
         } else {
             label.text = "We're all out of movies"
-        }    }
+        }
+    }
     
 }

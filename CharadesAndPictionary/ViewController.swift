@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         self.lobbyRoom = editedText
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
         self.ref.child("rooms/\(editedText)/ready").setValue(0)
+        self.ref.child("rooms/\(editedText)/done").setValue([-1])
         let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
         self.ref.child("rooms/\(editedText)/scores").setValue(myPlayer)
     }
