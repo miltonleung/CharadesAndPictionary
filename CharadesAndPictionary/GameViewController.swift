@@ -22,39 +22,27 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name6: UILabel!
     @IBOutlet weak var player1: UIButton!
     @IBAction func player1(sender: AnyObject) {
-        if let currentNumber = NSNumberFormatter().numberFromString(sender.currentTitle!!) {
-            sender.setTitle("\(currentNumber.integerValue + 1)", forState: UIControlState.Normal)
-            
-            scores![name1.text!]!.append(label.text!)
-            ModelInterface.sharedInstance.updateScore(roomName!, player: name1.text!, newScore: scores![name1.text!]!)
-        }
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 1)
     }
     @IBOutlet weak var player2: UIButton!
     @IBAction func player2(sender: AnyObject) {
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 2)
     }
     @IBOutlet weak var player3: UIButton!
     @IBAction func player3(sender: AnyObject) {
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 3)
     }
     @IBOutlet weak var player4: UIButton!
     @IBAction func player4(sender: AnyObject) {
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 4)
     }
     @IBOutlet weak var player5: UIButton!
     @IBAction func player5(sender: AnyObject) {
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 5)
     }
     @IBOutlet weak var player6: UIButton!
     @IBAction func player6(sender: AnyObject) {
-        updateButtons()
-        newPick()
+        updateButtonOnTap(sender, number: 6)
     }
     @IBAction func next(sender: AnyObject) {
         newPick()
@@ -65,15 +53,56 @@ class GameViewController: UIViewController {
         
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
         movies = ["The Other Guys", "Wolf of Wall Street"]
-        scores = ["Milton": ["Threat Level Midnight"]]
-        hideButtons()
-        setupButtons()
+//        scores = ["Milton": ["Threat Level Midnight"]]
+        ModelInterface.sharedInstance.updatePlayers(roomName!, completion: { players -> Void in
+            let playersDict = players as! [String: [String]]
+            self.scores = playersDict
+            self.hideButtons()
+            self.setupButtons()
+        })
+        
+        
+        
+        
+        
+        
         newPick()
         
         
         // Do any additional setup after loading the view.
     }
 
+    func updateButtonOnTap(sender: AnyObject, number: Int) {
+        
+        if let currentNumber = NSNumberFormatter().numberFromString(sender.currentTitle!!) {
+            sender.setTitle("\(currentNumber.integerValue + 1)", forState: UIControlState.Normal)
+            
+            switch number {
+            case 1:
+                scores![name1.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name1.text!, newScore: scores![name1.text!]!)
+            case 2:
+                scores![name2.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name2.text!, newScore: scores![name2.text!]!)
+            case 3:
+                scores![name3.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name3.text!, newScore: scores![name3.text!]!)
+            case 4:
+                scores![name4.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name4.text!, newScore: scores![name4.text!]!)
+            case 5:
+                scores![name5.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name5.text!, newScore: scores![name5.text!]!)
+            case 6:
+                scores![name6.text!]!.append(label.text!)
+                ModelInterface.sharedInstance.updateScore(roomName!, player: name6.text!, newScore: scores![name6.text!]!)
+            default: break
+            }
+        }
+        updateButtons()
+        newPick()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

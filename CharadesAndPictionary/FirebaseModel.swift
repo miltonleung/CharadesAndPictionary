@@ -18,4 +18,12 @@ extension ModelInterface: FirebaseModelProtocol {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/scores/\(player)").setValue(newScore)
     }
+    func updatePlayers(roomName: String, completion: ([String: AnyObject] -> Void)) {
+        let ref = FIRDatabase.database().reference()
+        ref.child("rooms/\(roomName)/scores/").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let playersDict = snapshot.value as! [String : AnyObject]
+            // ...
+            completion(playersDict)
+        })
+    }
 }
