@@ -19,6 +19,7 @@ extension ModelInterface: FirebaseModelProtocol {
     func updateScore(roomName: String, player: String, newScore: [String]) {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/scores/\(player)").setValue(newScore)
+        ref.child("rooms/\(roomName)/currentPlayer/").setValue(player)
     }
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void)) {
         let ref = FIRDatabase.database().reference()
@@ -36,7 +37,7 @@ extension ModelInterface: FirebaseModelProtocol {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/category").setValue("\(category)")
         ref.child("rooms/\(roomName)/currentSelection").setValue(currentSelection)
-        ref.child("rooms/\(roomName)/currentPlayer").setValue("\(currentPlayer)")
+//        ref.child("rooms/\(roomName)/currentPlayer").setValue("\(currentPlayer)")
     }
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void)) {
         let ref = FIRDatabase.database().reference()

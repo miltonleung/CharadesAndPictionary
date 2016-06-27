@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     var roomName: String?
     var done:[Int]?
     var firstMovie:Int?
+    var currentPlayer:String?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -24,50 +25,92 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name6: UILabel!
     @IBOutlet weak var player1: UIButton!
     @IBAction func player1(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 1)
+        if currentPlayer == myName {
+            if myName == name1.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count {
+                updateButtonOnTap(sender, number: 1)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBOutlet weak var player2: UIButton!
     @IBAction func player2(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 2)
+        if currentPlayer == myName {
+            if myName == name2.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+                updateButtonOnTap(sender, number: 2)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBOutlet weak var player3: UIButton!
     @IBAction func player3(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 3)
+        if currentPlayer == myName {
+            if myName == name3.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+                updateButtonOnTap(sender, number: 3)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBOutlet weak var player4: UIButton!
     @IBAction func player4(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 4)
+        if currentPlayer == myName {
+            if myName == name4.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+                updateButtonOnTap(sender, number: 4)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBOutlet weak var player5: UIButton!
     @IBAction func player5(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 5)
+        if currentPlayer == myName {
+            if myName == name5.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+                updateButtonOnTap(sender, number: 5)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBOutlet weak var player6: UIButton!
     @IBAction func player6(sender: AnyObject) {
-        if done!.count - 1 != movies?.count {
-            updateButtonOnTap(sender, number: 6)
+        if currentPlayer == myName {
+            if myName == name6.text {
+                label.text = "Can't guess your own answer"
+            }
+            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+                updateButtonOnTap(sender, number: 6)
+            } else {
+                newPick()
+            }
         } else {
-            newPick()
+            label.text = "\(currentPlayer)'s Turn"
         }
     }
     @IBAction func next(sender: AnyObject) {
@@ -88,7 +131,12 @@ class GameViewController: UIViewController {
             self.hideButtons()
             self.setupButtons()
             let index = players["currentSelection"] as! Int
-            self.label.text = self.movies![index]
+            self.currentPlayer = players["currentPlayer"] as? String
+            if myName == self.currentPlayer {
+                self.label.text = self.movies![index]
+            } else {
+                self.label.text = "\(self.currentPlayer)'s Turn"
+            }
             self.done = players["done"] as? [Int]
         })
         
@@ -123,17 +171,12 @@ class GameViewController: UIViewController {
             default: break
             }
         }
-        
-        updateButtons()
         newPick()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    func updateButtons() {
-        
     }
     func setupButtons() {
         var names = [String]()
