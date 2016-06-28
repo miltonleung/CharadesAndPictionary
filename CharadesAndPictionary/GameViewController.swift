@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     var done:[Int]?
     var firstMovie:Int?
     var currentPlayer:String?
+    var index:Int?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -130,10 +131,10 @@ class GameViewController: UIViewController {
             self.scores = playersDict
             self.hideButtons()
             self.setupButtons()
-            let index = players["currentSelection"] as! Int
+            self.index = players["currentSelection"] as! Int
             self.currentPlayer = players["currentPlayer"] as? String
             if myName == self.currentPlayer {
-                self.label.text = self.movies![index]
+                self.label.text = self.movies![self.index!]
             } else {
                 self.label.text = "\(self.currentPlayer)'s Turn"
             }
@@ -151,22 +152,22 @@ class GameViewController: UIViewController {
             sender.setTitle("\(currentNumber.integerValue + 1)", forState: UIControlState.Normal)
             switch number {
             case 1:
-                scores![name1.text!]!.append(label.text!)
+                scores![name1.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name1.text!, newScore: scores![name1.text!]!)
             case 2:
-                scores![name2.text!]!.append(label.text!)
+                scores![name2.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name2.text!, newScore: scores![name2.text!]!)
             case 3:
-                scores![name3.text!]!.append(label.text!)
+                scores![name3.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name3.text!, newScore: scores![name3.text!]!)
             case 4:
-                scores![name4.text!]!.append(label.text!)
+                scores![name4.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name4.text!, newScore: scores![name4.text!]!)
             case 5:
-                scores![name5.text!]!.append(label.text!)
+                scores![name5.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name5.text!, newScore: scores![name5.text!]!)
             case 6:
-                scores![name6.text!]!.append(label.text!)
+                scores![name6.text!]!.append(self.movies![index!])
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name6.text!, newScore: scores![name6.text!]!)
             default: break
             }
