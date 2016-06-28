@@ -31,6 +31,8 @@ class LobbyViewController: UIViewController {
     var isReady:Bool = false
     var canStart:Bool = false
     var timer = NSTimer()
+    var categorySelected = false
+    var category:String?
     @IBAction func readyButton(sender: AnyObject) {
         if isReady == false {
             isReady = true
@@ -50,13 +52,24 @@ class LobbyViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     @IBAction func startButton(sender: AnyObject) {
-        if canStart == true {
+        if canStart == true && categorySelected == true{
+            countDownTime = 8
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
         }
     }
     @IBAction func movies(sender: AnyObject) {
+        if isLeader == true {
+            categorySelected = true
+            category = "movies"
+            
+            if category == "movies" {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                
+            }
+            let currentPlayer = players![rand! % (players?.count)!]
+            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
+        }
         
-        performSegueWithIdentifier("movieSegue", sender: nil)
     }
     var roomName:String?
     var movies:[String]?
@@ -71,7 +84,11 @@ class LobbyViewController: UIViewController {
         //        if isLeader == true {
         setupGame("movies")
         //        }
+        if isLeader == true {
         startButton.alpha = 0.5
+        } else {
+            startButton.hidden = true
+        }
         canStart = false
     }
     
@@ -165,10 +182,7 @@ class LobbyViewController: UIViewController {
     // Sets up the first person to go and the first thing to see
     func setupGame(category: String) {
         
-        if category == "movies" {
-            rand = Int(arc4random_uniform(UInt32(movies!.count)))
-            
-        }
+        
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
             //            self.players = room["scores"] as? [String: [String]]
             self.players = room["players"] as? [String]
@@ -183,19 +197,8 @@ class LobbyViewController: UIViewController {
                 self.startButton.alpha = 0.5
             }
             
-            
-            
-            //            let currentPlayer = self.players!.first?.0
-            //            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer!, category: "movies")
-            
         })
         
-        ModelInterface.sharedInstance.readRoomOnce(roomName!, completion: { room -> Void in
-            let players = room["scores"] as! [String: [String]]
-            let currentPlayer = players.first?.0
-            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer!, category: "movies")
-            
-        })
         
     }
     

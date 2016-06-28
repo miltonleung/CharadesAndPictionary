@@ -15,4 +15,4 @@ var isLeader = false
 
 let ref = FIRDatabase.database().reference()
 
-var countDownTime = 5
+var countDownTime = 8
