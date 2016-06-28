@@ -26,7 +26,11 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var status5: UILabel!
     @IBOutlet weak var status6: UILabel!
     
+    @IBOutlet weak var timerLabel: UILabel!
+    
     var isReady:Bool = false
+    var canStart:Bool = false
+    var timer = NSTimer()
     @IBAction func readyButton(sender: AnyObject) {
         if isReady == false {
             isReady = true
@@ -46,7 +50,9 @@ class LobbyViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     @IBAction func startButton(sender: AnyObject) {
-        
+        if canStart == true {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
+        }
     }
     @IBAction func movies(sender: AnyObject) {
         
@@ -65,6 +71,22 @@ class LobbyViewController: UIViewController {
         //        if isLeader == true {
         setupGame("movies")
         //        }
+        startButton.alpha = 0.5
+        canStart = false
+    }
+    
+    func updateCountdown() {
+        if countDownTime > 0 {
+            if canStart == true {
+                countDownTime -= 1
+                timerLabel.text = "\(countDownTime)"
+            } else {
+                timer.invalidate()
+            }
+        } else {
+            timer.invalidate()
+            performSegueWithIdentifier("movieSegue", sender: nil)
+        }
     }
     
     func setupLabels() {
@@ -153,6 +175,14 @@ class LobbyViewController: UIViewController {
             self.ready = room["ready"] as? [String]
             self.setupLabels()
             
+            if self.players!.count == self.ready!.count - 1 {
+                self.canStart = true
+                self.startButton.alpha = 1
+            } else {
+                self.canStart = false
+                self.startButton.alpha = 0.5
+            }
+            
             
             
             //            let currentPlayer = self.players!.first?.0
@@ -184,16 +214,4 @@ class LobbyViewController: UIViewController {
             }
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
