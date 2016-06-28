@@ -36,11 +36,18 @@ class ViewController: UIViewController {
                     let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
                     if self.passwordField.text! == attributes["password"] as! String {
-//                        let myPlayer:[String: AnyObject] = [self.nameField.text!: ["Threat Level Midnight"]]
-//                        
-                        let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
-                        isLeader = false
-                        self.ref.updateChildValues(playerUpdates)
+
+                        var existingPlayers = attributes["players"] as! [String]
+                        if !existingPlayers.contains(myName) {
+                            existingPlayers.append(myName)
+                            self.ref.child("rooms/\(editedText!)/players").setValue(existingPlayers)
+                            
+                            let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
+                            isLeader = false
+                            self.ref.updateChildValues(playerUpdates)
+                        } else {
+                            print("A player with the same name already exists")
+                        }
                         
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)
                     }
@@ -53,7 +60,8 @@ class ViewController: UIViewController {
     func addRoom(editedText: String) {
         self.lobbyRoom = editedText
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
-        self.ref.child("rooms/\(editedText)/ready").setValue(0)
+        self.ref.child("rooms/\(editedText)/ready").setValue(["Michael Scott"])
+        self.ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
         self.ref.child("rooms/\(editedText)/done").setValue([-1])
         self.ref.child("rooms/\(editedText)/category").setValue(" ")
         self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)

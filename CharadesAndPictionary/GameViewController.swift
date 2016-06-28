@@ -131,7 +131,7 @@ class GameViewController: UIViewController {
             self.scores = playersDict
             self.hideButtons()
             self.setupButtons()
-            self.index = players["currentSelection"] as! Int
+            self.index = players["currentSelection"] as? Int
             self.currentPlayer = players["currentPlayer"] as? String
             if myName == self.currentPlayer {
                 self.label.text = self.movies![self.index!]

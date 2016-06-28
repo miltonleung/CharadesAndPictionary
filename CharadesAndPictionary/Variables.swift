@@ -7,7 +7,10 @@
 //
 
 import Foundation
+import Firebase
 
 var myName = ""
 
 var isLeader = false
+
+let ref = FIRDatabase.database().reference()
