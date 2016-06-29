@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     var firstMovie:Int?
     var currentPlayer:String?
     var index:Int?
+    var players: [String]?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -121,7 +122,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
+//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
 //        movies = ["The Other Guys", "Wolf of Wall Street"]
         
         
@@ -129,8 +130,14 @@ class GameViewController: UIViewController {
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { players -> Void in
             let playersDict = players["scores"] as! [String: [String]]
             self.scores = playersDict
+            self.players = players["ready"] as? [String]
+            let indexOfMS = self.players?.indexOf("Michael Scott")
+            if indexOfMS != nil {
+                self.players?.removeAtIndex(indexOfMS!)
+            }
+            
+            
             self.hideButtons()
-            self.setupButtons()
             self.index = players["currentSelection"] as? Int
             self.currentPlayer = players["currentPlayer"] as? String
             if myName == self.currentPlayer {
@@ -140,9 +147,6 @@ class GameViewController: UIViewController {
             }
             self.done = players["done"] as? [Int]
         })
-        
-    }
-    override func viewDidAppear(animated: Bool) {
         
     }
     
@@ -179,15 +183,6 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func setupButtons() {
-        var names = [String]()
-        var results = [[String]]()
-        for (name, result) in scores! {
-            names.append(name)
-            results.append(result)
-        }
-        
-    }
     func hideButtons() {
         player1.hidden = true
         player2.hidden = true
@@ -203,47 +198,46 @@ class GameViewController: UIViewController {
         name5.hidden = true
         name6.hidden = true
         
-        var names = [String]()
         var results = [[String]]()
-        for (name, result) in scores! {
-            names.append(name)
-            results.append(result)
+
+        for name in players! {
+            results.append(scores![name]!)
         }
         
-        if scores!.count > 0 {
+        if players!.count > 0 {
             player1.hidden = false
             name1.hidden = false
-            name1.text = "\(names[0])"
+            name1.text = "\(players![0])"
             player1.setTitle("\(results[0].count - 1)", forState: UIControlState.Normal)
         }
-        if scores!.count > 1 {
+        if players!.count > 1 {
             player2.hidden = false
             name2.hidden = false
-            name2.text = "\(names[1])"
+            name2.text = "\(players![1])"
             player2.setTitle("\(results[1].count - 1)", forState: UIControlState.Normal)
         }
-        if scores!.count > 2 {
+        if players!.count > 2 {
             player3.hidden = false
             name3.hidden = false
-            name3.text = "\(names[2])"
+            name3.text = "\(players![2])"
             player3.setTitle("\(results[2].count - 1)", forState: UIControlState.Normal)
         }
-        if scores!.count > 3 {
+        if players!.count > 3 {
             player4.hidden = false
             name4.hidden = false
-            name4.text = "\(names[3])"
+            name4.text = "\(players![3])"
             player4.setTitle("\(results[3].count - 1)", forState: UIControlState.Normal)
         }
-        if scores!.count > 4 {
+        if players!.count > 4 {
             player5.hidden = false
             name5.hidden = false
-            name5.text = "\(names[4])"
+            name5.text = "\(players![4])"
             player5.setTitle("\(results[4].count - 1)", forState: UIControlState.Normal)
         }
-        if scores!.count > 5 {
+        if players!.count > 5 {
             player6.hidden = false
             name6.hidden = false
-            name6.text = "\(names[5])"
+            name6.text = "\(players![5])"
             player6.setTitle("\(results[5].count - 1)", forState: UIControlState.Normal)
         }
     }
