@@ -16,6 +16,7 @@ protocol FirebaseModelProtocol {
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String)
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
+    func startGame(roomName: String, startTime: Int)
 }
 
 extension ModelInterface: FirebaseModelProtocol {
@@ -60,5 +61,8 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func iamready(roomName: String, ready: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
+    }
+    func startGame(roomName: String, startTime: Int) {
+        ref.child("rooms/\(roomName)/startTime").setValue(startTime)
     }
 }

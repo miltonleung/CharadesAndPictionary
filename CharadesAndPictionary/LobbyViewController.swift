@@ -27,6 +27,11 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var status6: UILabel!
     
     @IBOutlet weak var timerLabel: UILabel!
+    @IBAction func stopTimer(sender: AnyObject) {
+        timer.invalidate()
+        timerLabel.text = ""
+        countDownTime = 8
+    }
     
     var isReady:Bool = false
     var canStart:Bool = false
@@ -52,8 +57,12 @@ class LobbyViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     @IBAction func startButton(sender: AnyObject) {
-        if canStart == true && categorySelected == true{
+        
+        if canStart == true && categorySelected == true {
+            timer.invalidate()
             countDownTime = 8
+            let startTime = Int(NSDate().timeIntervalSince1970) + countDownTime
+            ModelInterface.sharedInstance.startGame(roomName!, startTime: startTime)
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
         }
     }
@@ -81,11 +90,11 @@ class LobbyViewController: UIViewController {
         super.viewDidLoad()
         roomNameLabel.text = roomName
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-        //        if isLeader == true {
+        
         setupGame("movies")
-        //        }
+        
         if isLeader == true {
-        startButton.alpha = 0.5
+            startButton.alpha = 0.5
         } else {
             startButton.hidden = true
         }
@@ -99,10 +108,15 @@ class LobbyViewController: UIViewController {
                 timerLabel.text = "\(countDownTime)"
             } else {
                 timer.invalidate()
+                
+                
             }
         } else {
+            
             timer.invalidate()
+            
             performSegueWithIdentifier("movieSegue", sender: nil)
+            
         }
     }
     
@@ -189,14 +203,27 @@ class LobbyViewController: UIViewController {
             self.ready = room["ready"] as? [String]
             self.setupLabels()
             
+            var startTime = room["startTime"] as? Int
+            
             if self.players!.count == self.ready!.count - 1 {
                 self.canStart = true
                 self.startButton.alpha = 1
             } else {
                 self.canStart = false
                 self.startButton.alpha = 0.5
+                ModelInterface.sharedInstance.startGame(self.roomName!, startTime: 0)
+                self.timer.invalidate()
+                startTime = 0
             }
             
+           
+            let currentTime = Int(NSDate().timeIntervalSince1970)
+            if startTime >= currentTime {
+                countDownTime = startTime! - currentTime
+                if isLeader == false {
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
+                }
+            }
         })
         
         

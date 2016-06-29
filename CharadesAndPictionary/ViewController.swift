@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         self.ref.child("rooms/\(editedText)/category").setValue(" ")
         self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
         self.ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
-//        self.ref.child("rooms/\(editedText)/leader").setValue(myName)
+        self.ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
         let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
         self.ref.child("rooms/\(editedText)/scores").setValue(myPlayer)
     }

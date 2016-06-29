@@ -191,6 +191,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="324-e4-2BP">
+                                <rect key="frame" x="27" y="135" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopTimer:" destination="5dO-jh-rTK" eventType="touchUpInside" id="5N7-G6-zrd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -203,6 +210,7 @@
                             <constraint firstItem="WIv-Wj-OQ2" firstAttribute="leading" secondItem="N0t-BR-nV4" secondAttribute="trailing" constant="19" id="BL6-aY-Yow"/>
                             <constraint firstItem="i9t-Rs-l6Y" firstAttribute="leading" secondItem="ZfH-HW-UKV" secondAttribute="trailing" constant="19" id="Bnx-bm-4QC"/>
                             <constraint firstItem="V1f-kI-imL" firstAttribute="leading" secondItem="SGY-kM-hI9" secondAttribute="trailing" constant="19" id="Iot-LI-SGz"/>
+                            <constraint firstItem="324-e4-2BP" firstAttribute="top" secondItem="7BQ-kf-MEC" secondAttribute="bottom" constant="32" id="JEB-RJ-vM8"/>
                             <constraint firstAttribute="leadingMargin" secondItem="7BQ-kf-MEC" secondAttribute="leading" id="M8b-Yo-ToU"/>
                             <constraint firstItem="Xba-0z-Cue" firstAttribute="top" secondItem="zVH-Ag-liS" secondAttribute="bottom" constant="8" id="R8q-E6-u8h"/>
                             <constraint firstItem="ZfH-HW-UKV" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="SdJ-EB-igH"/>
@@ -230,6 +238,7 @@
                             <constraint firstItem="ZfH-HW-UKV" firstAttribute="top" secondItem="SGY-kM-hI9" secondAttribute="bottom" constant="8" id="y83-bt-Sgf"/>
                             <constraint firstItem="SGY-kM-hI9" firstAttribute="top" secondItem="N0t-BR-nV4" secondAttribute="bottom" constant="8" id="ySM-Cf-QZT"/>
                             <constraint firstItem="XCy-8M-Vgh" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="zBm-Cm-B8m"/>
+                            <constraint firstItem="324-e4-2BP" firstAttribute="leading" secondItem="onG-gr-wcO" secondAttribute="leadingMargin" constant="7" id="zb6-wl-sR9"/>
                         </constraints>
                     </view>
                     <connections>
