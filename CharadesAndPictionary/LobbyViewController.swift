@@ -28,6 +28,7 @@ class LobbyViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     @IBAction func stopTimer(sender: AnyObject) {
+        ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
         timer.invalidate()
         timerLabel.text = ""
         countDownTime = 8
@@ -223,7 +224,10 @@ class LobbyViewController: UIViewController {
                 if isLeader == false {
                     self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
                 }
+            } else {
+                self.timer.invalidate()
             }
+            
         })
         
         
