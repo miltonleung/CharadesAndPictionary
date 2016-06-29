@@ -39,6 +39,8 @@ class LobbyViewController: UIViewController {
     var timer = NSTimer()
     var categorySelected = false
     var category:String?
+    var done:[Int]?
+    
     @IBAction func readyButton(sender: AnyObject) {
         if isReady == false {
             isReady = true
@@ -60,6 +62,8 @@ class LobbyViewController: UIViewController {
     @IBAction func startButton(sender: AnyObject) {
         
         if canStart == true && categorySelected == true {
+            
+            
             timer.invalidate()
             countDownTime = 8
             let startTime = Int(NSDate().timeIntervalSince1970) + countDownTime
@@ -73,9 +77,14 @@ class LobbyViewController: UIViewController {
             category = "movies"
             
             if category == "movies" {
-                rand = Int(arc4random_uniform(UInt32(movies!.count)))
-                
+                repeat {
+                    rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                } while done!.contains(rand!)
             }
+            done?.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+            
+            
             let currentPlayer = players![rand! % (players?.count)!]
             ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
         }
@@ -203,6 +212,7 @@ class LobbyViewController: UIViewController {
             self.players = room["players"] as? [String]
             self.ready = room["ready"] as? [String]
             self.setupLabels()
+            self.done = room["done"] as? [Int]
             
             var startTime = room["startTime"] as? Int
             

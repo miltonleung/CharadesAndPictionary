@@ -44,7 +44,7 @@ extension ModelInterface: FirebaseModelProtocol {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/category").setValue("\(category)")
         ref.child("rooms/\(roomName)/currentSelection").setValue(currentSelection)
-//        ref.child("rooms/\(roomName)/currentPlayer").setValue("\(currentPlayer)")
+        ref.child("rooms/\(roomName)/currentPlayer").setValue("\(currentPlayer)")
     }
     
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void)) {
