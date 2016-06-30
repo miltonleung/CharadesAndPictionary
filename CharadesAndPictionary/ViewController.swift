@@ -40,6 +40,9 @@ class ViewController: UIViewController {
                         var existingPlayers = attributes["players"] as! [String]
                         if !existingPlayers.contains(myName) {
                             existingPlayers.append(myName)
+                            if existingPlayers[1] == myName {
+                                isLeader = true
+                            }
                             self.ref.child("rooms/\(editedText!)/players").setValue(existingPlayers)
                             
                             let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
@@ -61,7 +64,7 @@ class ViewController: UIViewController {
         self.lobbyRoom = editedText
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
         self.ref.child("rooms/\(editedText)/ready").setValue(["Michael Scott"])
-        self.ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
+        self.ref.child("rooms/\(editedText)/players").setValue(["Michael Scott", "\(myName)"])
         self.ref.child("rooms/\(editedText)/done").setValue([-1])
         self.ref.child("rooms/\(editedText)/category").setValue(" ")
         self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
@@ -126,7 +129,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "lobbySegue") {
             let lobby = segue.destinationViewController as! LobbyViewController
-            lobby.roomName = lobbyRoom
+            roomName = lobbyRoom
         }
         else {
             super.prepareForSegue(segue, sender: sender)

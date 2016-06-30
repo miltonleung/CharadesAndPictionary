@@ -89,7 +89,7 @@
                                 <rect key="frame" x="20" y="28" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="YOD-Oi-doW"/>
+                                    <action selector="backButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="V9U-bM-gEe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLg-jK-GqE">
@@ -258,6 +258,7 @@
                         <outlet property="status6" destination="i9t-Rs-l6Y" id="hnz-ag-C1V"/>
                         <outlet property="timerLabel" destination="7BQ-kf-MEC" id="uWO-RR-AhU"/>
                         <segue destination="9Jr-Rb-Qr1" kind="show" identifier="movieSegue" id="pRg-5O-veA"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="roomsSegue" id="9ky-Ze-tBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cM-kc-Tbw" userLabel="First Responder" sceneMemberID="firstResponder"/>

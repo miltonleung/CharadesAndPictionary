@@ -57,6 +57,20 @@ class LobbyViewController: UIViewController {
         ModelInterface.sharedInstance.iamready(roomName!, ready: ready!)
     }
     
+    @IBAction func backButton(sender: AnyObject) {
+        if ready!.contains(myName) {
+            let index = ready?.indexOf(myName)
+            ready?.removeAtIndex(index!)
+            
+        }
+        if players!.contains(myName) {
+            let index = players?.indexOf(myName)
+            players?.removeAtIndex(index!)
+        }
+        isLeader = false
+        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+        self.performSegueWithIdentifier("roomsSegue", sender: nil)
+    }
     
     @IBOutlet weak var startButton: UIButton!
     @IBAction func startButton(sender: AnyObject) {
@@ -86,11 +100,11 @@ class LobbyViewController: UIViewController {
             
             
             let currentPlayer = players![rand! % (players?.count)!]
-            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
+            ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
         }
         
     }
-    var roomName:String?
+    
     var movies:[String]?
     var rand:Int?
     var players:[String]?
@@ -122,9 +136,7 @@ class LobbyViewController: UIViewController {
                 
             }
         } else {
-            
             timer.invalidate()
-            
             performSegueWithIdentifier("movieSegue", sender: nil)
             
         }
@@ -145,57 +157,58 @@ class LobbyViewController: UIViewController {
         status5.hidden = true
         status6.hidden = true
         
-        if players!.count > 0 {
+        
+        if players!.count > 1 {
             player1.hidden = false
             status1.hidden = false
             status1.text = "not ready"
-            player1.text = players![0]
+            player1.text = players![1]
         }
-        if players!.count > 1 {
+        if players!.count > 2 {
             player2.hidden = false
             status2.hidden = false
             status2.text = "not ready"
-            player2.text = players![1]
+            player2.text = players![2]
         }
-        if players!.count > 2 {
+        if players!.count > 3 {
             player3.hidden = false
             status3.hidden = false
             status3.text = "not ready"
-            player3.text = players![2]
+            player3.text = players![3]
         }
-        if players!.count > 3 {
+        if players!.count > 4 {
             player4.hidden = false
             status4.hidden = false
             status4.text = "not ready"
-            player4.text = players![3]
+            player4.text = players![4]
         }
-        if players!.count > 4 {
+        if players!.count > 5 {
             player5.hidden = false
             status5.hidden = false
             status5.text = "not ready"
-            player5.text = players![4]
+            player5.text = players![5]
         }
-        if players!.count > 5 {
+        if players!.count > 6 {
             player6.hidden = false
             status6.hidden = false
             status6.text = "not ready"
-            player6.text = players![5]
+            player6.text = players![6]
         }
         
         for player in ready! {
             if let index = players?.indexOf("\(player)") {
                 switch Int(index) {
-                case 0:
-                    status1.text = "ready"
                 case 1:
-                    status2.text = "ready"
+                    status1.text = "ready"
                 case 2:
-                    status3.text = "ready"
+                    status2.text = "ready"
                 case 3:
-                    status4.text = "ready"
+                    status3.text = "ready"
                 case 4:
-                    status5.text = "ready"
+                    status4.text = "ready"
                 case 5:
+                    status5.text = "ready"
+                case 6:
                     status6.text = "ready"
                 default: break
                 }
@@ -214,18 +227,25 @@ class LobbyViewController: UIViewController {
             self.setupLabels()
             self.done = room["done"] as? [Int]
             
+            if self.players![1] == myName {
+                isLeader = true
+                self.startButton.hidden = false
+                self.startButton.alpha = 0.5
+            }
+            
             var startTime = room["startTime"] as? Int
             
-            if self.players!.count == self.ready!.count - 1 {
+            if self.players!.count == self.ready!.count {
                 self.canStart = true
                 self.startButton.alpha = 1
             } else {
                 self.canStart = false
                 self.startButton.alpha = 0.5
-                ModelInterface.sharedInstance.startGame(self.roomName!, startTime: 0)
+                ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
                 self.timer.invalidate()
                 startTime = 0
             }
+            
             
            
             let currentTime = Int(NSDate().timeIntervalSince1970)
