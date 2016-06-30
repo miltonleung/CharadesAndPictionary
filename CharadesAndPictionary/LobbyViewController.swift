@@ -105,6 +105,7 @@ class LobbyViewController: UIViewController {
         
     }
     
+    var roomName:String?
     var movies:[String]?
     var rand:Int?
     var players:[String]?
@@ -241,7 +242,7 @@ class LobbyViewController: UIViewController {
             } else {
                 self.canStart = false
                 self.startButton.alpha = 0.5
-                ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
+                ModelInterface.sharedInstance.startGame(self.roomName!, startTime: 0)
                 self.timer.invalidate()
                 startTime = 0
             }

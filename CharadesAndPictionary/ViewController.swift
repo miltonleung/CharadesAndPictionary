@@ -129,7 +129,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "lobbySegue") {
             let lobby = segue.destinationViewController as! LobbyViewController
-            roomName = lobbyRoom
+            lobby.roomName = lobbyRoom
         }
         else {
             super.prepareForSegue(segue, sender: sender)

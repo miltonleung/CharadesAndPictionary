@@ -16,5 +16,3 @@ var isLeader = false
 let ref = FIRDatabase.database().reference()
 
 var countDownTime = 8
-
-var roomName:String?
