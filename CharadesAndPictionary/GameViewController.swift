@@ -17,7 +17,9 @@ class GameViewController: UIViewController {
     var firstMovie:Int?
     var currentPlayer:String?
     var index:Int?
+    var ready: [String]?
     var players: [String]?
+    var nextPlayer: String?
     
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
@@ -115,6 +117,7 @@ class GameViewController: UIViewController {
             label.text = "\(currentPlayer)'s Turn"
         }
     }
+    @IBOutlet weak var next: UIButton!
     @IBAction func next(sender: AnyObject) {
         newPick()
     }
@@ -130,11 +133,9 @@ class GameViewController: UIViewController {
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { players -> Void in
             let playersDict = players["scores"] as! [String: [String]]
             self.scores = playersDict
-            self.players = players["ready"] as? [String]
-            let indexOfMS = self.players?.indexOf("Michael Scott")
-            if indexOfMS != nil {
-                self.players?.removeAtIndex(indexOfMS!)
-            }
+            self.ready = players["ready"] as? [String]
+            self.players = players["players"] as? [String]
+            
             
             
             self.hideButtons()
@@ -142,12 +143,35 @@ class GameViewController: UIViewController {
             self.currentPlayer = players["currentPlayer"] as? String
             if myName == self.currentPlayer {
                 self.label.text = self.movies![self.index!]
+                self.next.hidden = false
             } else {
                 self.label.text = "\(self.currentPlayer)'s Turn"
+                self.next.hidden = true
             }
             self.done = players["done"] as? [Int]
         })
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+    }
+    
+    func willEnterBackground() {
+        var subPlayer:String = "Michael Scott"
+        if players!.contains(myName) {
+            let index = players?.indexOf(myName)
+            players?.removeAtIndex(index!)
+            
+        }
+        if ready!.contains(myName) {
+            let index = ready?.indexOf(myName)
+            ready?.removeAtIndex(index!)
+        }
+        if currentPlayer == myName && ready!.count > 1 {
+            subPlayer = ready![1]
+        }
+        isLeader = false
+        ModelInterface.sharedInstance.iamleavinggame(roomName!, ready: ready!, players: players!, currentPlayer: subPlayer)
     }
     
     func updateButtonOnTap(sender: AnyObject, number: Int) {
@@ -157,21 +181,27 @@ class GameViewController: UIViewController {
             switch number {
             case 1:
                 scores![name1.text!]!.append(self.movies![index!])
+                nextPlayer = name1.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name1.text!, newScore: scores![name1.text!]!)
             case 2:
                 scores![name2.text!]!.append(self.movies![index!])
+                nextPlayer = name2.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name2.text!, newScore: scores![name2.text!]!)
             case 3:
                 scores![name3.text!]!.append(self.movies![index!])
+                nextPlayer = name3.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name3.text!, newScore: scores![name3.text!]!)
             case 4:
                 scores![name4.text!]!.append(self.movies![index!])
+                nextPlayer = name4.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name4.text!, newScore: scores![name4.text!]!)
             case 5:
                 scores![name5.text!]!.append(self.movies![index!])
+                nextPlayer = name5.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name5.text!, newScore: scores![name5.text!]!)
             case 6:
                 scores![name6.text!]!.append(self.movies![index!])
+                nextPlayer = name6.text
                 ModelInterface.sharedInstance.updateScore(roomName!, player: name6.text!, newScore: scores![name6.text!]!)
             default: break
             }
@@ -200,44 +230,47 @@ class GameViewController: UIViewController {
         
         var results = [[String]]()
 
-        for name in players! {
-            results.append(scores![name]!)
+        for name in ready! {
+            if name != "Michael Scott" {
+                results.append(scores![name]!)
+            }
         }
         
-        if players!.count > 0 {
+        
+        if ready!.count > 1 {
             player1.hidden = false
             name1.hidden = false
-            name1.text = "\(players![0])"
+            name1.text = "\(ready![1])"
             player1.setTitle("\(results[0].count - 1)", forState: UIControlState.Normal)
         }
-        if players!.count > 1 {
+        if ready!.count > 2 {
             player2.hidden = false
             name2.hidden = false
-            name2.text = "\(players![1])"
+            name2.text = "\(ready![2])"
             player2.setTitle("\(results[1].count - 1)", forState: UIControlState.Normal)
         }
-        if players!.count > 2 {
+        if ready!.count > 3 {
             player3.hidden = false
             name3.hidden = false
-            name3.text = "\(players![2])"
+            name3.text = "\(ready![3])"
             player3.setTitle("\(results[2].count - 1)", forState: UIControlState.Normal)
         }
-        if players!.count > 3 {
+        if ready!.count > 4 {
             player4.hidden = false
             name4.hidden = false
-            name4.text = "\(players![3])"
+            name4.text = "\(ready![4])"
             player4.setTitle("\(results[3].count - 1)", forState: UIControlState.Normal)
         }
-        if players!.count > 4 {
+        if ready!.count > 5 {
             player5.hidden = false
             name5.hidden = false
-            name5.text = "\(players![4])"
+            name5.text = "\(ready![5])"
             player5.setTitle("\(results[4].count - 1)", forState: UIControlState.Normal)
         }
-        if players!.count > 5 {
+        if ready!.count > 6 {
             player6.hidden = false
             name6.hidden = false
-            name6.text = "\(players![5])"
+            name6.text = "\(ready![6])"
             player6.setTitle("\(results[5].count - 1)", forState: UIControlState.Normal)
         }
     }
@@ -251,7 +284,7 @@ class GameViewController: UIViewController {
             done?.append(rand!)
             ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
             label.text = movies![rand!]
-            ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: rand!, currentPlayer: myName, category: "movies")
+            ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: rand!, currentPlayer: nextPlayer!, category: "movies")
             
         } else {
             label.text = "We're all out of movies"

@@ -67,6 +67,11 @@ extension ModelInterface: FirebaseModelProtocol {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
         ref.child("rooms/\(roomName)/players").setValue(players)
     }
+    func iamleavinggame(roomName: String, ready: [String], players: [String], currentPlayer: String) {
+        ref.child("rooms/\(roomName)/ready").setValue(ready)
+        ref.child("rooms/\(roomName)/players").setValue(players)
+        ref.child("rooms/\(roomName)/currentPlayer").setValue(currentPlayer)
+    }
     func startGame(roomName: String, startTime: Int) {
         ref.child("rooms/\(roomName)/startTime").setValue(startTime)
     }

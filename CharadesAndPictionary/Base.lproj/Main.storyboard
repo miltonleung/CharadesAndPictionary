@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CharadesAndPictionary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="CharadesAndPictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -439,6 +439,7 @@
                         <outlet property="name4" destination="P9c-ZB-Fpq" id="Frf-Br-Yw4"/>
                         <outlet property="name5" destination="lwR-w4-631" id="ggI-Sm-900"/>
                         <outlet property="name6" destination="Y9d-Xu-Pns" id="4p0-zF-3Ad"/>
+                        <outlet property="next" destination="pFO-8q-yMk" id="90h-ni-CIA"/>
                         <outlet property="player1" destination="yNh-Qe-dGD" id="K3g-DD-IGR"/>
                         <outlet property="player2" destination="tEn-F9-w32" id="Hq9-di-6FG"/>
                         <outlet property="player3" destination="3Mc-qT-1kl" id="d41-ak-9hG"/>

@@ -99,7 +99,7 @@ class LobbyViewController: UIViewController {
             ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
             
             
-            let currentPlayer = players![rand! % (players?.count)!]
+            let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
             ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
         }
         
@@ -110,6 +110,7 @@ class LobbyViewController: UIViewController {
     var rand:Int?
     var players:[String]?
     var ready:[String]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +125,24 @@ class LobbyViewController: UIViewController {
             startButton.hidden = true
         }
         canStart = false
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    func willEnterBackground() {
+        if ready!.contains(myName) {
+            let index = ready?.indexOf(myName)
+            ready?.removeAtIndex(index!)
+            
+        }
+        if players!.contains(myName) {
+            let index = players?.indexOf(myName)
+            players?.removeAtIndex(index!)
+        }
+        isLeader = false
+        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+        
     }
     
     func updateCountdown() {
@@ -228,10 +247,12 @@ class LobbyViewController: UIViewController {
             self.setupLabels()
             self.done = room["done"] as? [Int]
             
-            if self.players![1] == myName {
-                isLeader = true
-                self.startButton.hidden = false
-                self.startButton.alpha = 0.5
+            if self.players!.count > 1 {
+                if self.players![1] == myName {
+                    isLeader = true
+                    self.startButton.hidden = false
+                    self.startButton.alpha = 0.5
+                }
             }
             
             var startTime = room["startTime"] as? Int
@@ -248,7 +269,7 @@ class LobbyViewController: UIViewController {
             }
             
             
-           
+            
             let currentTime = Int(NSDate().timeIntervalSince1970)
             if startTime >= currentTime {
                 countDownTime = startTime! - currentTime
