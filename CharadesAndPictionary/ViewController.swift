@@ -10,13 +10,15 @@ import UIKit
 import Kanna
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var ref = FIRDatabaseReference.init()
     var name:String?
     
     var lobbyRoom:String?
     
+    
+    @IBOutlet weak var emojiInputView: UIView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var roomField: UITextField!
@@ -109,7 +111,101 @@ class ViewController: UIViewController {
             nameField.text = name
         }
         addFillerRoom()
-        //        fetchMovies()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+        nameField.delegate = self
+        
+        roomField.delegate = self
+        
+        if let objects = NSBundle.mainBundle().loadNibNamed("Keyboard", owner: self, options: nil) {
+            emojiInputView = objects[0] as! UIView
+        }
+        passwordField.inputView = emojiInputView
+        passwordField.delegate = self
+//        passwordField.becomeFirstResponder(
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == nameField { // Switch focus to other text field
+            roomField.becomeFirstResponder()
+        }
+        if textField == roomField { // Switch focus to other text field
+            passwordField.becomeFirstResponder()
+            
+        }
+        return true
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    func keyboardWillShow(notification: NSNotification) {
+        if nameField.editing {
+            
+        } else {
+            self.view.window?.frame.origin.y = -1 * 100
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if self.view.window?.frame.origin.y != 0 {
+            self.view.window?.frame.origin.y += 100
+        }
+    }
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        passwordField = textField
+//    }
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        passwordField = nil
+//    }
+    @IBAction func inputViewButtonPressed(button:UIButton) {
+        // Update the text field with the text from the button pressed
+        print(passwordField?.text?.characters.count)
+        if passwordField?.text?.characters.count > 5 {
+            
+        } else if passwordField?.text?.characters.count > 0 {
+            passwordField?.text = (passwordField?.text)! + (button.titleLabel?.text)!
+        } else {
+            passwordField?.text = button.titleLabel?.text
+        }
+        if passwordField.text?.characters.count > 0 {
+            passwordField.alpha = 1
+        }
+    }
+    
+    @IBAction func deleteText(button:UIButton) {
+        if let textField = passwordField, range = textField.selectedTextRange {
+            if range.empty {
+                // If the selection is empty, delete the character behind the cursor
+                let start = textField.positionFromPosition(range.start, inDirection: .Left, offset: 1)
+                let deleteRange = textField.textRangeFromPosition(start!, toPosition: range.end)
+                textField.replaceRange(deleteRange!, withText: "")
+            }
+            else {
+                // If the selection isn't empty, delete the chars in the selection
+                textField.replaceRange(range, withText: "")
+            }
+        }
+        if passwordField.text?.characters.count == 0 {
+            passwordField.alpha = 0.37
+        }
+    }
+    
+    @IBAction func returnEmoji(sender: AnyObject) {
+        passwordField?.resignFirstResponder()
+    }
+    
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= 12
     }
     
     override func didReceiveMemoryWarning() {
