@@ -26,6 +26,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var status5: UILabel!
     @IBOutlet weak var status6: UILabel!
     
+    @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBAction func stopTimer(sender: AnyObject) {
         ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
@@ -60,17 +61,17 @@ class LobbyViewController: UIViewController {
     }
     
     @IBAction func backButton(sender: AnyObject) {
-        if ready!.contains(myName) {
-            let index = ready?.indexOf(myName)
-            ready?.removeAtIndex(index!)
-            
-        }
-        if players!.contains(myName) {
-            let index = players?.indexOf(myName)
-            players?.removeAtIndex(index!)
-        }
-        isLeader = false
-        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+//        if ready!.contains(myName) {
+//            let index = ready?.indexOf(myName)
+//            ready?.removeAtIndex(index!)
+//            
+//        }
+//        if players!.contains(myName) {
+//            let index = players?.indexOf(myName)
+//            players?.removeAtIndex(index!)
+//        }
+//        isLeader = false
+//        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
         self.performSegueWithIdentifier("roomsSegue", sender: nil)
     }
     
@@ -210,6 +211,12 @@ class LobbyViewController: UIViewController {
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
         
         setupGame("movies")
+        
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        scroller.contentSize = CGSizeMake(screenWidth * 1.25, 180)
+        scroller.showsHorizontalScrollIndicator = true
+        scroller.scrollEnabled = true
         
         if isLeader == true {
             startButton.alpha = 0.5

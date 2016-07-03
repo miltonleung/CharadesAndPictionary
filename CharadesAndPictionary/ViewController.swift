@@ -271,7 +271,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         let newLength = text.characters.count + string.characters.count - range.length
-        return newLength <= 12
+        if textField == nameField {
+            return newLength <= 7
+        } else {
+            return newLength <= 12
+        }
     }
     
     override func didReceiveMemoryWarning() {
