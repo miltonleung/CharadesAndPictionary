@@ -41,14 +41,16 @@ class LobbyViewController: UIViewController {
     var category:String?
     var done:[Int]?
     
-    @IBAction func readyButton(sender: AnyObject) {
+    @IBAction func readyButton(sender: UIButton) {
         if isReady == false {
             isReady = true
+            sender.selected = true
             if !ready!.contains(myName) {
                 ready?.append(myName)
             }
         } else {
             isReady = false
+            sender.selected = false
             if ready!.contains(myName) {
                 let index = ready?.indexOf(myName)
                 ready?.removeAtIndex(index!)

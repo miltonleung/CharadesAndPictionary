@@ -34,7 +34,6 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -176,9 +175,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYM-s6-heQ">
-                                <rect key="frame" x="20" y="28" width="36" height="37"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="Back">
+                                <rect key="frame" x="16" y="28" width="42" height="40"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <state key="normal" title="back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -215,24 +214,15 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-gy-0je">
-                                <rect key="frame" x="277" y="477" width="47" height="37"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="Ready">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-gy-0je">
+                                <rect key="frame" x="245" y="405" width="110" height="44"/>
+                                <state key="normal" image="ready">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <state key="selected" image="readySelected"/>
+                                <state key="highlighted" image="readySelected"/>
                                 <connections>
                                     <action selector="readyButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="weN-jj-dqC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-88-ONJ">
-                                <rect key="frame" x="537" y="28" width="39" height="40"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <state key="normal" title="start">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="gL0-dW-hGq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-Ag-liS">
@@ -272,13 +262,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-kf-MEC">
-                                <rect key="frame" x="20" y="89" width="45" height="28"/>
+                                <rect key="frame" x="20" y="92" width="45" height="28"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="324-e4-2BP">
-                                <rect key="frame" x="27" y="149" width="34" height="37"/>
+                                <rect key="frame" x="27" y="152" width="34" height="37"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <state key="normal" title="Stop">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -288,13 +278,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ay-hUz">
-                                <rect key="frame" x="259.5" y="65" width="81.5" height="51"/>
+                                <rect key="frame" x="260" y="65" width="81.5" height="51"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbY-8c-yvV">
-                                <rect key="frame" x="259.5" y="52" width="27" height="16.5"/>
+                                <rect key="frame" x="260" y="52" width="27" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -306,11 +296,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="select a category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhU-83-lQf">
-                                <rect key="frame" x="226.5" y="134" width="148" height="28"/>
+                                <rect key="frame" x="226" y="134" width="148" height="28"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLg-jK-GqE">
+                                <rect key="frame" x="382" y="198" width="106" height="84"/>
+                                <state key="normal" image="Movies">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" image="MoviesSelected"/>
+                                <state key="highlighted" image="MoviesSelected"/>
+                                <connections>
+                                    <action selector="movies:" destination="5dO-jh-rTK" eventType="touchUpInside" id="K7e-oQ-fjX"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-Hv-9rG">
                                 <rect key="frame" x="382" y="301" width="106" height="84"/>
                                 <state key="normal" image="Famous"/>
@@ -330,7 +331,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbj-ys-cFW">
-                                <rect key="frame" x="112" y="197.5" width="106" height="84"/>
+                                <rect key="frame" x="112" y="198" width="106" height="84"/>
                                 <state key="normal" image="TVShows"/>
                                 <state key="selected" image="TVShowsSelected"/>
                                 <state key="highlighted" image="TVShowsSelected"/>
@@ -338,15 +339,14 @@
                                     <action selector="tv:" destination="5dO-jh-rTK" eventType="touchUpInside" id="cuh-uI-vU7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLg-jK-GqE">
-                                <rect key="frame" x="382" y="198" width="106" height="84"/>
-                                <state key="normal" image="Movies">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-88-ONJ">
+                                <rect key="frame" x="537" y="28" width="39" height="40"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <state key="normal" title="start">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="selected" image="MoviesSelected"/>
-                                <state key="highlighted" image="MoviesSelected"/>
                                 <connections>
-                                    <action selector="movies:" destination="5dO-jh-rTK" eventType="touchUpInside" id="K7e-oQ-fjX"/>
+                                    <action selector="startButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="gL0-dW-hGq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -369,13 +369,14 @@
                             <constraint firstAttribute="leadingMargin" secondItem="7BQ-kf-MEC" secondAttribute="leading" id="M8b-Yo-ToU"/>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="top" secondItem="UbY-8c-yvV" secondAttribute="bottom" constant="-3" id="NjH-Xa-c0n"/>
                             <constraint firstItem="IhU-83-lQf" firstAttribute="top" secondItem="SVI-Ay-hUz" secondAttribute="bottom" constant="18" id="PQK-A6-o2q"/>
+                            <constraint firstItem="8uo-gy-0je" firstAttribute="top" secondItem="0M6-Hv-9rG" secondAttribute="bottom" constant="20" id="R2R-IE-lTu"/>
                             <constraint firstItem="Xba-0z-Cue" firstAttribute="top" secondItem="zVH-Ag-liS" secondAttribute="bottom" constant="8" id="R8q-E6-u8h"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="SUL-mO-Ikf"/>
                             <constraint firstItem="ZfH-HW-UKV" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.4" id="SdJ-EB-igH"/>
                             <constraint firstItem="i9t-Rs-l6Y" firstAttribute="top" secondItem="V1f-kI-imL" secondAttribute="bottom" constant="8" id="Swl-Gd-gZm"/>
                             <constraint firstItem="V1f-kI-imL" firstAttribute="top" secondItem="WIv-Wj-OQ2" secondAttribute="bottom" constant="8" id="Xeb-Lv-V8G"/>
                             <constraint firstItem="SGY-kM-hI9" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.4" id="ZDB-PN-MdH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="WYM-s6-heQ" secondAttribute="leading" id="a7V-ZV-y1k"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="WYM-s6-heQ" secondAttribute="leading" constant="4" id="a7V-ZV-y1k"/>
                             <constraint firstItem="AIt-oK-tDE" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="194" id="dLG-6T-oRm"/>
                             <constraint firstItem="0M6-Hv-9rG" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="1.45" id="goD-p6-2Ja"/>
                             <constraint firstItem="UbY-8c-yvV" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="32" id="gxv-9Z-49v"/>
@@ -391,7 +392,6 @@
                             <constraint firstItem="qbj-ys-cFW" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="q55-1A-1JA"/>
                             <constraint firstItem="WYM-s6-heQ" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="8" id="rsi-L5-51J"/>
                             <constraint firstItem="qbj-ys-cFW" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="top" id="sbY-2o-SRj"/>
-                            <constraint firstItem="8uo-gy-0je" firstAttribute="top" secondItem="ZfH-HW-UKV" secondAttribute="bottom" constant="55" id="scu-a9-qNi"/>
                             <constraint firstItem="XCy-8M-Vgh" firstAttribute="top" secondItem="yKQ-yT-UyW" secondAttribute="bottom" constant="8" id="ssw-Xd-OhH"/>
                             <constraint firstItem="zVH-Ag-liS" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="194" id="uib-tW-USM"/>
                             <constraint firstItem="7BQ-kf-MEC" firstAttribute="top" secondItem="WYM-s6-heQ" secondAttribute="bottom" constant="24" id="wlg-U4-epe"/>
@@ -622,12 +622,14 @@
         <image name="Celebrities" width="106" height="84"/>
         <image name="CelebritiesSelected" width="106" height="84"/>
         <image name="Famous" width="106" height="84"/>
-        <image name="FamousSelected" width="105" height="84"/>
+        <image name="FamousSelected" width="106" height="84"/>
         <image name="Movies" width="106" height="84"/>
-        <image name="MoviesSelected" width="105" height="84"/>
+        <image name="MoviesSelected" width="106" height="84"/>
         <image name="SmallTextFieldBackground" width="90" height="28"/>
         <image name="TVShows" width="106" height="84"/>
         <image name="TVShowsSelected" width="106" height="84"/>
         <image name="TextFieldBackground" width="193" height="51"/>
+        <image name="ready" width="110" height="44"/>
+        <image name="readySelected" width="110" height="44"/>
     </resources>
 </document>
