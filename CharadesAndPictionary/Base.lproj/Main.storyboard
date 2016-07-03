@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -40,14 +40,14 @@
                                     <action selector="submit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a2e-2f-aTo"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.37" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔥🔥🔥" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CB0-dn-wFa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔥🔥🔥" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" background="TextFieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="CB0-dn-wFa">
                                 <rect key="frame" x="202.5" y="336.5" width="196.5" height="51"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="0.37" colorSpace="calibratedRGB"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_placeholderLabel.alpha">
+                                        <real key="value" value="0.37"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
@@ -69,7 +69,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Room Name" textAlignment="natural" minimumFontSize="31" translatesAutoresizingMaskIntoConstraints="NO" id="HDJ-dZ-IuE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Room Name" textAlignment="natural" minimumFontSize="31" background="TextFieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="HDJ-dZ-IuE">
                                 <rect key="frame" x="202" y="257" width="196.5" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="193" id="5Zn-Pg-sGU"/>
@@ -120,6 +120,7 @@
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="top" secondItem="fSu-r2-yXG" secondAttribute="bottom" constant="-3" id="NaH-PD-JtT"/>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RXc-Kc-TCF"/>
                             <constraint firstItem="hHc-hf-UCo" firstAttribute="top" secondItem="HDJ-dZ-IuE" secondAttribute="bottom" constant="15" id="Ry3-P5-XGI"/>
+                            <constraint firstItem="CB0-dn-wFa" firstAttribute="height" secondItem="HDJ-dZ-IuE" secondAttribute="height" id="WV7-24-4Sa"/>
                             <constraint firstItem="sNT-Pa-IE6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hkh-Kj-5QC"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="width" secondItem="HDJ-dZ-IuE" secondAttribute="width" id="pyf-Wu-I4E"/>
                             <constraint firstItem="hHc-hf-UCo" firstAttribute="leading" secondItem="HDJ-dZ-IuE" secondAttribute="leading" id="qTg-AA-qvq"/>
@@ -527,4 +528,7 @@
             <point key="canvasLocation" x="984" y="1007"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TextFieldBackground" width="193" height="51"/>
+    </resources>
 </document>

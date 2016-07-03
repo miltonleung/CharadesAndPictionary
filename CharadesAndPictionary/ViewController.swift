@@ -31,14 +31,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
                     self.addRoom(editedText!)
-                    isLeader = true                    
+                    isLeader = true
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
                     if self.passwordField.text! == attributes["password"] as! String {
-
+                        
                         var existingPlayers = attributes["players"] as! [String]
                         if !existingPlayers.contains(myName) {
                             existingPlayers.append(myName)
@@ -127,7 +127,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         passwordField.inputView = emojiInputView
         passwordField.delegate = self
-//        passwordField.becomeFirstResponder(
+        //        passwordField.becomeFirstResponder(
         
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -149,21 +149,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if nameField.editing {
             
         } else {
-            self.view.window?.frame.origin.y = -1 * 100
+            if roomField.editing {
+                roomField.background = UIImage(named: "TextFieldBackgroundWhite")
+                if passwordField.text?.characters.count == 0 {
+                    passwordField.background = UIImage(named: "TextFieldBackground")
+                }
+            }
+            else {
+                passwordField.background = UIImage(named: "TextFieldBackgroundWhite")
+                if roomField.text?.characters.count == 0 {
+                    roomField.background = UIImage(named: "TextFieldBackground")
+                }
+            }
+            if self.view.window?.frame.origin.y == 0 {
+                self.view.window?.frame.origin.y = -1 * 100
+            }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        if roomField.text?.characters.count == 0 {
+            roomField.background = UIImage(named: "TextFieldBackground")
+        }
+        if passwordField.text?.characters.count == 0 {
+            passwordField.background = UIImage(named: "TextFieldBackground")
+        }
         if self.view.window?.frame.origin.y != 0 {
             self.view.window?.frame.origin.y += 100
         }
     }
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        passwordField = textField
-//    }
-//    func textFieldDidEndEditing(textField: UITextField) {
-//        passwordField = nil
-//    }
+    //    func textFieldDidBeginEditing(textField: UITextField) {
+    //        passwordField = textField
+    //    }
+    //    func textFieldDidEndEditing(textField: UITextField) {
+    //        passwordField = nil
+    //    }
     @IBAction func inputViewButtonPressed(button:UIButton) {
         // Update the text field with the text from the button pressed
         print(passwordField?.text?.characters.count)
@@ -193,7 +213,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         if passwordField.text?.characters.count == 0 {
-            passwordField.alpha = 0.37
+            passwordField.background = UIImage(named: "TextFieldBackground")
         }
     }
     
@@ -236,9 +256,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let roomPath = self.ref.child("rooms")
         roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
-                let roomData = snapshot.value as! [String: AnyObject]
-                print(snapshot.value)
-                completion(roomData)
+            let roomData = snapshot.value as! [String: AnyObject]
+            print(snapshot.value)
+            completion(roomData)
             
         }) { (error) in
             print(error.localizedDescription)
