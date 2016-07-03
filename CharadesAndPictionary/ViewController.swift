@@ -110,6 +110,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             name = nameExists as? String
             nameField.text = name
         }
+        if nameField.text?.characters.count > 0 {
+            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
+        }
         addFillerRoom()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
@@ -117,6 +120,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
         
         nameField.delegate = self
         
@@ -147,18 +151,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     func keyboardWillShow(notification: NSNotification) {
         if nameField.editing {
-            
+            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
+            if passwordField.text?.characters.count == 0 {
+                passwordField.background = UIImage(named: "TextFieldBackground")
+            }
+            if roomField.text?.characters.count == 0 {
+                roomField.background = UIImage(named: "TextFieldBackground")
+            }
         } else {
             if roomField.editing {
                 roomField.background = UIImage(named: "TextFieldBackgroundWhite")
                 if passwordField.text?.characters.count == 0 {
                     passwordField.background = UIImage(named: "TextFieldBackground")
                 }
+                if nameField.text?.characters.count == 0 {
+                    nameField.background = UIImage(named: "SmallTextFieldBackground")
+                }
             }
             else {
                 passwordField.background = UIImage(named: "TextFieldBackgroundWhite")
                 if roomField.text?.characters.count == 0 {
                     roomField.background = UIImage(named: "TextFieldBackground")
+                }
+                if nameField.text?.characters.count == 0 {
+                    nameField.background = UIImage(named: "SmallTextFieldBackground")
                 }
             }
             if self.view.window?.frame.origin.y == 0 {
