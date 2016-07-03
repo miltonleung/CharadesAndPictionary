@@ -23,10 +23,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var roomField: UITextField!
     @IBAction func submit(sender: AnyObject) {
+        submit()
+        
+    }
+    
+    func submit() {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if editedText != "" && passwordField.text != "" && nameField != "" {
             NSUserDefaults.standardUserDefaults().setObject(nameField.text, forKey: "name")
+            NSUserDefaults.standardUserDefaults().setObject(roomField.text, forKey: "room")
+            NSUserDefaults.standardUserDefaults().setObject(passwordField.text, forKey: "password")
             myName = nameField.text!
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
@@ -59,7 +66,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         }
-        
     }
     
     func addRoom(editedText: String) {
@@ -105,14 +111,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             reset()
         }
         
-        let nameExists = NSUserDefaults.standardUserDefaults().objectForKey("name")
-        if nameExists != nil {
-            name = nameExists as? String
-            nameField.text = name
-        }
-        if nameField.text?.characters.count > 0 {
-            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
-        }
+        setupTextFields()
+        
         addFillerRoom()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
@@ -134,6 +134,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //        passwordField.becomeFirstResponder(
         
     }
+    
+    func setupTextFields() {
+        let nameExists = NSUserDefaults.standardUserDefaults().objectForKey("name")
+        if nameExists != nil {
+            name = nameExists as? String
+            nameField.text = name
+        }
+        if nameField.text?.characters.count > 0 {
+            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
+        }
+        let roomExists = NSUserDefaults.standardUserDefaults().objectForKey("room")
+        if roomExists != nil {
+            let room = roomExists as? String
+            roomField.text = room
+        }
+        let passExists = NSUserDefaults.standardUserDefaults().objectForKey("password")
+        if passExists != nil {
+            let pass = passExists as? String
+            passwordField.text = pass
+        }
+        if passwordField.text?.characters.count > 0 {
+            passwordField.background = UIImage(named: "TextFieldBackgroundWhite")
+        }
+        if roomField.text?.characters.count > 0 {
+            roomField.background = UIImage(named: "TextFieldBackgroundWhite")
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField == nameField { // Switch focus to other text field
@@ -235,6 +263,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func returnEmoji(sender: AnyObject) {
         passwordField?.resignFirstResponder()
+        submit()
     }
     
     
