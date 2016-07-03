@@ -85,24 +85,71 @@ class LobbyViewController: UIViewController {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
         }
     }
-    @IBAction func movies(sender: AnyObject) {
-        if isLeader == true {
-            categorySelected = true
-            category = "movies"
+    @IBOutlet weak var moviesButton: UIButton!
+    @IBAction func movies(sender: UIButton) {
+        if sender.selected {
+            sender.selected = false
+        } else {
+            sender.selected = true
+            celebrities.selected = false
+            tv.selected = false
+            famous.selected = false
             
-            if category == "movies" {
-                repeat {
-                    rand = Int(arc4random_uniform(UInt32(movies!.count)))
-                } while done!.contains(rand!)
+            if isLeader == true {
+                categorySelected = true
+                category = "movies"
+                sender.selected = true
+                
+                
+                if category == "movies" {
+                    repeat {
+                        rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                    } while done!.contains(rand!)
+                }
+                done?.append(rand!)
+                ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+                
+                
+                let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
+                ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
             }
-            done?.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
-            
-            
-            let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
-            ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
         }
-        
+    }
+    
+    @IBOutlet weak var celebrities: UIButton!
+    @IBAction func celebrities(sender: UIButton) {
+        if sender.selected {
+            sender.selected = false
+        } else {
+            sender.selected = true
+            moviesButton.selected = false
+            tv.selected = false
+            famous.selected = false
+        }
+    }
+    
+    @IBOutlet weak var tv: UIButton!
+    @IBAction func tv(sender: UIButton) {
+        if sender.selected {
+            sender.selected = false
+        } else {
+            sender.selected = true
+            moviesButton.selected = false
+            celebrities.selected = false
+            famous.selected = false
+        }
+    }
+    
+    @IBOutlet weak var famous: UIButton!
+    @IBAction func famous(sender: UIButton) {
+        if sender.selected {
+            sender.selected = false
+        } else {
+            sender.selected = true
+            moviesButton.selected = false
+            tv.selected = false
+            celebrities.selected = false
+        }
     }
     
     var roomName:String?

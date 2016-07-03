@@ -57,11 +57,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
                             isLeader = false
                             self.ref.updateChildValues(playerUpdates)
+                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
                             print("A player with the same name already exists")
                         }
                         
-                        self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                        
                     }
                 }
             })
