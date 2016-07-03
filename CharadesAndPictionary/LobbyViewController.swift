@@ -91,29 +91,19 @@ class LobbyViewController: UIViewController {
     @IBAction func movies(sender: UIButton) {
         if sender.selected {
             sender.selected = false
+            if isLeader == true {
+                categorySelected = false
+            }
         } else {
-            sender.selected = true
-            celebrities.selected = false
-            tv.selected = false
-            famous.selected = false
-            
             if isLeader == true {
                 categorySelected = true
                 category = "movies"
                 sender.selected = true
+                celebrities.selected = false
+                tv.selected = false
+                famous.selected = false
                 
-                
-                if category == "movies" {
-                    repeat {
-                        rand = Int(arc4random_uniform(UInt32(movies!.count)))
-                    } while done!.contains(rand!)
-                }
-                done?.append(rand!)
-                ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
-                
-                
-                let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
-                ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
+                categoryAction()
             }
         }
     }
@@ -122,11 +112,20 @@ class LobbyViewController: UIViewController {
     @IBAction func celebrities(sender: UIButton) {
         if sender.selected {
             sender.selected = false
+            if isLeader == true {
+                categorySelected = false
+            }
         } else {
-            sender.selected = true
-            moviesButton.selected = false
-            tv.selected = false
-            famous.selected = false
+            if isLeader == true {
+                categorySelected = true
+                category = "celebs"
+                sender.selected = true
+                moviesButton.selected = false
+                tv.selected = false
+                famous.selected = false
+                
+                categoryAction()
+            }
         }
     }
     
@@ -134,11 +133,20 @@ class LobbyViewController: UIViewController {
     @IBAction func tv(sender: UIButton) {
         if sender.selected {
             sender.selected = false
+            if isLeader == true {
+                categorySelected = false
+            }
         } else {
-            sender.selected = true
-            moviesButton.selected = false
-            celebrities.selected = false
-            famous.selected = false
+            if isLeader == true {
+                categorySelected = true
+                category = "tv"
+                sender.selected = true
+                moviesButton.selected = false
+                celebrities.selected = false
+                famous.selected = false
+                
+                categoryAction()
+            }
         }
     }
     
@@ -146,12 +154,47 @@ class LobbyViewController: UIViewController {
     @IBAction func famous(sender: UIButton) {
         if sender.selected {
             sender.selected = false
+            if isLeader == true {
+                categorySelected = false
+            }
         } else {
-            sender.selected = true
-            moviesButton.selected = false
-            tv.selected = false
-            celebrities.selected = false
+            if isLeader == true {
+                categorySelected = true
+                category = "famous"
+                sender.selected = true
+                moviesButton.selected = false
+                tv.selected = false
+                celebrities.selected = false
+                
+                categoryAction()
+            }
         }
+    }
+    
+    func categoryAction() {
+        if category == "movies" {
+            repeat {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            } while done!.contains(rand!)
+        } else if category == "celebs" {
+            repeat {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            } while done!.contains(rand!)
+        } else if category == "tv" {
+            repeat {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            } while done!.contains(rand!)
+        } else if category == "famous" {
+            repeat {
+                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+            } while done!.contains(rand!)
+        }
+        done?.append(rand!)
+        ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+        
+        
+        let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
+        ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
     }
     
     var roomName:String?
