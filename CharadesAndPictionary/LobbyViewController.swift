@@ -19,12 +19,12 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var player5: UILabel!
     @IBOutlet weak var player6: UILabel!
     
-    @IBOutlet weak var status1: UILabel!
-    @IBOutlet weak var status2: UILabel!
-    @IBOutlet weak var status3: UILabel!
-    @IBOutlet weak var status4: UILabel!
-    @IBOutlet weak var status5: UILabel!
-    @IBOutlet weak var status6: UILabel!
+    @IBOutlet weak var status1: UIButton!
+    @IBOutlet weak var status2: UIButton!
+    @IBOutlet weak var status3: UIButton!
+    @IBOutlet weak var status4: UIButton!
+    @IBOutlet weak var status5: UIButton!
+    @IBOutlet weak var status6: UIButton!
     
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
@@ -280,37 +280,37 @@ class LobbyViewController: UIViewController {
         if players!.count > 1 {
             player1.hidden = false
             status1.hidden = false
-            status1.text = "not ready"
+            status1.setTitle("..", forState: UIControlState.Normal)
             player1.text = players![1]
         }
         if players!.count > 2 {
             player2.hidden = false
             status2.hidden = false
-            status2.text = "not ready"
+            status2.setTitle("..", forState: UIControlState.Normal)
             player2.text = players![2]
         }
         if players!.count > 3 {
             player3.hidden = false
             status3.hidden = false
-            status3.text = "not ready"
+            status3.setTitle("..", forState: UIControlState.Normal)
             player3.text = players![3]
         }
         if players!.count > 4 {
             player4.hidden = false
             status4.hidden = false
-            status4.text = "not ready"
+            status4.setTitle("..", forState: UIControlState.Normal)
             player4.text = players![4]
         }
         if players!.count > 5 {
             player5.hidden = false
             status5.hidden = false
-            status5.text = "not ready"
+            status5.setTitle("..", forState: UIControlState.Normal)
             player5.text = players![5]
         }
         if players!.count > 6 {
             player6.hidden = false
             status6.hidden = false
-            status6.text = "not ready"
+            status6.setTitle("..", forState: UIControlState.Normal)
             player6.text = players![6]
         }
         
@@ -318,17 +318,17 @@ class LobbyViewController: UIViewController {
             if let index = players?.indexOf("\(player)") {
                 switch Int(index) {
                 case 1:
-                    status1.text = "ready"
+                    status1.setTitle("👍🏼", forState: UIControlState.Normal)
                 case 2:
-                    status2.text = "ready"
+                    status2.setTitle("👍🏼", forState: UIControlState.Normal)
                 case 3:
-                    status3.text = "ready"
+                    status3.setTitle("👍🏼", forState: UIControlState.Normal)
                 case 4:
-                    status4.text = "ready"
+                    status4.setTitle("👍🏼", forState: UIControlState.Normal)
                 case 5:
-                    status5.text = "ready"
+                    status5.setTitle("👍🏼", forState: UIControlState.Normal)
                 case 6:
-                    status6.text = "ready"
+                    status6.setTitle("👍🏼", forState: UIControlState.Normal)
                 default: break
                 }
             }
