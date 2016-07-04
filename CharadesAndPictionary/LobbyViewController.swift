@@ -30,9 +30,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBAction func stopTimer(sender: AnyObject) {
         ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
-        timer.invalidate()
-        timerLabel.text = ""
-        countDownTime = 8
+        invalidateTimer()
     }
     
     var isReady:Bool = false
@@ -41,7 +39,9 @@ class LobbyViewController: UIViewController {
     var categorySelected = false
     var category:String?
     var done:[Int]?
+    var timerRunning:Bool = false
     
+    @IBOutlet weak var countdownView: UIView!
     @IBAction func readyButton(sender: UIButton) {
         if isReady == false {
             isReady = true
@@ -79,12 +79,15 @@ class LobbyViewController: UIViewController {
     @IBAction func startButton(sender: AnyObject) {
         
         if canStart == true && categorySelected == true {
+            invalidateTimer()
+            startButton.hidden = true
+            timerRunning = true
+            timerLabel.text = "\(countDownTime)"
             
             
-            timer.invalidate()
-            countDownTime = 8
             let startTime = Int(NSDate().timeIntervalSince1970) + countDownTime
             ModelInterface.sharedInstance.startGame(roomName!, startTime: startTime)
+            countdownView.hidden = false
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
         }
     }
@@ -218,6 +221,11 @@ class LobbyViewController: UIViewController {
         
         
         
+        famous.selected = false
+        tv.selected = false
+        moviesButton.selected = false
+        celebrities.selected = false
+        
         if isLeader == true {
             startButton.alpha = 0.5
         } else {
@@ -227,6 +235,14 @@ class LobbyViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "willEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+    }
+    
+    func invalidateTimer() {
+        countdownView.hidden = true
+        timer.invalidate()
+        timerLabel.text = ""
+        countDownTime = 8
+        timerRunning = false
     }
     
     func willEnterBackground() {
@@ -249,13 +265,14 @@ class LobbyViewController: UIViewController {
             if canStart == true {
                 countDownTime -= 1
                 timerLabel.text = "\(countDownTime)"
+                NSNotificationCenter.defaultCenter().postNotificationName("timeChange", object: nil)
             } else {
-                timer.invalidate()
+                invalidateTimer()
                 
                 
             }
         } else {
-            timer.invalidate()
+            invalidateTimer()
             performSegueWithIdentifier("movieSegue", sender: nil)
             
         }
@@ -355,8 +372,10 @@ class LobbyViewController: UIViewController {
             if self.players!.count > 1 {
                 if self.players![1] == myName {
                     isLeader = true
-                    self.startButton.hidden = false
-                    self.startButton.alpha = 0.5
+                    if self.timerRunning == false {
+                        self.startButton.hidden = false
+                        self.startButton.alpha = 0.5
+                    }
                 }
             }
             
@@ -394,12 +413,15 @@ class LobbyViewController: UIViewController {
             
             if self.players!.count == self.ready!.count {
                 self.canStart = true
-                self.startButton.alpha = 1
+                if self.timerRunning == false {
+                    self.startButton.alpha = 1
+                }
             } else {
                 self.canStart = false
-                self.startButton.alpha = 0.5
-                ModelInterface.sharedInstance.startGame(self.roomName!, startTime: 0)
-                self.timer.invalidate()
+                if self.timerRunning == false {
+                    self.startButton.alpha = 0.5
+                }
+                self.invalidateTimer()
                 startTime = 0
             }
             
@@ -412,7 +434,7 @@ class LobbyViewController: UIViewController {
                     self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
                 }
             } else {
-                self.timer.invalidate()
+                self.invalidateTimer()
             }
             
         })

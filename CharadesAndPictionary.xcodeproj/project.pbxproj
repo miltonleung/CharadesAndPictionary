@@ -14,6 +14,8 @@
 		520956BC1D1B9F1D00FFDE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520956BA1D1B9F1D00FFDE3E /* LaunchScreen.storyboard */; };
 		520956C71D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520956C61D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift */; };
 		520956D21D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520956D11D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift */; };
+		5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215842C1D2A13AD00F6E503 /* CircularLoaderView.swift */; };
+		5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215842E1D2A182700F6E503 /* CountdownView.swift */; };
 		52186C511D2081DA0090872F /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C501D2081DA0090872F /* FirebaseModel.swift */; };
 		52186C531D2082810090872F /* ModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C521D2082810090872F /* ModelInterface.swift */; };
 		52186C551D20D60E0090872F /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C541D20D60E0090872F /* Variables.swift */; };
@@ -62,6 +64,8 @@
 		520956CD1D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharadesAndPictionaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		520956D11D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharadesAndPictionaryUITests.swift; sourceTree = "<group>"; };
 		520956D31D1B9F1D00FFDE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5215842C1D2A13AD00F6E503 /* CircularLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularLoaderView.swift; sourceTree = "<group>"; };
+		5215842E1D2A182700F6E503 /* CountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		52186C501D2081DA0090872F /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		52186C521D2082810090872F /* ModelInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelInterface.swift; sourceTree = "<group>"; };
 		52186C541D20D60E0090872F /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
@@ -143,9 +147,11 @@
 				52186C501D2081DA0090872F /* FirebaseModel.swift */,
 				52186C521D2082810090872F /* ModelInterface.swift */,
 				520956B51D1B9F1D00FFDE3E /* Main.storyboard */,
+				5215842E1D2A182700F6E503 /* CountdownView.swift */,
 				5287018F1D2709A10004BFC0 /* Keyboard.xib */,
 				526F8C941D1DC12700EF729C /* GameViewController.swift */,
 				520956B81D1B9F1D00FFDE3E /* Assets.xcassets */,
+				5215842C1D2A13AD00F6E503 /* CircularLoaderView.swift */,
 				520956BA1D1B9F1D00FFDE3E /* LaunchScreen.storyboard */,
 				520956BD1D1B9F1D00FFDE3E /* Info.plist */,
 				526F8C881D1CBE4700EF729C /* GoogleService-Info.plist */,
@@ -375,8 +381,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */,
 				526F8C951D1DC12700EF729C /* GameViewController.swift in Sources */,
 				52186C551D20D60E0090872F /* Variables.swift in Sources */,
+				5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */,
 				520956B41D1B9F1D00FFDE3E /* ViewController.swift in Sources */,
 				520956B21D1B9F1D00FFDE3E /* AppDelegate.swift in Sources */,
 				526F8C931D1D0F7500EF729C /* LobbyViewController.swift in Sources */,
