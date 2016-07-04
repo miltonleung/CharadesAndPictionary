@@ -28,10 +28,6 @@ class LobbyViewController: UIViewController {
     
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBAction func stopTimer(sender: AnyObject) {
-        ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
-        invalidateTimer()
-    }
     
     var isReady:Bool = false
     var canStart:Bool = false
@@ -79,16 +75,22 @@ class LobbyViewController: UIViewController {
     @IBAction func startButton(sender: AnyObject) {
         
         if canStart == true && categorySelected == true {
-            invalidateTimer()
-            startButton.hidden = true
-            timerRunning = true
-            timerLabel.text = "\(countDownTime)"
-            
-            
-            let startTime = Int(NSDate().timeIntervalSince1970) + countDownTime
-            ModelInterface.sharedInstance.startGame(roomName!, startTime: startTime)
-            countdownView.hidden = false
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
+            if timerRunning == true {
+                invalidateTimer()
+                ModelInterface.sharedInstance.startGame(roomName!, startTime: 0)
+            } else {
+                invalidateTimer()
+                //            startButton.hidden = true
+                startButton.setTitle("", forState: .Normal)
+                timerRunning = true
+                timerLabel.text = "\(countDownTime)"
+                
+                
+                let startTime = Int(NSDate().timeIntervalSince1970) + countDownTime
+                ModelInterface.sharedInstance.startGame(roomName!, startTime: startTime)
+                countdownView.hidden = false
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
+            }
         }
     }
     @IBOutlet weak var moviesButton: UIButton!
@@ -219,7 +221,9 @@ class LobbyViewController: UIViewController {
         
         setupGame("movies")
         
+        clearPlayers()
         
+        countdownView.hidden = true
         
         famous.selected = false
         tv.selected = false
@@ -238,11 +242,14 @@ class LobbyViewController: UIViewController {
     }
     
     func invalidateTimer() {
+        NSNotificationCenter.defaultCenter().postNotificationName("timeStop", object: nil)
         countdownView.hidden = true
         timer.invalidate()
         timerLabel.text = ""
         countDownTime = 8
         timerRunning = false
+        startButton.setTitle("start", forState: .Normal)
+
     }
     
     func willEnterBackground() {
@@ -276,6 +283,22 @@ class LobbyViewController: UIViewController {
             performSegueWithIdentifier("movieSegue", sender: nil)
             
         }
+    }
+    
+    func clearPlayers() {
+        player1.hidden = true
+        player2.hidden = true
+        player3.hidden = true
+        player4.hidden = true
+        player5.hidden = true
+        player6.hidden = true
+        
+        status1.hidden = true
+        status2.hidden = true
+        status3.hidden = true
+        status4.hidden = true
+        status5.hidden = true
+        status6.hidden = true
     }
     
     func setupLabels() {

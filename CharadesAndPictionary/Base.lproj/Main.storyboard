@@ -32,7 +32,6 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -210,16 +209,6 @@
                                 <state key="highlighted" image="readySelected"/>
                                 <connections>
                                     <action selector="readyButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="weN-jj-dqC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="324-e4-2BP">
-                                <rect key="frame" x="27" y="152" width="34" height="37"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="Stop">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="stopTimer:" destination="5dO-jh-rTK" eventType="touchUpInside" id="5N7-G6-zrd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ay-hUz">
@@ -436,7 +425,6 @@
                             <constraint firstItem="WYM-s6-heQ" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="8" id="rsi-L5-51J"/>
                             <constraint firstItem="qbj-ys-cFW" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="top" id="sbY-2o-SRj"/>
                             <constraint firstItem="8uo-gy-0je" firstAttribute="centerY" secondItem="onG-gr-wcO" secondAttribute="centerY" multiplier="1.23" id="zQD-WQ-Viz"/>
-                            <constraint firstItem="324-e4-2BP" firstAttribute="leading" secondItem="onG-gr-wcO" secondAttribute="leadingMargin" constant="7" id="zb6-wl-sR9"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

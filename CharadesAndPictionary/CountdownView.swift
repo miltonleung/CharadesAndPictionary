@@ -20,6 +20,7 @@ class CountdownView: UIView {
         progressIndicatorView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateProgress", name: "timeChange", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "resetProgress", name: "timeStop", object: nil)
 
     
     
@@ -27,8 +28,10 @@ class CountdownView: UIView {
     
     func updateProgress() {
         self.progressIndicatorView.progress = CGFloat(countDownTime)/CGFloat(8)
-
     }
     
+    func resetProgress() {
+        self.progressIndicatorView.progress = CGFloat(8)/CGFloat(8)
+    }
 
 }
