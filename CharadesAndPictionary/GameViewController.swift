@@ -21,6 +21,8 @@ class GameViewController: UIViewController {
     var players: [String]?
     var nextPlayer: String?
     
+    @IBOutlet weak var scroller: UIScrollView!
+    
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var name2: UILabel!
     @IBOutlet weak var name3: UILabel!
@@ -39,7 +41,9 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var player2: UIButton!
@@ -54,7 +58,9 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var player3: UIButton!
@@ -69,7 +75,9 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var player4: UIButton!
@@ -84,7 +92,9 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var player5: UIButton!
@@ -99,7 +109,9 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var player6: UIButton!
@@ -114,13 +126,22 @@ class GameViewController: UIViewController {
                 newPick()
             }
         } else {
-            label.text = "\(currentPlayer)'s Turn"
+            if let current = currentPlayer {
+                label.text = "\(current)'s Turn"
+            }
         }
     }
     @IBOutlet weak var next: UIButton!
     @IBAction func next(sender: AnyObject) {
+        nextPlayer = currentPlayer
         newPick()
     }
+    @IBOutlet weak var leadingFirst: NSLayoutConstraint!
+    @IBOutlet weak var leadingSecond: NSLayoutConstraint!
+    @IBOutlet weak var leadingThird: NSLayoutConstraint!
+    @IBOutlet weak var leadingFourth: NSLayoutConstraint!
+    @IBOutlet weak var leadingFifth: NSLayoutConstraint!
+    @IBOutlet weak var leadingSixth: NSLayoutConstraint!
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +170,36 @@ class GameViewController: UIViewController {
                 self.next.hidden = true
             }
             self.done = players["done"] as? [Int]
+            
+            let screenSize: CGRect = UIScreen.mainScreen().bounds
+            let screenWidth = screenSize.width
+            print(screenWidth)
+            if screenWidth == 414 {
+                self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                self.scroller.showsHorizontalScrollIndicator = false
+                self.scroller.scrollEnabled = false
+                self.leadingFirst.constant = 8
+                self.leadingSecond.constant = 13
+                self.leadingThird.constant = 13
+                self.leadingFourth.constant = 13
+                self.leadingFifth.constant = 13
+                self.leadingSixth.constant = 13
+                self.updateViewConstraints()
+            } else if screenWidth == 375 {
+                self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                self.scroller.showsHorizontalScrollIndicator = false
+                self.scroller.scrollEnabled = false
+            } else if screenWidth < 375 {
+                if self.players!.count <= 5 {
+                    self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                    self.scroller.showsHorizontalScrollIndicator = false
+                    self.scroller.scrollEnabled = false
+                } else if self.players!.count > 5 {
+                    self.scroller.contentSize = CGSizeMake(screenWidth * 1.18, 180)
+                    self.scroller.showsHorizontalScrollIndicator = true
+                    self.scroller.scrollEnabled = true
+                }
+            }
         })
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
@@ -213,6 +264,7 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func hideButtons() {
         player1.hidden = true
         player2.hidden = true

@@ -455,6 +455,8 @@ class LobbyViewController: UIViewController {
                 countDownTime = startTime! - currentTime
                 if isLeader == false {
                     self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LobbyViewController.updateCountdown), userInfo: nil, repeats: true)
+                    self.countdownView.hidden = false
+                    self.timerLabel.text = "\(countDownTime)"
                 }
             } else {
                 self.invalidateTimer()
