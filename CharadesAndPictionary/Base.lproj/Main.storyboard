@@ -184,7 +184,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-gy-0je">
-                                <rect key="frame" x="295" y="360" width="110" height="44"/>
+                                <rect key="frame" x="295" y="347" width="110" height="44"/>
                                 <state key="normal" image="ready">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -211,19 +211,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ay-hUz">
-                                <rect key="frame" x="309.5" y="65.5" width="81.5" height="51"/>
+                                <rect key="frame" x="309" y="58" width="81.5" height="51"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbY-8c-yvV">
-                                <rect key="frame" x="309.5" y="52" width="27" height="16.5"/>
+                                <rect key="frame" x="309" y="45" width="27" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLg-jK-GqE">
-                                <rect key="frame" x="454" y="153" width="106" height="84"/>
+                                <rect key="frame" x="454" y="138" width="106" height="84"/>
                                 <state key="normal" image="Movies">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -234,7 +234,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-Hv-9rG">
-                                <rect key="frame" x="454" y="256" width="106" height="84"/>
+                                <rect key="frame" x="454" y="241" width="106" height="84"/>
                                 <state key="normal" image="Famous"/>
                                 <state key="selected" image="FamousSelected"/>
                                 <state key="highlighted" image="FamousSelected"/>
@@ -243,7 +243,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84y-5b-UCo">
-                                <rect key="frame" x="139" y="256" width="106" height="84"/>
+                                <rect key="frame" x="139" y="241" width="106" height="84"/>
                                 <state key="normal" image="Celebrities"/>
                                 <state key="selected" image="CelebritiesSelected"/>
                                 <state key="highlighted" image="CelebritiesSelected"/>
@@ -252,7 +252,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbj-ys-cFW">
-                                <rect key="frame" x="139" y="153" width="106" height="84"/>
+                                <rect key="frame" x="139" y="138" width="106" height="84"/>
                                 <state key="normal" image="TVShows"/>
                                 <state key="selected" image="TVShowsSelected"/>
                                 <state key="highlighted" image="TVShowsSelected"/>
@@ -327,52 +327,52 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-9G-cAT">
-                                        <rect key="frame" x="23" y="1" width="42" height="64"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
-                                        <state key="normal" title=".." backgroundImage="Bubble1">
-                                            <color key="titleColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BsH-Qz-xOB">
-                                        <rect key="frame" x="86.5" y="1" width="42" height="67"/>
+                                        <rect key="frame" x="86" y="1" width="42" height="67"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" title=".." backgroundImage="Bubble2">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFD-n6-9ZV">
-                                        <rect key="frame" x="146.5" y="1" width="42" height="66"/>
+                                        <rect key="frame" x="146" y="1" width="42" height="66"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" title=".." backgroundImage="Bubble3">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnK-r6-eVc">
-                                        <rect key="frame" x="206.5" y="1" width="42" height="67"/>
+                                        <rect key="frame" x="206" y="1" width="42" height="67"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" title=".." backgroundImage="Bubble4">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITl-yv-w7a">
-                                        <rect key="frame" x="266.5" y="1" width="42" height="66"/>
+                                        <rect key="frame" x="266" y="1" width="42" height="66"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" title=".." backgroundImage="Bubble5">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvO-2k-T4u">
-                                        <rect key="frame" x="326.5" y="1" width="42" height="66"/>
+                                        <rect key="frame" x="326" y="1" width="42" height="66"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" title=".." backgroundImage="Bubble6">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-9G-cAT">
+                                        <rect key="frame" x="22" y="1" width="42" height="64"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
+                                        <state key="normal" title=".." backgroundImage="Bubble1">
+                                            <color key="titleColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="vvO-2k-T4u" firstAttribute="top" secondItem="2rA-9G-cAT" secondAttribute="top" id="06c-IE-hhr"/>
-                                    <constraint firstItem="AIt-oK-tDE" firstAttribute="leading" secondItem="pvD-Ec-TYS" secondAttribute="leading" constant="12" id="3a6-Nc-rcj"/>
+                                    <constraint firstItem="AIt-oK-tDE" firstAttribute="leading" secondItem="pvD-Ec-TYS" secondAttribute="leading" constant="12" identifier="leadingFirst" id="3a6-Nc-rcj"/>
                                     <constraint firstItem="ZfH-HW-UKV" firstAttribute="top" secondItem="SGY-kM-hI9" secondAttribute="top" id="5xY-rB-yy2"/>
                                     <constraint firstItem="ITl-yv-w7a" firstAttribute="top" secondItem="2rA-9G-cAT" secondAttribute="top" id="64l-2A-Ihk"/>
                                     <constraint firstAttribute="height" constant="180" id="64r-Sv-ThY"/>
@@ -404,7 +404,7 @@
                             <constraint firstItem="0M6-Hv-9rG" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="bottom" constant="19.5" id="3Jq-6b-50v"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="top" secondItem="0M6-Hv-9rG" secondAttribute="top" id="3TH-Rh-2Fj"/>
                             <constraint firstItem="8uo-gy-0je" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="3xW-Zd-Kke"/>
-                            <constraint firstItem="PLg-jK-GqE" firstAttribute="centerY" secondItem="onG-gr-wcO" secondAttribute="centerY" multiplier="0.65" id="50h-9S-vgd"/>
+                            <constraint firstItem="PLg-jK-GqE" firstAttribute="centerY" secondItem="onG-gr-wcO" secondAttribute="centerY" multiplier="0.6" id="50h-9S-vgd"/>
                             <constraint firstItem="UbY-8c-yvV" firstAttribute="leading" secondItem="SVI-Ay-hUz" secondAttribute="leading" id="5jS-A5-8Fw"/>
                             <constraint firstItem="PLg-jK-GqE" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="1.45" id="63T-My-bz1"/>
                             <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="pvD-Ec-TYS" secondAttribute="bottom" id="765-8f-BAH"/>
@@ -412,12 +412,11 @@
                             <constraint firstItem="324-e4-2BP" firstAttribute="top" secondItem="7BQ-kf-MEC" secondAttribute="bottom" constant="32" id="JEB-RJ-vM8"/>
                             <constraint firstAttribute="leadingMargin" secondItem="7BQ-kf-MEC" secondAttribute="leading" id="M8b-Yo-ToU"/>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="top" secondItem="UbY-8c-yvV" secondAttribute="bottom" constant="-3" id="NjH-Xa-c0n"/>
-                            <constraint firstItem="8uo-gy-0je" firstAttribute="top" secondItem="0M6-Hv-9rG" secondAttribute="bottom" constant="20" id="R2R-IE-lTu"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="SUL-mO-Ikf"/>
                             <constraint firstAttribute="leadingMargin" secondItem="WYM-s6-heQ" secondAttribute="leading" constant="4" id="a7V-ZV-y1k"/>
                             <constraint firstItem="pvD-Ec-TYS" firstAttribute="leading" secondItem="onG-gr-wcO" secondAttribute="leadingMargin" constant="-20" id="c8p-Do-iwV"/>
                             <constraint firstItem="0M6-Hv-9rG" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="1.45" id="goD-p6-2Ja"/>
-                            <constraint firstItem="UbY-8c-yvV" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="32" id="gxv-9Z-49v"/>
+                            <constraint firstItem="UbY-8c-yvV" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="25" id="gxv-9Z-49v"/>
                             <constraint firstItem="oX9-88-ONJ" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="8" id="mO2-FV-Sp5"/>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="oHw-Eg-04e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oX9-88-ONJ" secondAttribute="trailing" constant="4" id="osI-XQ-KIU"/>
@@ -425,6 +424,7 @@
                             <constraint firstItem="WYM-s6-heQ" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="8" id="rsi-L5-51J"/>
                             <constraint firstItem="qbj-ys-cFW" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="top" id="sbY-2o-SRj"/>
                             <constraint firstItem="7BQ-kf-MEC" firstAttribute="top" secondItem="WYM-s6-heQ" secondAttribute="bottom" constant="24" id="wlg-U4-epe"/>
+                            <constraint firstItem="8uo-gy-0je" firstAttribute="centerY" secondItem="onG-gr-wcO" secondAttribute="centerY" multiplier="1.23" id="zQD-WQ-Viz"/>
                             <constraint firstItem="324-e4-2BP" firstAttribute="leading" secondItem="onG-gr-wcO" secondAttribute="leadingMargin" constant="7" id="zb6-wl-sR9"/>
                         </constraints>
                     </view>
@@ -433,6 +433,12 @@
                     <connections>
                         <outlet property="celebrities" destination="84y-5b-UCo" id="KH6-dj-GxS"/>
                         <outlet property="famous" destination="0M6-Hv-9rG" id="xsw-oo-jsv"/>
+                        <outlet property="leadingFifth" destination="Zp2-EK-kz1" id="OAV-4M-QFE"/>
+                        <outlet property="leadingFirst" destination="3a6-Nc-rcj" id="74D-HF-vsZ"/>
+                        <outlet property="leadingFourth" destination="lou-am-hqA" id="wUZ-Tx-q4y"/>
+                        <outlet property="leadingSecond" destination="ec3-Gg-E87" id="M6M-sy-F01"/>
+                        <outlet property="leadingSixth" destination="Js9-LS-dVq" id="Wxx-V0-Wfi"/>
+                        <outlet property="leadingThird" destination="XiL-bO-8h2" id="MrW-5f-dVz"/>
                         <outlet property="moviesButton" destination="PLg-jK-GqE" id="jum-9O-OYJ"/>
                         <outlet property="player1" destination="AIt-oK-tDE" id="tke-nJ-zXd"/>
                         <outlet property="player2" destination="yKQ-yT-UyW" id="G0K-qd-zPY"/>

@@ -61,17 +61,17 @@ class LobbyViewController: UIViewController {
     }
     
     @IBAction func backButton(sender: AnyObject) {
-//        if ready!.contains(myName) {
-//            let index = ready?.indexOf(myName)
-//            ready?.removeAtIndex(index!)
-//            
-//        }
-//        if players!.contains(myName) {
-//            let index = players?.indexOf(myName)
-//            players?.removeAtIndex(index!)
-//        }
-//        isLeader = false
-//        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+        //        if ready!.contains(myName) {
+        //            let index = ready?.indexOf(myName)
+        //            ready?.removeAtIndex(index!)
+        //
+        //        }
+        //        if players!.contains(myName) {
+        //            let index = players?.indexOf(myName)
+        //            players?.removeAtIndex(index!)
+        //        }
+        //        isLeader = false
+        //        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
         self.performSegueWithIdentifier("roomsSegue", sender: nil)
     }
     
@@ -115,6 +115,8 @@ class LobbyViewController: UIViewController {
             sender.selected = false
             if isLeader == true {
                 categorySelected = false
+            } else {
+                sender.adjustsImageWhenHighlighted = false
             }
         } else {
             if isLeader == true {
@@ -126,6 +128,8 @@ class LobbyViewController: UIViewController {
                 famous.selected = false
                 
                 categoryAction()
+            } else {
+                sender.adjustsImageWhenHighlighted = false
             }
         }
     }
@@ -212,11 +216,7 @@ class LobbyViewController: UIViewController {
         
         setupGame("movies")
         
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenSize.width
-        scroller.contentSize = CGSizeMake(screenWidth * 1.25, 180)
-        scroller.showsHorizontalScrollIndicator = true
-        scroller.scrollEnabled = true
+        
         
         if isLeader == true {
             startButton.alpha = 0.5
@@ -335,6 +335,12 @@ class LobbyViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var leadingFirst: NSLayoutConstraint!
+    @IBOutlet weak var leadingSecond: NSLayoutConstraint!
+    @IBOutlet weak var leadingThird: NSLayoutConstraint!
+    @IBOutlet weak var leadingFourth: NSLayoutConstraint!
+    @IBOutlet weak var leadingFifth: NSLayoutConstraint!
+    @IBOutlet weak var leadingSixth: NSLayoutConstraint!
     // Sets up the first person to go and the first thing to see
     func setupGame(category: String) {
         
@@ -351,6 +357,36 @@ class LobbyViewController: UIViewController {
                     isLeader = true
                     self.startButton.hidden = false
                     self.startButton.alpha = 0.5
+                }
+            }
+            
+            let screenSize: CGRect = UIScreen.mainScreen().bounds
+            let screenWidth = screenSize.width
+            print(screenWidth)
+            if screenWidth == 414 {
+                self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                self.scroller.showsHorizontalScrollIndicator = false
+                self.scroller.scrollEnabled = false
+                self.leadingFirst.constant = 8
+                self.leadingSecond.constant = 13
+                self.leadingThird.constant = 13
+                self.leadingFourth.constant = 13
+                self.leadingFifth.constant = 13
+                self.leadingSixth.constant = 13
+                self.updateViewConstraints()
+            } else if screenWidth == 375 {
+                self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                self.scroller.showsHorizontalScrollIndicator = false
+                self.scroller.scrollEnabled = false
+            } else if screenWidth < 375 {
+                if self.players!.count <= 5 {
+                    self.scroller.contentSize = CGSizeMake(screenWidth, 180)
+                    self.scroller.showsHorizontalScrollIndicator = false
+                    self.scroller.scrollEnabled = false
+                } else if self.players!.count > 5 {
+                    self.scroller.contentSize = CGSizeMake(screenWidth * 1.18, 180)
+                    self.scroller.showsHorizontalScrollIndicator = true
+                    self.scroller.scrollEnabled = true
                 }
             }
             
