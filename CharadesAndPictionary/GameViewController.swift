@@ -29,6 +29,10 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name4: UILabel!
     @IBOutlet weak var name5: UILabel!
     @IBOutlet weak var name6: UILabel!
+    @IBAction func backButton(sender: AnyObject) {
+        performSegueWithIdentifier("lobbySegue", sender: nil)
+    }
+    @IBOutlet weak var roomLabel: UILabel!
     @IBOutlet weak var player1: UIButton!
     @IBAction func player1(sender: AnyObject) {
         if currentPlayer == myName {
@@ -146,6 +150,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        roomLabel.text = roomName
 //        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
 //        movies = ["The Other Guys", "Wolf of Wall Street"]
         
@@ -340,6 +345,16 @@ class GameViewController: UIViewController {
             
         } else {
             label.text = "We're all out of movies"
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "lobbySegue") {
+            let lobby = segue.destinationViewController as! LobbyViewController
+            lobby.roomName = roomName
+        }
+        else {
+            super.prepareForSegue(segue, sender: sender)
         }
     }
     

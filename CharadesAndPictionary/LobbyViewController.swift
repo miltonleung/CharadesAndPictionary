@@ -99,6 +99,7 @@ class LobbyViewController: UIViewController {
             sender.selected = false
             if isLeader == true {
                 categorySelected = false
+                startButton.alpha = 0.5
             }
         } else {
             if isLeader == true {
@@ -120,9 +121,8 @@ class LobbyViewController: UIViewController {
             sender.selected = false
             if isLeader == true {
                 categorySelected = false
-            } else {
-                sender.adjustsImageWhenHighlighted = false
-            }
+                startButton.alpha = 0.5
+            } 
         } else {
             if isLeader == true {
                 categorySelected = true
@@ -145,6 +145,7 @@ class LobbyViewController: UIViewController {
             sender.selected = false
             if isLeader == true {
                 categorySelected = false
+                startButton.alpha = 0.5
             }
         } else {
             if isLeader == true {
@@ -166,6 +167,7 @@ class LobbyViewController: UIViewController {
             sender.selected = false
             if isLeader == true {
                 categorySelected = false
+                startButton.alpha = 0.5
             }
         } else {
             if isLeader == true {
@@ -436,7 +438,7 @@ class LobbyViewController: UIViewController {
             
             if self.players!.count == self.ready!.count {
                 self.canStart = true
-                if self.timerRunning == false {
+                if self.timerRunning == false && self.categorySelected == true {
                     self.startButton.alpha = 1
                 }
             } else {

@@ -47,6 +47,8 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -489,18 +491,18 @@
                         <viewControllerLayoutGuide type="bottom" id="0h9-hd-WiL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0ge-WH-64L">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Card" translatesAutoresizingMaskIntoConstraints="NO" id="4C8-yT-8c6">
-                                <rect key="frame" x="185" y="152" width="229" height="176"/>
+                                <rect key="frame" x="235" y="152" width="229" height="176"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="229" id="TlD-d3-1FO"/>
                                     <constraint firstAttribute="height" constant="176" id="gI2-2g-dSc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXz-V8-0uw">
-                                <rect key="frame" x="193" y="222" width="215" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXz-V8-0uw">
+                                <rect key="frame" x="242" y="222" width="215" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="215" id="Dok-ug-0Iq"/>
                                 </constraints>
@@ -508,6 +510,16 @@
                                 <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFO-8q-yMk">
+                                <rect key="frame" x="335" y="343" width="30" height="37"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                <state key="normal" title="skip">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="next:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="Z90-Q7-RW3"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYk-YX-fSc">
                                 <rect key="frame" x="16" y="28" width="42" height="40"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
@@ -515,12 +527,12 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="backButton:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="VYB-Xx-2kC"/>
                                     <action selector="backButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Zda-gA-rHl"/>
-                                    <segue destination="5dO-jh-rTK" kind="show" id="iQX-eN-T6m"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ym8-iI-XMD">
-                                <rect key="frame" x="0.0" y="420" width="600" height="180"/>
+                                <rect key="frame" x="0.0" y="420" width="700" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwv-gd-oP1">
                                         <rect key="frame" x="192" y="64" width="55" height="22"/>
@@ -665,28 +677,34 @@
                                     <constraint firstItem="Q4j-6k-ai5" firstAttribute="top" secondItem="2qO-og-BvS" secondAttribute="top" id="xlA-72-Mef"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFO-8q-yMk">
-                                <rect key="frame" x="285" y="343" width="30" height="30"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="skip">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="next:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="Z90-Q7-RW3"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-jx-dcl">
+                                <rect key="frame" x="309" y="59" width="82" height="51"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUV-2p-yqL">
+                                <rect key="frame" x="309" y="45" width="27" height="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.46274509803921571" green="0.83921568627450982" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="kgC-jx-dcl" firstAttribute="top" secondItem="fUV-2p-yqL" secondAttribute="bottom" constant="-3" id="1TK-kb-pii"/>
                             <constraint firstItem="tXz-V8-0uw" firstAttribute="centerX" secondItem="0ge-WH-64L" secondAttribute="centerX" id="2cy-m6-6t2"/>
                             <constraint firstItem="tXz-V8-0uw" firstAttribute="centerY" secondItem="4C8-yT-8c6" secondAttribute="centerY" id="4B1-ln-vHp"/>
                             <constraint firstItem="pFO-8q-yMk" firstAttribute="top" secondItem="4C8-yT-8c6" secondAttribute="bottom" constant="15" id="5HF-ML-IXG"/>
                             <constraint firstItem="pFO-8q-yMk" firstAttribute="centerX" secondItem="0ge-WH-64L" secondAttribute="centerX" id="E50-uj-BIw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ym8-iI-XMD" secondAttribute="trailing" constant="-20" id="GIj-3H-f8j"/>
+                            <constraint firstItem="kgC-jx-dcl" firstAttribute="centerX" secondItem="0ge-WH-64L" secondAttribute="centerX" id="HSD-ge-PRz"/>
                             <constraint firstItem="GYk-YX-fSc" firstAttribute="top" secondItem="HI3-7N-FF7" secondAttribute="bottom" constant="8" id="Ovw-Fe-dHb"/>
                             <constraint firstItem="tXz-V8-0uw" firstAttribute="centerX" secondItem="4C8-yT-8c6" secondAttribute="centerX" id="WeB-aW-d2f"/>
                             <constraint firstItem="4C8-yT-8c6" firstAttribute="centerY" secondItem="0ge-WH-64L" secondAttribute="centerY" multiplier="0.8" id="ZC9-8e-8RS"/>
+                            <constraint firstItem="fUV-2p-yqL" firstAttribute="leading" secondItem="kgC-jx-dcl" secondAttribute="leading" id="Zae-ma-7de"/>
                             <constraint firstItem="4C8-yT-8c6" firstAttribute="centerX" secondItem="0ge-WH-64L" secondAttribute="centerX" id="bAS-sx-dYP"/>
+                            <constraint firstItem="fUV-2p-yqL" firstAttribute="top" secondItem="HI3-7N-FF7" secondAttribute="bottom" constant="25" id="cc7-Uq-wWs"/>
                             <constraint firstItem="Ym8-iI-XMD" firstAttribute="leading" secondItem="0ge-WH-64L" secondAttribute="leadingMargin" constant="-20" id="eVQ-vj-NRv"/>
                             <constraint firstItem="0h9-hd-WiL" firstAttribute="top" secondItem="Ym8-iI-XMD" secondAttribute="bottom" id="gN1-aC-RIS"/>
                             <constraint firstAttribute="leadingMargin" secondItem="GYk-YX-fSc" secondAttribute="leading" constant="4" id="qaP-QI-Wu8"/>
@@ -720,12 +738,14 @@
                         <outlet property="player4" destination="705-08-4rE" id="Efc-eP-sgw"/>
                         <outlet property="player5" destination="uWU-Nz-i5Q" id="NsN-3E-QM0"/>
                         <outlet property="player6" destination="K47-ss-faS" id="vfO-4e-HQP"/>
+                        <outlet property="roomLabel" destination="kgC-jx-dcl" id="4c9-6W-f1e"/>
                         <outlet property="scroller" destination="Ym8-iI-XMD" id="rY9-L9-rVC"/>
+                        <segue destination="5dO-jh-rTK" kind="show" identifier="lobbySegue" id="2Oq-qf-k1n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7N-qD-GoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="1007"/>
+            <point key="canvasLocation" x="1028" y="1002"/>
         </scene>
     </scenes>
     <resources>
@@ -750,6 +770,6 @@
         <image name="readySelected" width="110" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iQX-eN-T6m"/>
+        <segue reference="2Oq-qf-k1n"/>
     </inferredMetricsTieBreakers>
 </document>
