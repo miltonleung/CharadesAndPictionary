@@ -283,11 +283,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func reset() {
-        let moviesRef = ref.child("modules/public/movies")
-        moviesRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let moviesList = snapshot.value as! [String]
-            NSUserDefaults.standardUserDefaults().setObject(moviesList, forKey: "movies")
+        
+        ModelInterface.sharedInstance.readCategories( { categories -> Void in
             
+            let moviesList = categories["movies"] as? [String]
+            NSUserDefaults.standardUserDefaults().setObject(moviesList, forKey: "movies")
+            let famousList = categories["famous"] as? [String]
+            NSUserDefaults.standardUserDefaults().setObject(famousList, forKey: "famous")
+            let celebsList = categories["celebs"] as? [String]
+            NSUserDefaults.standardUserDefaults().setObject(celebsList, forKey: "celebs")
+            let tvList = categories["tv"] as? [String]
+            NSUserDefaults.standardUserDefaults().setObject(tvList, forKey: "tv")
         })
     }
     

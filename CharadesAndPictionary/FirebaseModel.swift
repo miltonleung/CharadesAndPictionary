@@ -21,6 +21,15 @@ protocol FirebaseModelProtocol {
 }
 
 extension ModelInterface: FirebaseModelProtocol {
+    func readCategories(completion: ([String: AnyObject] -> Void)) {
+        let categoriesRef = ref.child("modules/public/")
+        categoriesRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let categories = snapshot.value as! [String: AnyObject]
+            completion(categories)
+        })
+
+    }
+    
     func updateScore(roomName: String, player: String, newScore: [String]) {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/scores/\(player)").setValue(newScore)

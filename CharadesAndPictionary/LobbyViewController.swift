@@ -106,16 +106,16 @@ class LobbyViewController: UIViewController {
                 categorySelected = true
                 category = "movies"
                 sender.selected = true
-                celebrities.selected = false
-                tv.selected = false
-                famous.selected = false
+                celebritiesButton.selected = false
+                tvButton.selected = false
+                famousButton.selected = false
                 
                 categoryAction()
             }
         }
     }
     
-    @IBOutlet weak var celebrities: UIButton!
+    @IBOutlet weak var celebritiesButton: UIButton!
     @IBAction func celebrities(sender: UIButton) {
         if sender.selected {
             sender.selected = false
@@ -129,8 +129,8 @@ class LobbyViewController: UIViewController {
                 category = "celebs"
                 sender.selected = true
                 moviesButton.selected = false
-                tv.selected = false
-                famous.selected = false
+                tvButton.selected = false
+                famousButton.selected = false
                 
                 categoryAction()
             } else {
@@ -139,7 +139,7 @@ class LobbyViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var tv: UIButton!
+    @IBOutlet weak var tvButton: UIButton!
     @IBAction func tv(sender: UIButton) {
         if sender.selected {
             sender.selected = false
@@ -153,15 +153,15 @@ class LobbyViewController: UIViewController {
                 category = "tv"
                 sender.selected = true
                 moviesButton.selected = false
-                celebrities.selected = false
-                famous.selected = false
+                celebritiesButton.selected = false
+                famousButton.selected = false
                 
                 categoryAction()
             }
         }
     }
     
-    @IBOutlet weak var famous: UIButton!
+    @IBOutlet weak var famousButton: UIButton!
     @IBAction func famous(sender: UIButton) {
         if sender.selected {
             sender.selected = false
@@ -175,8 +175,8 @@ class LobbyViewController: UIViewController {
                 category = "famous"
                 sender.selected = true
                 moviesButton.selected = false
-                tv.selected = false
-                celebrities.selected = false
+                tvButton.selected = false
+                celebritiesButton.selected = false
                 
                 categoryAction()
             }
@@ -190,15 +190,15 @@ class LobbyViewController: UIViewController {
             } while done!.contains(rand!)
         } else if category == "celebs" {
             repeat {
-                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                rand = Int(arc4random_uniform(UInt32(celebs!.count)))
             } while done!.contains(rand!)
         } else if category == "tv" {
             repeat {
-                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                rand = Int(arc4random_uniform(UInt32(tv!.count)))
             } while done!.contains(rand!)
         } else if category == "famous" {
             repeat {
-                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+                rand = Int(arc4random_uniform(UInt32(famous!.count)))
             } while done!.contains(rand!)
         }
         done?.append(rand!)
@@ -211,6 +211,10 @@ class LobbyViewController: UIViewController {
     
     var roomName:String?
     var movies:[String]?
+    var famous:[String]?
+    var celebs:[String]?
+    var tv:[String]?
+    
     var rand:Int?
     var players:[String]?
     var ready:[String]?
@@ -220,17 +224,20 @@ class LobbyViewController: UIViewController {
         super.viewDidLoad()
         roomNameLabel.text = roomName
         movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-        
+        famous = NSUserDefaults.standardUserDefaults().arrayForKey("famous") as? [String]
+        celebs = NSUserDefaults.standardUserDefaults().arrayForKey("celebs") as? [String]
+        tv = NSUserDefaults.standardUserDefaults().arrayForKey("tv") as? [String]
+
         setupGame("movies")
         
         clearPlayers()
         
         countdownView.hidden = true
         
-        famous.selected = false
-        tv.selected = false
+        famousButton.selected = false
+        tvButton.selected = false
         moviesButton.selected = false
-        celebrities.selected = false
+        celebritiesButton.selected = false
         
         if isLeader == true {
             startButton.alpha = 0.5
