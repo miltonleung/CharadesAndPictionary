@@ -12,12 +12,13 @@ import Firebase
 protocol FirebaseModelProtocol {
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
-    func updateDone(roomName: String, done: [Int])
+    func updateDone(roomName: String, done: [Int], category: String) 
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String)
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
     func iamleaving(roomName: String, ready: [String], players: [String])
     func startGame(roomName: String, startTime: Int)
+    func removeListener(roomName: String)
 }
 
 extension ModelInterface: FirebaseModelProtocol {
@@ -45,9 +46,9 @@ extension ModelInterface: FirebaseModelProtocol {
         })
     }
     
-    func updateDone(roomName: String, done: [Int]) {
+    func updateDone(roomName: String, done: [Int], category: String) {
         let ref = FIRDatabase.database().reference()
-        ref.child("rooms/\(roomName)/done").setValue(done)
+        ref.child("rooms/\(roomName)/done").child(category).setValue(done)
     }
     
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String) {
@@ -83,5 +84,8 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func startGame(roomName: String, startTime: Int) {
         ref.child("rooms/\(roomName)/startTime").setValue(startTime)
+    }
+    func removeListener(roomName: String) {
+        ref.child("rooms/\(roomName)").removeAllObservers()
     }
 }

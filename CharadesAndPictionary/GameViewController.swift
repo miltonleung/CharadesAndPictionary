@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     var ready: [String]?
     var players: [String]?
     var nextPlayer: String?
+    var category:String?
     
     @IBOutlet weak var scroller: UIScrollView!
     
@@ -30,6 +31,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name5: UILabel!
     @IBOutlet weak var name6: UILabel!
     @IBAction func backButton(sender: AnyObject) {
+        ModelInterface.sharedInstance.removeListener(roomName!)
         performSegueWithIdentifier("lobbySegue", sender: nil)
     }
     @IBOutlet weak var roomLabel: UILabel!
@@ -174,7 +176,8 @@ class GameViewController: UIViewController {
                 self.label.text = "\(self.currentPlayer)'s Turn"
                 self.next.hidden = true
             }
-            self.done = players["done"] as? [Int]
+            let totalDone = players["done"] as! [String: AnyObject]
+            self.done = totalDone[self.category!] as? [Int]
             
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
@@ -339,7 +342,7 @@ class GameViewController: UIViewController {
                 rand = Int(arc4random_uniform(UInt32(movies!.count)))
             }  while done!.contains(rand!)
             done?.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: done!, category: category!)
             label.text = movies![rand!]
             ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: rand!, currentPlayer: nextPlayer!, category: "movies")
             

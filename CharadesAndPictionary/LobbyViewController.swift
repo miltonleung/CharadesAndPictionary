@@ -34,8 +34,13 @@ class LobbyViewController: UIViewController {
     var timer = NSTimer()
     var categorySelected = false
     var category:String?
-    var done:[Int]?
+    
     var timerRunning:Bool = false
+    
+    var doneMovies:[Int]?
+    var doneFamous:[Int]?
+    var doneTV:[Int]?
+    var doneCelebs:[Int]?
     
     @IBOutlet weak var countdownView: UIView!
     @IBAction func readyButton(sender: UIButton) {
@@ -187,22 +192,29 @@ class LobbyViewController: UIViewController {
         if category == "movies" {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(movies!.count)))
-            } while done!.contains(rand!)
+            } while doneMovies!.contains(rand!)
+            doneMovies!.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: doneMovies!, category: "movies")
         } else if category == "celebs" {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(celebs!.count)))
-            } while done!.contains(rand!)
+            } while doneCelebs!.contains(rand!)
+            doneCelebs!.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: doneCelebs!, category: "celebs")
         } else if category == "tv" {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(tv!.count)))
-            } while done!.contains(rand!)
+            } while doneTV!.contains(rand!)
+            doneTV!.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: doneTV!, category: "tv")
         } else if category == "famous" {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(famous!.count)))
-            } while done!.contains(rand!)
+            } while doneFamous!.contains(rand!)
+            doneFamous!.append(rand!)
+            ModelInterface.sharedInstance.updateDone(roomName!, done: doneFamous!, category: "famous")
         }
-        done?.append(rand!)
-        ModelInterface.sharedInstance.updateDone(roomName!, done: done!)
+        
         
         
         let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
@@ -399,7 +411,11 @@ class LobbyViewController: UIViewController {
             self.players = room["players"] as? [String]
             self.ready = room["ready"] as? [String]
             self.setupLabels()
-            self.done = room["done"] as? [Int]
+            let done = room["done"] as! [String: AnyObject]
+            self.doneMovies = done["movies"] as? [Int]
+            self.doneTV = done["tv"] as? [Int]
+            self.doneFamous = done["famous"] as? [Int]
+            self.doneCelebs = done["celebs"] as? [Int]
             
             if self.players!.count > 1 {
                 if self.players![1] == myName {
@@ -413,7 +429,6 @@ class LobbyViewController: UIViewController {
             
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            print(screenWidth)
             if screenWidth == 414 {
                 self.scroller.contentSize = CGSizeMake(screenWidth, 180)
                 self.scroller.showsHorizontalScrollIndicator = false
@@ -485,7 +500,19 @@ class LobbyViewController: UIViewController {
         if segue.identifier == "movieSegue" {
             let game = segue.destinationViewController as! GameViewController
             game.roomName = roomName
-            game.movies = movies
+            switch category! {
+            case "movies":
+                game.movies = movies
+            case "celebs":
+                game.movies = celebs
+            case "famous":
+                game.movies = famous
+            case "tv":
+                game.movies = tv
+            default:
+                break
+            }
+            game.category = category
             if isLeader == true {
                 game.firstMovie = self.rand
             }
