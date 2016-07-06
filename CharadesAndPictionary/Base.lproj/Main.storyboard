@@ -257,7 +257,7 @@
                                 <state key="selected" image="FamousSelected"/>
                                 <state key="highlighted" image="FamousSelected"/>
                                 <connections>
-                                    <action selector="famous:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Ga5-n5-2vg"/>
+                                    <action selector="famous:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Yuq-5E-UvE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84y-5b-UCo">
@@ -266,7 +266,7 @@
                                 <state key="selected" image="CelebritiesSelected"/>
                                 <state key="highlighted" image="CelebritiesSelected"/>
                                 <connections>
-                                    <action selector="celebrities:" destination="5dO-jh-rTK" eventType="touchUpInside" id="euN-6l-5zG"/>
+                                    <action selector="celebrities:" destination="5dO-jh-rTK" eventType="touchUpInside" id="sMJ-ji-i0R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbj-ys-cFW">
@@ -275,7 +275,7 @@
                                 <state key="selected" image="TVShowsSelected"/>
                                 <state key="highlighted" image="TVShowsSelected"/>
                                 <connections>
-                                    <action selector="tv:" destination="5dO-jh-rTK" eventType="touchUpInside" id="cuh-uI-vU7"/>
+                                    <action selector="tv:" destination="5dO-jh-rTK" eventType="touchUpInside" id="5P4-x5-Jd4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-88-ONJ">
@@ -447,9 +447,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="700" height="600"/>
                     <connections>
-                        <outlet property="celebrities" destination="84y-5b-UCo" id="KH6-dj-GxS"/>
+                        <outlet property="celebritiesButton" destination="84y-5b-UCo" id="ZKi-MA-kDD"/>
                         <outlet property="countdownView" destination="vYT-Ql-bjG" id="cQo-19-HQK"/>
-                        <outlet property="famous" destination="0M6-Hv-9rG" id="xsw-oo-jsv"/>
+                        <outlet property="famousButton" destination="0M6-Hv-9rG" id="eRO-W9-kBm"/>
                         <outlet property="leadingFifth" destination="Zp2-EK-kz1" id="OAV-4M-QFE"/>
                         <outlet property="leadingFirst" destination="3a6-Nc-rcj" id="74D-HF-vsZ"/>
                         <outlet property="leadingFourth" destination="lou-am-hqA" id="wUZ-Tx-q4y"/>
@@ -473,7 +473,7 @@
                         <outlet property="status5" destination="ITl-yv-w7a" id="VD6-oY-FOe"/>
                         <outlet property="status6" destination="vvO-2k-T4u" id="FhF-EF-lqO"/>
                         <outlet property="timerLabel" destination="7BQ-kf-MEC" id="uWO-RR-AhU"/>
-                        <outlet property="tv" destination="qbj-ys-cFW" id="IoJ-fo-AvP"/>
+                        <outlet property="tvButton" destination="qbj-ys-cFW" id="Ccz-Fr-vgJ"/>
                         <segue destination="9Jr-Rb-Qr1" kind="show" identifier="movieSegue" id="pRg-5O-veA"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="roomsSegue" id="9ky-Ze-tBX"/>
                     </connections>

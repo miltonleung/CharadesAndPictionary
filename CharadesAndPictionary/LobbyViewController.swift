@@ -483,11 +483,11 @@ class LobbyViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "movieSegue" {
-            let movie = segue.destinationViewController as! GameViewController
-            movie.roomName = roomName
-            movie.movies = movies
+            let game = segue.destinationViewController as! GameViewController
+            game.roomName = roomName
+            game.movies = movies
             if isLeader == true {
-                movie.firstMovie = self.rand
+                game.firstMovie = self.rand
             }
         }
     }
