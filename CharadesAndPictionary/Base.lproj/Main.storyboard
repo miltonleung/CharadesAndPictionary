@@ -462,7 +462,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="J9o-3R-nYB" firstAttribute="top" secondItem="pMI-2R-YcW" secondAttribute="bottom" constant="-6" id="Eht-qm-cVu"/>
+                                            <constraint firstItem="J9o-3R-nYB" firstAttribute="top" secondItem="pMI-2R-YcW" secondAttribute="bottom" constant="-3" id="Eht-qm-cVu"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="J9o-3R-nYB" secondAttribute="bottom" constant="-3" id="QJ3-Jc-ADt"/>
                                             <constraint firstItem="pMI-2R-YcW" firstAttribute="centerX" secondItem="J9o-3R-nYB" secondAttribute="centerX" id="WMN-V1-B0z"/>
                                             <constraint firstItem="J9o-3R-nYB" firstAttribute="centerX" secondItem="cv5-au-RQq" secondAttribute="centerX" id="x8Q-hW-fwq"/>
