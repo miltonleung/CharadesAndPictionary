@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LobbyViewController: UIViewController {
+class LobbyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var roomNameLabel: UILabel!
     
@@ -41,6 +41,8 @@ class LobbyViewController: UIViewController {
     var doneFamous:[Int]?
     var doneTV:[Int]?
     var doneCelebs:[Int]?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var countdownView: UIView!
     @IBAction func readyButton(sender: UIButton) {
@@ -98,6 +100,29 @@ class LobbyViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBAction func indexChanged(sender: AnyObject) {
+        switch segmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            tvButton.hidden = false
+            moviesButton.hidden = false
+            celebritiesButton.hidden = false
+            famousButton.hidden = false
+            collectionView.hidden = true
+        case 1:
+            tvButton.hidden = true
+            moviesButton.hidden = true
+            celebritiesButton.hidden = true
+            famousButton.hidden = true
+            collectionView.hidden = false
+        default:
+            break; 
+        }
+    }
+    
     @IBOutlet weak var moviesButton: UIButton!
     @IBAction func movies(sender: UIButton) {
         if sender.selected {
@@ -245,6 +270,7 @@ class LobbyViewController: UIViewController {
         clearPlayers()
         
         countdownView.hidden = true
+//        collectionView.hidden = true
         
         famousButton.selected = false
         tvButton.selected = false
@@ -517,5 +543,37 @@ class LobbyViewController: UIViewController {
                 game.firstMovie = self.rand
             }
         }
+    }
+    
+    let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
+    var items = ["add", "tv shows", "movies", "celebrities", "famous"]
+    var itemsImage = ["Add", "TVShows", "Movies", "Celebrities", "Famous"]
+    
+    // MARK: - UICollectionViewDataSource protocol
+    
+    // tell the collection view how many cells to make
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    // make a cell for each cell index path
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.name.text = self.items[indexPath.item]
+        cell.image.image = UIImage(named: self.itemsImage[indexPath.item])
+        cell.backgroundColor = UIColor.clearColor() // make cell more visible in our example project
+        
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
     }
 }

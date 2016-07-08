@@ -27,6 +27,7 @@
 		52724B181D26F7610011DFE3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52724B131D26F7610011DFE3 /* Poppins-Medium.ttf */; };
 		52724B191D26F7610011DFE3 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52724B141D26F7610011DFE3 /* Poppins-Regular.ttf */; };
 		52724B1A1D26F7610011DFE3 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52724B151D26F7610011DFE3 /* Poppins-SemiBold.ttf */; };
+		5275952F1D2F2D6C00C92A7D /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5275952E1D2F2D6C00C92A7D /* CategoryCollectionViewCell.swift */; };
 		528701901D2709A10004BFC0 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5287018F1D2709A10004BFC0 /* Keyboard.xib */; };
 		DF94515D503AC7406C10DF8C /* Pods_CharadesAndPictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3744D29742D0512B3BD892AB /* Pods_CharadesAndPictionary.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		52724B131D26F7610011DFE3 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		52724B141D26F7610011DFE3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		52724B151D26F7610011DFE3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		5275952E1D2F2D6C00C92A7D /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5287018F1D2709A10004BFC0 /* Keyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		8FB9DB8FC381DADDD73BB883 /* Pods-CharadesAndPictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CharadesAndPictionary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CharadesAndPictionary/Pods-CharadesAndPictionary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 		520956B01D1B9F1D00FFDE3E /* CharadesAndPictionary */ = {
 			isa = PBXGroup;
 			children = (
+				5275952E1D2F2D6C00C92A7D /* CategoryCollectionViewCell.swift */,
 				520956B11D1B9F1D00FFDE3E /* AppDelegate.swift */,
 				526F8C921D1D0F7500EF729C /* LobbyViewController.swift */,
 				520956B31D1B9F1D00FFDE3E /* ViewController.swift */,
@@ -387,6 +390,7 @@
 				5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */,
 				520956B41D1B9F1D00FFDE3E /* ViewController.swift in Sources */,
 				520956B21D1B9F1D00FFDE3E /* AppDelegate.swift in Sources */,
+				5275952F1D2F2D6C00C92A7D /* CategoryCollectionViewCell.swift in Sources */,
 				526F8C931D1D0F7500EF729C /* LobbyViewController.swift in Sources */,
 				52186C511D2081DA0090872F /* FirebaseModel.swift in Sources */,
 				52186C531D2082810090872F /* ModelInterface.swift in Sources */,
@@ -539,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -554,6 +559,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
