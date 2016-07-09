@@ -19,6 +19,7 @@ protocol FirebaseModelProtocol {
     func iamleaving(roomName: String, ready: [String], players: [String])
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
+    func makeRoom(roomName: String, author: String, icon: String, description: String, publicOrPrivate: String)
 }
 
 extension ModelInterface: FirebaseModelProtocol {
@@ -87,5 +88,12 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func removeListener(roomName: String) {
         ref.child("rooms/\(roomName)").removeAllObservers()
+    }
+    func makeRoom(roomName: String, author: String, icon: String, description: String, publicOrPrivate: String) {
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/name").setValue(roomName)
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/author").setValue(author)
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/description").setValue(description)
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/icon").setValue(icon)
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/list").setValue(["Threat Level Midnight"])
     }
 }

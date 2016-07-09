@@ -546,8 +546,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-    var items = ["add", "tv shows", "movies", "celebrities", "famous"]
-    var itemsImage = ["Add", "TVShows", "Movies", "Celebrities", "Famous"]
+    var items = ["add"]
+    var itemsImage = ["Add"]
     
     // MARK: - UICollectionViewDataSource protocol
     
@@ -575,5 +575,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
+        if items[indexPath.item] == "add" {
+            performSegueWithIdentifier("newListSegue", sender: nil)
+        }
     }
 }
