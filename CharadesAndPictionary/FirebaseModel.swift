@@ -12,14 +12,14 @@ import Firebase
 protocol FirebaseModelProtocol {
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
-    func updateDone(roomName: String, done: [Int], category: String) 
+    func updateDone(roomName: String, done: [Int], category: String)
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String)
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
     func iamleaving(roomName: String, ready: [String], players: [String])
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
-    func makeRoom(roomName: String, author: String, icon: String, description: String, publicOrPrivate: String)
+    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String)
 }
 
 extension ModelInterface: FirebaseModelProtocol {
@@ -29,7 +29,7 @@ extension ModelInterface: FirebaseModelProtocol {
             let categories = snapshot.value as! [String: AnyObject]
             completion(categories)
         })
-
+        
     }
     
     func updateScore(roomName: String, player: String, newScore: [String]) {
@@ -89,11 +89,21 @@ extension ModelInterface: FirebaseModelProtocol {
     func removeListener(roomName: String) {
         ref.child("rooms/\(roomName)").removeAllObservers()
     }
-    func makeRoom(roomName: String, author: String, icon: String, description: String, publicOrPrivate: String) {
-        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/name").setValue(roomName)
-        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/author").setValue(author)
-        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/description").setValue(description)
-        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/icon").setValue(icon)
-        ref.child("modules/community/\(publicOrPrivate)/\(roomName)/list").setValue(["Threat Level Midnight"])
+    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String) {
+        let key = ref.child("modules/community/\(publicOrPrivate)/\(roomName)").childByAutoId().key
+        ref.child("modules/community/\(publicOrPrivate)/\(roomName)").setValue(
+            [   "icon": icon,
+                "author": authors,
+                "description": description,
+                "list": key])
+        
+        ref.child("modules/community/lists/\(key)").setValue(["Threat Level Midnight"])
+    }
+    func fetchLists(completion: ([String: AnyObject] -> Void)) {
+        ref.child("modules/community/public").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let playersDict = snapshot.value as! [String : AnyObject]
+            // ...
+            completion(playersDict)
+        })
     }
 }

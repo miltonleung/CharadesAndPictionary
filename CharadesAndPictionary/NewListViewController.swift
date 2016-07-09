@@ -20,13 +20,25 @@ class NewListViewController: UIViewController {
     
     @IBOutlet weak var create: UIButton!
     @IBAction func create(sender: AnyObject) {
-        
-        ModelInterface.sharedInstance.makeRoom(listName.text!, author: myName, icon: "famous", description: descriptionField.text!, publicOrPrivate: "public")
+        createAction()
+    }
+    
+    var players:[String]?
+    
+    func createAction() {
+        var publicOrPrivate:String?
+        if isPrivate == false {
+            publicOrPrivate = "public"
+        } else {
+            publicOrPrivate = "private"
+        }
+        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: "famous", description: descriptionField.text!, publicOrPrivate: publicOrPrivate!)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     @IBOutlet weak var cancel: UIButton!
     @IBAction func cancel(sender: AnyObject) {
-        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     var isPrivate = false
@@ -107,6 +119,9 @@ class NewListViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
+        listName.delegate = self
+        descriptionField.delegate = self
+        
         
     }
     
@@ -145,5 +160,27 @@ class NewListViewController: UIViewController {
         if descriptionField.text?.characters.count == 0 {
             descriptionField.background = UIImage(named: "SmallTextFieldBackground")
         }
+    }
+}
+extension NewListViewController: UITextFieldDelegate {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        if textField == listName {
+            return newLength <= 9
+        } else {
+            return newLength <= 19
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == listName { // Switch focus to other text field
+            descriptionField.becomeFirstResponder()
+        }
+        if textField == descriptionField { // Switch focus to other text field
+            createAction()
+        }
+        return true
     }
 }

@@ -42,6 +42,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var doneTV:[Int]?
     var doneCelebs:[Int]?
     
+    var modules:[String: AnyObject]?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var countdownView: UIView!
@@ -514,6 +516,20 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             
         })
         
+        ModelInterface.sharedInstance.fetchLists( { modules -> Void in
+            self.modules = modules
+            var lists = [String]()
+            for (name, _) in modules {
+                if !self.items.contains(name) {
+                    self.items.append(name)
+                    let list = modules[name] as! [String: AnyObject]
+                    let image = list["icon"] as! String
+                    self.itemsImage.append(image)
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+        
         
     }
     
@@ -542,7 +558,11 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             if isLeader == true {
                 game.firstMovie = self.rand
             }
+        } else if segue.identifier == "newListSegue" {
+            let newList = segue.destinationViewController as! NewListViewController
+            newList.players = players
         }
+        
     }
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
