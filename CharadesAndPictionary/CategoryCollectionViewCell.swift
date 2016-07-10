@@ -11,4 +11,19 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
+    
+    override var selected: Bool {
+        get {
+            return super.selected
+        }
+        set {
+            if newValue {
+                super.selected = true
+                self.layer.backgroundColor = UIColor(patternImage: UIImage(named: "Selected")!).CGColor
+            } else if newValue == false {
+                super.selected = false
+                self.layer.backgroundColor = UIColor.clearColor().CGColor
+            }
+        }
+    }
 }

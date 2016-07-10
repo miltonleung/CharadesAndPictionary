@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewListViewController: UIViewController {
+class NewListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var newListView: UIView!
     @IBOutlet weak var buildAList: UILabel!
@@ -17,6 +17,11 @@ class NewListViewController: UIViewController {
     @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var nameFieldLabel: UILabel!
     @IBOutlet weak var descriptionFieldLabel: UILabel!
+    
+    var selectedIcon:String?
+    var selectedIndex: NSIndexPath?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var create: UIButton!
     @IBAction func create(sender: AnyObject) {
@@ -32,7 +37,7 @@ class NewListViewController: UIViewController {
         } else {
             publicOrPrivate = "private"
         }
-        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: "famous", description: descriptionField.text!, publicOrPrivate: publicOrPrivate!)
+        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: descriptionField.text!, publicOrPrivate: publicOrPrivate!)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -40,8 +45,6 @@ class NewListViewController: UIViewController {
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    var isPrivate = false
     
     @IBOutlet weak var privateButton: UIButton!
     @IBAction func `private`(sender: AnyObject) {
@@ -53,6 +56,7 @@ class NewListViewController: UIViewController {
             isPrivate = false
             lightState()
         }
+        collectionView.reloadData()
     }
     
     func darkState() {
@@ -79,7 +83,7 @@ class NewListViewController: UIViewController {
             descriptionField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
         }
     }
-    
+    var tap: UITapGestureRecognizer?
     func lightState() {
         newListView.layer.cornerRadius = 24
         self.newListView.layer.borderWidth = 2
@@ -109,15 +113,20 @@ class NewListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        collectionView.allowsSelection = true
+        
         super.viewDidLoad()
         
         lightState()
         
+        
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap!)
+        tap?.enabled = false
         
         listName.delegate = self
         descriptionField.delegate = self
@@ -151,6 +160,7 @@ class NewListViewController: UIViewController {
                 listName.background = UIImage(named: "SmallTextFieldBackground")
             }
         }
+        tap?.enabled = true
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -160,6 +170,61 @@ class NewListViewController: UIViewController {
         if descriptionField.text?.characters.count == 0 {
             descriptionField.background = UIImage(named: "SmallTextFieldBackground")
         }
+        tap?.enabled = false
+    }
+    
+    let reuseIdentifier = "smallCell"
+    var items = ["Famous", "Mic", "Play", "Thumbtack"]
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    // make a cell for each cell index path
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SmallCategoryCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.image.image = UIImage(named: "\(self.items[indexPath.item])Small")
+        cell.backgroundColor = UIColor.clearColor() // make cell more visible in our example project
+        
+        if isPrivate == true {
+            if self.items[indexPath.item] == selectedIcon {
+                cell.selected = true
+                cell.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIconSelectedDark")!)
+                
+            } else {
+                cell.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIconDark")!)
+            }
+        } else {
+            if self.items[indexPath.item] == selectedIcon {
+                cell.selected = true
+                cell.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIconSelected")!)
+            } else {
+                cell.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIcon")!)
+            }
+        }
+        
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // handle tap events
+        if selectedIndex != nil {
+            let cell = collectionView.cellForItemAtIndexPath(selectedIndex!)
+            if isPrivate == true {
+                cell!.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIconDark")!)
+            } else {
+                cell!.backgroundColor = UIColor(patternImage: UIImage(named: "DefaultSmallIcon")!)
+            }
+        }
+        selectedIcon = self.items[indexPath.item]
+        selectedIndex = indexPath
+        
     }
 }
 extension NewListViewController: UITextFieldDelegate {

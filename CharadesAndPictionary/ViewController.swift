@@ -89,6 +89,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func addFillerRoom() {
         self.ref.child("rooms/capfill/password").setValue("123")
     }
+    func addFillerCommunity() {
+        self.ref.child("modules/community/public/capfill/author").setValue(" ")
+    }
     
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
         if room.isEmpty {
@@ -116,7 +119,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         setupTextFields()
-        
+        addFillerCommunity()
         addFillerRoom()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);

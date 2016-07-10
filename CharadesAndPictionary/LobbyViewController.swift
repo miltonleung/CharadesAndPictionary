@@ -121,7 +121,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             famousButton.hidden = true
             collectionView.hidden = false
         default:
-            break; 
+            break;
         }
     }
     
@@ -154,7 +154,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             if isLeader == true {
                 categorySelected = false
                 startButton.alpha = 0.5
-            } 
+            }
         } else {
             if isLeader == true {
                 categorySelected = true
@@ -266,13 +266,13 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         famous = NSUserDefaults.standardUserDefaults().arrayForKey("famous") as? [String]
         celebs = NSUserDefaults.standardUserDefaults().arrayForKey("celebs") as? [String]
         tv = NSUserDefaults.standardUserDefaults().arrayForKey("tv") as? [String]
-
+        
         setupGame("movies")
         
         clearPlayers()
         
         countdownView.hidden = true
-//        collectionView.hidden = true
+        //        collectionView.hidden = true
         
         famousButton.selected = false
         tvButton.selected = false
@@ -298,7 +298,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         countDownTime = 8
         timerRunning = false
         startButton.setTitle("start", forState: .Normal)
-
+        
     }
     
     func willEnterBackground() {
@@ -520,12 +520,14 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.modules = modules
             var lists = [String]()
             for (name, _) in modules {
-                if !self.items.contains(name) {
-                    self.items.append(name)
-                    let list = modules[name] as! [String: AnyObject]
-                    let image = list["icon"] as! String
-                    self.itemsImage.append(image)
-                    self.collectionView.reloadData()
+                if name != "capfill" {
+                    if !self.items.contains(name) {
+                        self.items.append(name)
+                        let list = modules[name] as! [String: AnyObject]
+                        let image = list["icon"] as! String
+                        self.itemsImage.append(image)
+                        self.collectionView.reloadData()
+                    }
                 }
             }
         })
