@@ -599,6 +599,16 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         print("You selected cell #\(indexPath.item)!")
         if items[indexPath.item] == "add" {
             performSegueWithIdentifier("newListSegue", sender: nil)
+        } else {
+            let selectedModule = modules!["\(items[indexPath.item])"]
+            let currentAuthors = selectedModule!["authors"] as! [String]
+            if currentAuthors.contains(myName) {
+                performSegueWithIdentifier("buildListSegue", sender: nil)
+            } else {
+                performSegueWithIdentifier("selectListSegue", sender: nil)
+            }
+            
+            
         }
     }
 }
