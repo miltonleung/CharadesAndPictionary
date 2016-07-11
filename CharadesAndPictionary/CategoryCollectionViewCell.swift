@@ -17,12 +17,14 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             return super.selected
         }
         set {
-            if newValue {
-                super.selected = true
-                self.layer.backgroundColor = UIColor(patternImage: UIImage(named: "Selected")!).CGColor
-            } else if newValue == false {
-                super.selected = false
-                self.layer.backgroundColor = UIColor.clearColor().CGColor
+            if isLeader {
+                if newValue {
+                    super.selected = true
+                    self.layer.backgroundColor = UIColor(patternImage: UIImage(named: "Selected")!).CGColor
+                } else if newValue == false {
+                    super.selected = false
+                    self.layer.backgroundColor = UIColor.clearColor().CGColor
+                }
             }
         }
     }

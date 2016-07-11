@@ -273,6 +273,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         clearPlayers()
         
+        collectionView.hidden = true
+        
         countdownView.hidden = true
         //        collectionView.hidden = true
         
@@ -568,6 +570,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             let buildList = segue.destinationViewController as! BuildListViewController
             buildList.module = selectedModule
             buildList.moduleName = selectedName
+        } else if segue.identifier == "selectListSegue" {
+            let selectList = segue.destinationViewController as! SelectListViewController
+            selectList.module = selectedModule
+            selectList.moduleName = selectedName
         }
         
     }
