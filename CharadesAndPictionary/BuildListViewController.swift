@@ -21,9 +21,15 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var entryField: UITextField!
     @IBAction func addEntry(sender: AnyObject) {
+        addEntrytoList()
+        entryField.text = ""
+        
     }
     @IBAction func done(sender: AnyObject) {
-        print(entryField.text)
+        if entryField.text?.characters.count > 0 {
+            addEntrytoList()
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -45,6 +51,12 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
+    
+    func addEntrytoList() {
+        let listKey = module!["list"] as! String
+        ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }

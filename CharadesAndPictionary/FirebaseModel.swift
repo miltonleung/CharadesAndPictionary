@@ -106,4 +106,21 @@ extension ModelInterface: FirebaseModelProtocol {
             completion(playersDict)
         })
     }
+    func addToList(listName: String, entry: String) {
+        ref.child("modules/community/lists/\(listName)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if var entries = currentData.value as? [String] {
+                
+                entries.append(entry)
+                
+                currentData.value = entries
+                
+                return FIRTransactionResult.successWithValue(currentData)
+            }
+            return FIRTransactionResult.successWithValue(currentData)
+        }) {( error, commited, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

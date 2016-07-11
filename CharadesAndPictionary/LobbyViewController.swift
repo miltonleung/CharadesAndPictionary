@@ -523,10 +523,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             for (name, _) in modules {
                 if name != "capfill" {
                     if !self.items.contains(name) {
-                        self.items.append(name)
+                        self.items.insert(name, atIndex: 1)
                         let list = modules[name] as! [String: AnyObject]
                         let image = list["icon"] as! String
-                        self.itemsImage.append(image)
+                        self.itemsImage.insert(image, atIndex: 1)
                         self.collectionView.reloadData()
                     }
                 }
