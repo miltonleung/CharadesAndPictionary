@@ -258,7 +258,7 @@
                                         <color key="textColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Entry" textAlignment="natural" minimumFontSize="31" background="TextFieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Q2n-qh-awk">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Entry" textAlignment="natural" minimumFontSize="31" background="SmallTextFieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Q2n-qh-awk">
                                         <rect key="frame" x="59" y="87" width="193" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="8aB-2d-lsi"/>

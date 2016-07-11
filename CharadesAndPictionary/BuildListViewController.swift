@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BuildListViewController: UIViewController {
+class BuildListViewController: UIViewController, UITextFieldDelegate {
     
     var module:AnyObject?
     var moduleName:String?
@@ -23,6 +23,7 @@ class BuildListViewController: UIViewController {
     @IBAction func addEntry(sender: AnyObject) {
     }
     @IBAction func done(sender: AnyObject) {
+        print(entryField.text)
     }
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -57,15 +58,11 @@ class BuildListViewController: UIViewController {
     func keyboardWillShow(notification: NSNotification) {
         if entryField.editing {
             entryField.background = UIImage(named: "SmallTextFieldBackgroundDark")
-            if entryField.text?.characters.count == 0 {
-                entryField.background = UIImage(named: "SmallTextFieldBackground")
-            }
         }
-//        tap?.enabled = true
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if listName.text?.characters.count == 0 {
+        if entryField.text?.characters.count == 0 {
             entryField.background = UIImage(named: "SmallTextFieldBackground")
         }
 //        tap?.enabled = false
