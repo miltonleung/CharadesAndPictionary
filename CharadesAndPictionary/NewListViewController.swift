@@ -37,7 +37,11 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         } else {
             publicOrPrivate = "private"
         }
-        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: descriptionField.text!, publicOrPrivate: publicOrPrivate!)
+        var description = descriptionField.text
+        if description?.characters.count == 0 {
+            description = " "
+        }
+        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: description!, publicOrPrivate: publicOrPrivate!)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -174,7 +178,7 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     let reuseIdentifier = "smallCell"
-    var items = ["Famous", "Mic", "Play", "Thumbtack"]
+    var items = ["Bulb", "Mic", "Play", "Thumbtack"]
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count

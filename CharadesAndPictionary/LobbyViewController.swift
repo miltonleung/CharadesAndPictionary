@@ -43,6 +43,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var doneCelebs:[Int]?
     
     var modules:[String: AnyObject]?
+    var selectedModule:AnyObject?
+    var selectedName:String?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -518,7 +520,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         ModelInterface.sharedInstance.fetchLists( { modules -> Void in
             self.modules = modules
-            var lists = [String]()
             for (name, _) in modules {
                 if name != "capfill" {
                     if !self.items.contains(name) {
@@ -563,6 +564,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if segue.identifier == "newListSegue" {
             let newList = segue.destinationViewController as! NewListViewController
             newList.players = players
+        } else if segue.identifier == "buildListSegue" {
+            let buildList = segue.destinationViewController as! BuildListViewController
+            buildList.module = selectedModule
+            buildList.moduleName = selectedName
         }
         
     }
@@ -600,8 +605,9 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         if items[indexPath.item] == "add" {
             performSegueWithIdentifier("newListSegue", sender: nil)
         } else {
-            let selectedModule = modules!["\(items[indexPath.item])"]
-            let currentAuthors = selectedModule!["authors"] as! [String]
+            selectedName = items[indexPath.item]
+            selectedModule = modules!["\(items[indexPath.item])"]
+            let currentAuthors = selectedModule!["author"] as! [String]
             if currentAuthors.contains(myName) {
                 performSegueWithIdentifier("buildListSegue", sender: nil)
             } else {
