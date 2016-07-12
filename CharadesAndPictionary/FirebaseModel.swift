@@ -97,7 +97,7 @@ extension ModelInterface: FirebaseModelProtocol {
                 "description": description,
                 "list": key])
         
-        ref.child("modules/community/lists/\(key)").setValue(["Threat Level Midnight"])
+        //        ref.child("modules/community/lists/\(key)").setValue(["Threat Level Midnight"])
     }
     func fetchLists(completion: ([String: AnyObject] -> Void)) {
         ref.child("modules/community/public").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -108,15 +108,17 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func addToList(listName: String, entry: String) {
         ref.child("modules/community/lists/\(listName)").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            if var entries = currentData.value as? [String] {
-                
-                entries.append(entry)
-                
-                currentData.value = entries
-                
-                return FIRTransactionResult.successWithValue(currentData)
+            var entries = currentData.value as? [String]
+            if entries == nil {
+                entries = [String]()
             }
+            entries!.append(entry)
+            
+            currentData.value = entries
+            
             return FIRTransactionResult.successWithValue(currentData)
+            
+            
         }) {( error, commited, snapshot) in
             if let error = error {
                 print(error.localizedDescription)
