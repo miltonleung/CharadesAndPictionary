@@ -123,4 +123,11 @@ extension ModelInterface: FirebaseModelProtocol {
             }
         }
     }
+    func fetchSingleList(listKey: String, completion: ([String] -> Void)) {
+        ref.child("modules/community/lists/\(listKey)").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            let list = snapshot.value as! [String]
+            // ...
+            completion(list)
+        })
+    }
 }

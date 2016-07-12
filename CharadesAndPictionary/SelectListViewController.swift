@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol SelectListViewControllerDelegate {
+    func customCategoryAction(listName: String)
+}
+
 class SelectListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var module:AnyObject?
     var moduleName:String?
+    
+    var delegate:SelectListViewControllerDelegate?
     
     @IBOutlet weak var selectListView: UIView!
     
@@ -20,10 +26,11 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var Contributors: UILabel!
     
-
-    
     @IBOutlet weak var select: UIButton!
     @IBAction func selectButton(sender: AnyObject) {
+        if isLeader {
+            delegate?.customCategoryAction(moduleName!)
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBOutlet weak var cancel: UIButton!

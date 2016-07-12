@@ -37,6 +37,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var timerRunning:Bool = false
     
+    var done:[String: AnyObject]?
     var doneMovies:[Int]?
     var doneFamous:[Int]?
     var doneTV:[Int]?
@@ -45,6 +46,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var modules:[String: AnyObject]?
     var selectedModule:AnyObject?
     var selectedName:String?
+    var selectedList: [String]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -443,11 +445,11 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.players = room["players"] as? [String]
             self.ready = room["ready"] as? [String]
             self.setupLabels()
-            let done = room["done"] as! [String: AnyObject]
-            self.doneMovies = done["movies"] as? [Int]
-            self.doneTV = done["tv"] as? [Int]
-            self.doneFamous = done["famous"] as? [Int]
-            self.doneCelebs = done["celebs"] as? [Int]
+            self.done = room["done"] as? [String: AnyObject]
+            self.doneMovies = self.done!["movies"] as? [Int]
+            self.doneTV = self.done!["tv"] as? [Int]
+            self.doneFamous = self.done!["famous"] as? [Int]
+            self.doneCelebs = self.done!["celebs"] as? [Int]
             
             if self.players!.count > 1 {
                 if self.players![1] == myName {
@@ -557,6 +559,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             case "tv":
                 game.movies = tv
             default:
+                game.movies = selectedList
                 break
             }
             game.category = category
@@ -574,6 +577,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             let selectList = segue.destinationViewController as! SelectListViewController
             selectList.module = selectedModule
             selectList.moduleName = selectedName
+            selectList.delegate = self
         }
         
     }
@@ -622,5 +626,36 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             
             
         }
+    }
+}
+
+extension LobbyViewController: SelectListViewControllerDelegate{
+    func customCategoryAction(listName: String) {
+        let currentModule = modules![listName] as! [String: AnyObject]
+        let key = currentModule["list"] as! String
+        ModelInterface.sharedInstance.fetchSingleList(key, completion: { listValue -> Void in
+            var list = listValue
+            list.removeFirst() //TODO
+            
+            var temp_done = [Int]()
+            
+            if (self.done?.indexForKey("done\(listName)")) != nil {
+                temp_done = self.done!["done\(listName)"] as! [Int]
+            }
+            
+            repeat {
+                self.rand = Int(arc4random_uniform(UInt32(list.count)))
+            } while temp_done.contains(self.rand!)
+            temp_done.append(self.rand!)
+            ModelInterface.sharedInstance.updateDone(self.roomName!, done: temp_done, category: listName)
+            
+            self.categorySelected = true
+            self.category = listName
+            
+            self.selectedList = list
+            
+            let currentPlayer = self.players![(self.rand! % ((self.players?.count)! - 1)) + 1]
+            ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: self.category!)
+        })
     }
 }
