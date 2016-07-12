@@ -528,18 +528,16 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func locateList(listName: String) {
-        var foundList:[String]?
         if stockLists.contains(listName) {
-            foundList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
+            selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
         } else {
             let currentModule = modules![listName] as! [String: AnyObject]
             let key = currentModule["list"] as! String
             
             ModelInterface.sharedInstance.fetchSingleList(key, completion: { list -> Void in
-                foundList = list
+                self.selectedList = list
             })
         }
-        selectedList = foundList
     }
     
     override func didReceiveMemoryWarning() {
