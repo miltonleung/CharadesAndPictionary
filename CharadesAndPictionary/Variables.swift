@@ -20,3 +20,11 @@ var countDownTime = 8
 var isPrivate = false
 
 var stockLists:[String] = ["movies", "tv", "famous", "celebs"]
+
+enum ErrorMessages {
+    static let emptyName = "Please enter a name"
+    static let emptyRoom = "Please enter a room name"
+    static let symbols = "Please refrain from using # [ ] * ? . or $"
+}
+
+var badCharacters: Set<Character> = ["#", "[", "]", "*", "?", ".", "$"]

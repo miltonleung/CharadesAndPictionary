@@ -18,6 +18,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var lobbyRoom:String?
     
     
+    @IBOutlet weak var roomErrorMessage: UILabel!
+    @IBOutlet weak var nameErrorMessage: UILabel!
+    
     @IBOutlet weak var emojiInputView: UIView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -30,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func submit() {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        if editedText != "" && passwordField.text != "" && nameField != "" {
+        if !checkForErrorsInput() && passwordField.text != ""  {
             NSUserDefaults.standardUserDefaults().setObject(nameField.text, forKey: "name")
             NSUserDefaults.standardUserDefaults().setObject(roomField.text, forKey: "room")
             NSUserDefaults.standardUserDefaults().setObject(passwordField.text, forKey: "password")
@@ -59,7 +62,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //                            self.ref.updateChildValues(playerUpdates)
                             self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
-                            print("A player with the same name already exists")
+                            self.nameErrorMessage.text = "A player with the same name already exists in this room"
+                            
                         }
                         
                         
@@ -67,6 +71,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         }
+    }
+    
+    func checkForErrorsInput() -> Bool {
+        let editedName = nameField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let editedRoom = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        var failed: Bool = false
+        if editedName?.characters.count == 0 {
+            nameErrorMessage.text = ErrorMessages.emptyName
+            failed = true
+        }
+        if StringUtil.checkForSymbols(editedRoom!) {
+            roomErrorMessage.text = ErrorMessages.symbols
+            failed = true
+        }
+        if StringUtil.checkForSymbols(editedName!) {
+            nameErrorMessage.text = ErrorMessages.symbols
+            failed = true
+        }
+        if editedRoom?.characters.count == 0 {
+            roomErrorMessage.text = ErrorMessages.emptyRoom
+            failed = true
+        }
+        return failed
+
     }
     
     func addRoom(editedText: String) {
@@ -103,6 +131,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         ref = FIRDatabase.database().reference()
+        
+        roomErrorMessage.text = ""
+        nameErrorMessage.text = ""
         
         let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
         if !firstRun {
