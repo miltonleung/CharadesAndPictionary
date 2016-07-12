@@ -18,3 +18,5 @@ let ref = FIRDatabase.database().reference()
 var countDownTime = 8
 
 var isPrivate = false
+
+var stockLists:[String] = ["movies", "tv", "famous", "celebs"]

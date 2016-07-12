@@ -54,9 +54,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             }
                             self.ref.child("rooms/\(editedText!)/players").setValue(existingPlayers)
                             
-                            let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
+//                            let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
                             isLeader = false
-                            self.ref.updateChildValues(playerUpdates)
+//                            self.ref.updateChildValues(playerUpdates)
                             self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
                             print("A player with the same name already exists")
@@ -72,18 +72,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func addRoom(editedText: String) {
         self.lobbyRoom = editedText
         self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
-        self.ref.child("rooms/\(editedText)/ready").setValue(["Michael Scott"])
-        self.ref.child("rooms/\(editedText)/players").setValue(["Michael Scott", "\(myName)"])
-//        self.ref.child("rooms/\(editedText)/done/movies").setValue([-1])
-//        self.ref.child("rooms/\(editedText)/done/tv").setValue([-1])
-//        self.ref.child("rooms/\(editedText)/done/famous").setValue([-1])
-//        self.ref.child("rooms/\(editedText)/done/celebs").setValue([-1])
-        self.ref.child("rooms/\(editedText)/category").setValue(" ")
-//        self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
+        self.ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
         self.ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
         self.ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
-        let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
-        self.ref.child("rooms/\(editedText)/scores").setValue(myPlayer)
     }
     
     func addFillerRoom() {

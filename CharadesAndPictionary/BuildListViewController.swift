@@ -42,7 +42,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         listName.text = moduleName
         listDescription.text = module!["description"] as! String
         let authors = module!["author"] as! [String]
-        listAuthors.text = "by \(authors[1]) and others"
+        listAuthors.text = "by \(authors[0]) and others"
         
         let tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)

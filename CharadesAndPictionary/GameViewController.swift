@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
             if myName == name1.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count {
+            else if done!.count != movies?.count {
                 updateButtonOnTap(sender, number: 1)
             } else {
                 newPick()
@@ -58,7 +58,7 @@ class GameViewController: UIViewController {
             if myName == name2.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+            else if done!.count != movies?.count && currentPlayer == myName {
                 updateButtonOnTap(sender, number: 2)
             } else {
                 newPick()
@@ -75,7 +75,7 @@ class GameViewController: UIViewController {
             if myName == name3.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+            else if done!.count != movies?.count && currentPlayer == myName {
                 updateButtonOnTap(sender, number: 3)
             } else {
                 newPick()
@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
             if myName == name4.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+            else if done!.count != movies?.count && currentPlayer == myName {
                 updateButtonOnTap(sender, number: 4)
             } else {
                 newPick()
@@ -109,7 +109,7 @@ class GameViewController: UIViewController {
             if myName == name5.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+            else if done!.count != movies?.count && currentPlayer == myName {
                 updateButtonOnTap(sender, number: 5)
             } else {
                 newPick()
@@ -126,7 +126,7 @@ class GameViewController: UIViewController {
             if myName == name6.text {
                 label.text = "Can't guess your own answer"
             }
-            else if done!.count - 1 != movies?.count && currentPlayer == myName {
+            else if done!.count != movies?.count && currentPlayer == myName {
                 updateButtonOnTap(sender, number: 6)
             } else {
                 newPick()
@@ -153,14 +153,14 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         roomLabel.text = roomName
-//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-//        movies = ["The Other Guys", "Wolf of Wall Street"]
-        
-        
-        //        scores = ["Milton": ["Threat Level Midnight"]]
+
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { players -> Void in
-            let playersDict = players["scores"] as! [String: [String]]
-            self.scores = playersDict
+            
+            if let playersDict = players["scores"] as? [String: [String]] {
+                self.scores = playersDict
+            } else {
+                self.scores = [String: [String]]()
+            }
             self.ready = players["ready"] as? [String]
             self.players = players["players"] as? [String]
             
@@ -292,47 +292,50 @@ class GameViewController: UIViewController {
         var results = [[String]]()
 
         for name in ready! {
-            if name != "Michael Scott" {
+            if scores?.indexForKey(name) != nil {
+                results.append(scores![name]!)
+            } else {
+                scores![name] = [String]()
                 results.append(scores![name]!)
             }
         }
         
         
-        if ready!.count > 1 {
+        if ready!.count > 0 {
             player1.hidden = false
             name1.hidden = false
-            name1.text = "\(ready![1])"
-            player1.setTitle("\(results[0].count - 1)", forState: UIControlState.Normal)
+            name1.text = "\(ready![0])"
+            player1.setTitle("\(results[0].count)", forState: UIControlState.Normal)
         }
-        if ready!.count > 2 {
+        if ready!.count > 1 {
             player2.hidden = false
             name2.hidden = false
-            name2.text = "\(ready![2])"
-            player2.setTitle("\(results[1].count - 1)", forState: UIControlState.Normal)
+            name2.text = "\(ready![1])"
+            player2.setTitle("\(results[1].count)", forState: UIControlState.Normal)
         }
-        if ready!.count > 3 {
+        if ready!.count > 2 {
             player3.hidden = false
             name3.hidden = false
-            name3.text = "\(ready![3])"
-            player3.setTitle("\(results[2].count - 1)", forState: UIControlState.Normal)
+            name3.text = "\(ready![2])"
+            player3.setTitle("\(results[2].count)", forState: UIControlState.Normal)
         }
-        if ready!.count > 4 {
+        if ready!.count > 3 {
             player4.hidden = false
             name4.hidden = false
-            name4.text = "\(ready![4])"
-            player4.setTitle("\(results[3].count - 1)", forState: UIControlState.Normal)
+            name4.text = "\(ready![3])"
+            player4.setTitle("\(results[3].count)", forState: UIControlState.Normal)
         }
-        if ready!.count > 5 {
+        if ready!.count > 4 {
             player5.hidden = false
             name5.hidden = false
-            name5.text = "\(ready![5])"
-            player5.setTitle("\(results[4].count - 1)", forState: UIControlState.Normal)
+            name5.text = "\(ready![4])"
+            player5.setTitle("\(results[4].count)", forState: UIControlState.Normal)
         }
-        if ready!.count > 6 {
+        if ready!.count > 5 {
             player6.hidden = false
             name6.hidden = false
-            name6.text = "\(ready![6])"
-            player6.setTitle("\(results[5].count - 1)", forState: UIControlState.Normal)
+            name6.text = "\(ready![5])"
+            player6.setTitle("\(results[5].count)", forState: UIControlState.Normal)
         }
     }
     
@@ -348,7 +351,7 @@ class GameViewController: UIViewController {
             ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: rand!, currentPlayer: nextPlayer!, category: "movies")
             
         } else {
-            label.text = "We're all out of movies"
+            label.text = "We're all out of items"
         }
     }
     

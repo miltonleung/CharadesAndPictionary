@@ -38,10 +38,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var timerRunning:Bool = false
     
     var done:[String: AnyObject]?
-    var doneMovies:[Int]?
-    var doneFamous:[Int]?
-    var doneTV:[Int]?
-    var doneCelebs:[Int]?
     
     var modules:[String: AnyObject]?
     var selectedModule:AnyObject?
@@ -211,40 +207,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-//    func categoryAction() {
-//        if category == "movies" {
-//            repeat {
-//                rand = Int(arc4random_uniform(UInt32(movies!.count)))
-//            } while doneMovies!.contains(rand!)
-//            doneMovies!.append(rand!)
-//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneMovies!, category: "movies")
-//        } else if category == "celebs" {
-//            repeat {
-//                rand = Int(arc4random_uniform(UInt32(celebs!.count)))
-//            } while doneCelebs!.contains(rand!)
-//            doneCelebs!.append(rand!)
-//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneCelebs!, category: "celebs")
-//        } else if category == "tv" {
-//            repeat {
-//                rand = Int(arc4random_uniform(UInt32(tv!.count)))
-//            } while doneTV!.contains(rand!)
-//            doneTV!.append(rand!)
-//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneTV!, category: "tv")
-//        } else if category == "famous" {
-//            repeat {
-//                rand = Int(arc4random_uniform(UInt32(famous!.count)))
-//            } while doneFamous!.contains(rand!)
-//            doneFamous!.append(rand!)
-//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneFamous!, category: "famous")
-//        }
-//        
-//        
-//        
-//        let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
-//        ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
-//        
-//    }
-    
     func categoryAction(listName: String) {
         selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
         
@@ -260,11 +222,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } while temp_done.contains(self.rand!)
         temp_done.append(self.rand!)
         ModelInterface.sharedInstance.updateDone(self.roomName!, done: temp_done, category: listName)
+        if isLeader {
+            self.categorySelected = true
+            self.category = listName
+        }
         
-        self.categorySelected = true
-        self.category = listName
-        
-        let currentPlayer = self.players![(self.rand! % ((self.players?.count)! - 1)) + 1]
+        let currentPlayer = self.players![(self.rand! % (self.players?.count)!)]
         ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: self.category!)
         
         
@@ -284,10 +247,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         roomNameLabel.text = roomName
-//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-//        famous = NSUserDefaults.standardUserDefaults().arrayForKey("famous") as? [String]
-//        celebs = NSUserDefaults.standardUserDefaults().arrayForKey("celebs") as? [String]
-//        tv = NSUserDefaults.standardUserDefaults().arrayForKey("tv") as? [String]
         
         setupGame("movies")
         
@@ -390,57 +349,57 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         status6.hidden = true
         
         
-        if players!.count > 1 {
+        if players!.count > 0 {
             player1.hidden = false
             status1.hidden = false
             status1.setTitle("..", forState: UIControlState.Normal)
-            player1.text = players![1]
+            player1.text = players![0]
         }
-        if players!.count > 2 {
+        if players!.count > 1 {
             player2.hidden = false
             status2.hidden = false
             status2.setTitle("..", forState: UIControlState.Normal)
-            player2.text = players![2]
+            player2.text = players![1]
         }
-        if players!.count > 3 {
+        if players!.count > 2 {
             player3.hidden = false
             status3.hidden = false
             status3.setTitle("..", forState: UIControlState.Normal)
-            player3.text = players![3]
+            player3.text = players![2]
         }
-        if players!.count > 4 {
+        if players!.count > 3 {
             player4.hidden = false
             status4.hidden = false
             status4.setTitle("..", forState: UIControlState.Normal)
-            player4.text = players![4]
+            player4.text = players![3]
         }
-        if players!.count > 5 {
+        if players!.count > 4 {
             player5.hidden = false
             status5.hidden = false
             status5.setTitle("..", forState: UIControlState.Normal)
-            player5.text = players![5]
+            player5.text = players![4]
         }
-        if players!.count > 6 {
+        if players!.count > 5 {
             player6.hidden = false
             status6.hidden = false
             status6.setTitle("..", forState: UIControlState.Normal)
-            player6.text = players![6]
+            player6.text = players![5]
         }
         
         for player in ready! {
             if let index = players?.indexOf("\(player)") {
                 switch Int(index) {
-                case 1:
+                case 0:
                     status1.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 2:
+                case 1:
                     status2.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 3:
+                case 2:
                     status3.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 4:
+                case 3:
                     status4.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 5:
+                case 4:
                     status5.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 6:
+                case 5:
                     status6.setTitle("👍🏼", forState: UIControlState.Normal)
                 default: break
                 }
@@ -460,19 +419,27 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
             //            self.players = room["scores"] as? [String: [String]]
-            self.players = room["players"] as? [String]
-            self.ready = room["ready"] as? [String]
+            if let players = room["players"] as? [String] {
+                self.players = players
+            }
+            if let ready = room["ready"] as? [String] {
+                self.ready = ready
+            } else {
+                self.ready = [String]()
+            }
             self.setupLabels()
             if let done = room["done"] as? [String: AnyObject] {
                 self.done = done
-                //                self.doneMovies = done!["movies"] as? [Int]
-                //                self.doneTV = done!["tv"] as? [Int]
-                //                self.doneFamous = done!["famous"] as? [Int]
-                //                self.doneCelebs = done!["celebs"] as? [Int]
+            }
+            if let category = room["category"] as? String {
+                if !isLeader {
+                    self.category = category
+                    self.locateList(category)
+                }
             }
             
-            if self.players!.count > 1 {
-                if self.players![1] == myName {
+            if self.players!.count > 0 {
+                if self.players![0] == myName {
                     isLeader = true
                     if self.timerRunning == false {
                         self.startButton.hidden = false
@@ -560,6 +527,21 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
     }
     
+    func locateList(listName: String) {
+        var foundList:[String]?
+        if stockLists.contains(listName) {
+            foundList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
+        } else {
+            let currentModule = modules![listName] as! [String: AnyObject]
+            let key = currentModule["list"] as! String
+            
+            ModelInterface.sharedInstance.fetchSingleList(key, completion: { list -> Void in
+                foundList = list
+            })
+        }
+        selectedList = foundList
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -641,9 +623,12 @@ extension LobbyViewController: SelectListViewControllerDelegate{
     func customCategoryAction(listName: String) {
         let currentModule = modules![listName] as! [String: AnyObject]
         let key = currentModule["list"] as! String
+        if isLeader {
+            self.categorySelected = true
+            self.category = listName
+        }
         ModelInterface.sharedInstance.fetchSingleList(key, completion: { listValue -> Void in
             var list = listValue
-            list.removeFirst() //TODO
             
             var temp_done = [Int]()
             
@@ -657,12 +642,11 @@ extension LobbyViewController: SelectListViewControllerDelegate{
             temp_done.append(self.rand!)
             ModelInterface.sharedInstance.updateDone(self.roomName!, done: temp_done, category: listName)
             
-            self.categorySelected = true
-            self.category = listName
+            
             
             self.selectedList = list
             
-            let currentPlayer = self.players![(self.rand! % ((self.players?.count)! - 1)) + 1]
+            let currentPlayer = self.players![(self.rand! % (self.players?.count)!)]
             ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: self.category!)
         })
     }

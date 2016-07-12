@@ -46,7 +46,6 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
         listName.text = moduleName
         listDescription.text = module!["description"] as! String
         var authors = module!["author"] as! [String]
-        authors.removeFirst()
         items = authors
         
         if isLeader {
