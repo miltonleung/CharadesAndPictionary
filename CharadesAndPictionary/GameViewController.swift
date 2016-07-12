@@ -176,6 +176,7 @@ class GameViewController: UIViewController {
                 self.label.text = "\(self.currentPlayer)'s Turn"
                 self.next.hidden = true
             }
+            
             let totalDone = players["done"] as! [String: AnyObject]
             self.done = totalDone[self.category!] as? [Int]
             
@@ -337,7 +338,7 @@ class GameViewController: UIViewController {
     
     func newPick() {
         var rand:Int?
-        if (done?.count)! - 1 != (movies?.count)! {
+        if (done?.count)! != (movies?.count)! {
             repeat {
                 rand = Int(arc4random_uniform(UInt32(movies!.count)))
             }  while done!.contains(rand!)

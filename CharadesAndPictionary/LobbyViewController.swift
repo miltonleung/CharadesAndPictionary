@@ -139,14 +139,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         } else {
             if isLeader == true {
-                categorySelected = true
-                category = "movies"
                 sender.selected = true
                 celebritiesButton.selected = false
                 tvButton.selected = false
                 famousButton.selected = false
                 
-                categoryAction()
+                categoryAction("movies")
             }
         }
     }
@@ -161,14 +159,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         } else {
             if isLeader == true {
-                categorySelected = true
-                category = "celebs"
                 sender.selected = true
                 moviesButton.selected = false
                 tvButton.selected = false
                 famousButton.selected = false
                 
-                categoryAction()
+                categoryAction("celebs")
             } else {
                 sender.adjustsImageWhenHighlighted = false
             }
@@ -185,14 +181,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         } else {
             if isLeader == true {
-                categorySelected = true
-                category = "tv"
                 sender.selected = true
                 moviesButton.selected = false
                 celebritiesButton.selected = false
                 famousButton.selected = false
                 
-                categoryAction()
+                categoryAction("tv")
             }
         }
     }
@@ -207,49 +201,73 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         } else {
             if isLeader == true {
-                categorySelected = true
-                category = "famous"
                 sender.selected = true
                 moviesButton.selected = false
                 tvButton.selected = false
                 celebritiesButton.selected = false
                 
-                categoryAction()
+                categoryAction("famous")
             }
         }
     }
     
-    func categoryAction() {
-        if category == "movies" {
-            repeat {
-                rand = Int(arc4random_uniform(UInt32(movies!.count)))
-            } while doneMovies!.contains(rand!)
-            doneMovies!.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: doneMovies!, category: "movies")
-        } else if category == "celebs" {
-            repeat {
-                rand = Int(arc4random_uniform(UInt32(celebs!.count)))
-            } while doneCelebs!.contains(rand!)
-            doneCelebs!.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: doneCelebs!, category: "celebs")
-        } else if category == "tv" {
-            repeat {
-                rand = Int(arc4random_uniform(UInt32(tv!.count)))
-            } while doneTV!.contains(rand!)
-            doneTV!.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: doneTV!, category: "tv")
-        } else if category == "famous" {
-            repeat {
-                rand = Int(arc4random_uniform(UInt32(famous!.count)))
-            } while doneFamous!.contains(rand!)
-            doneFamous!.append(rand!)
-            ModelInterface.sharedInstance.updateDone(roomName!, done: doneFamous!, category: "famous")
+//    func categoryAction() {
+//        if category == "movies" {
+//            repeat {
+//                rand = Int(arc4random_uniform(UInt32(movies!.count)))
+//            } while doneMovies!.contains(rand!)
+//            doneMovies!.append(rand!)
+//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneMovies!, category: "movies")
+//        } else if category == "celebs" {
+//            repeat {
+//                rand = Int(arc4random_uniform(UInt32(celebs!.count)))
+//            } while doneCelebs!.contains(rand!)
+//            doneCelebs!.append(rand!)
+//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneCelebs!, category: "celebs")
+//        } else if category == "tv" {
+//            repeat {
+//                rand = Int(arc4random_uniform(UInt32(tv!.count)))
+//            } while doneTV!.contains(rand!)
+//            doneTV!.append(rand!)
+//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneTV!, category: "tv")
+//        } else if category == "famous" {
+//            repeat {
+//                rand = Int(arc4random_uniform(UInt32(famous!.count)))
+//            } while doneFamous!.contains(rand!)
+//            doneFamous!.append(rand!)
+//            ModelInterface.sharedInstance.updateDone(roomName!, done: doneFamous!, category: "famous")
+//        }
+//        
+//        
+//        
+//        let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
+//        ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
+//        
+//    }
+    
+    func categoryAction(listName: String) {
+        selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
+        
+        
+        var temp_done = [Int]()
+        
+        if (self.done?.indexForKey("done\(listName)")) != nil {
+            temp_done = self.done!["done\(listName)"] as! [Int]
         }
         
+        repeat {
+            self.rand = Int(arc4random_uniform(UInt32(selectedList!.count)))
+        } while temp_done.contains(self.rand!)
+        temp_done.append(self.rand!)
+        ModelInterface.sharedInstance.updateDone(self.roomName!, done: temp_done, category: listName)
+        
+        self.categorySelected = true
+        self.category = listName
+        
+        let currentPlayer = self.players![(self.rand! % ((self.players?.count)! - 1)) + 1]
+        ModelInterface.sharedInstance.updateTurn(self.roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: self.category!)
         
         
-        let currentPlayer = players![(rand! % ((players?.count)! - 1)) + 1]
-        ModelInterface.sharedInstance.updateTurn(roomName!, currentSelection: self.rand!, currentPlayer: currentPlayer, category: category!)
     }
     
     var roomName:String?
@@ -266,10 +284,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         roomNameLabel.text = roomName
-        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
-        famous = NSUserDefaults.standardUserDefaults().arrayForKey("famous") as? [String]
-        celebs = NSUserDefaults.standardUserDefaults().arrayForKey("celebs") as? [String]
-        tv = NSUserDefaults.standardUserDefaults().arrayForKey("tv") as? [String]
+//        movies = NSUserDefaults.standardUserDefaults().arrayForKey("movies") as? [String]
+//        famous = NSUserDefaults.standardUserDefaults().arrayForKey("famous") as? [String]
+//        celebs = NSUserDefaults.standardUserDefaults().arrayForKey("celebs") as? [String]
+//        tv = NSUserDefaults.standardUserDefaults().arrayForKey("tv") as? [String]
         
         setupGame("movies")
         
@@ -445,11 +463,13 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.players = room["players"] as? [String]
             self.ready = room["ready"] as? [String]
             self.setupLabels()
-            self.done = room["done"] as? [String: AnyObject]
-            self.doneMovies = self.done!["movies"] as? [Int]
-            self.doneTV = self.done!["tv"] as? [Int]
-            self.doneFamous = self.done!["famous"] as? [Int]
-            self.doneCelebs = self.done!["celebs"] as? [Int]
+            if let done = room["done"] as? [String: AnyObject] {
+                self.done = done
+                //                self.doneMovies = done!["movies"] as? [Int]
+                //                self.doneTV = done!["tv"] as? [Int]
+                //                self.doneFamous = done!["famous"] as? [Int]
+                //                self.doneCelebs = done!["celebs"] as? [Int]
+            }
             
             if self.players!.count > 1 {
                 if self.players![1] == myName {
@@ -549,19 +569,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         if segue.identifier == "movieSegue" {
             let game = segue.destinationViewController as! GameViewController
             game.roomName = roomName
-            switch category! {
-            case "movies":
-                game.movies = movies
-            case "celebs":
-                game.movies = celebs
-            case "famous":
-                game.movies = famous
-            case "tv":
-                game.movies = tv
-            default:
-                game.movies = selectedList
-                break
-            }
+            game.movies = selectedList
             game.category = category
             if isLeader == true {
                 game.firstMovie = self.rand

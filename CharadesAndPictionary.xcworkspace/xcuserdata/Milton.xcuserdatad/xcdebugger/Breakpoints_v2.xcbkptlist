@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "489974414.72661"
+            filePath = "CharadesAndPictionary/GameViewController.swift"
+            timestampString = "489977272.76393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "637"
-            endingLineNumber = "637"
-            landmarkName = "customCategoryAction(_:)"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "newPick()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
