@@ -1080,6 +1080,7 @@
                         <outlet property="player4" destination="N0t-BR-nV4" id="sCW-Kt-TK2"/>
                         <outlet property="player5" destination="SGY-kM-hI9" id="K4a-hJ-VDm"/>
                         <outlet property="player6" destination="ZfH-HW-UKV" id="GPf-QL-qlC"/>
+                        <outlet property="readyButton" destination="8uo-gy-0je" id="ZCJ-4c-Bhp"/>
                         <outlet property="roomNameLabel" destination="SVI-Ay-hUz" id="S9g-IB-6cR"/>
                         <outlet property="scroller" destination="pvD-Ec-TYS" id="coL-U6-niq"/>
                         <outlet property="segmentedControl" destination="YFy-Cr-ce3" id="u07-Ug-m7o"/>

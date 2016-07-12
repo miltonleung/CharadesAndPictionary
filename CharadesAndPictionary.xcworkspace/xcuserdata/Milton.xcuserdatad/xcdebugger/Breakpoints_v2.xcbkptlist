@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "489992898.017463"
+            timestampString = "489994217.212658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "setupGame(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,45 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "489992900.507477"
+            timestampString = "489994217.212658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "setupGame(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CharadesAndPictionary.LobbyViewController.(setupGame (Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "CharadesAndPictionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "489993582.731554"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "434"
-                  endingLineNumber = "434"
-                  offsetFromSymbolStart = "1304">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CharadesAndPictionary.LobbyViewController.(setupGame (Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "CharadesAndPictionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "489993582.73173"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "434"
-                  endingLineNumber = "434"
-                  offsetFromSymbolStart = "1648">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,45 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "489993088.545412"
+            timestampString = "489994217.212658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "539"
-            endingLineNumber = "539"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
             landmarkName = "locateList(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CharadesAndPictionary.LobbyViewController.locateList (Swift.String) -&gt; ()"
-                  moduleName = "CharadesAndPictionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "489993582.732461"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "539"
-                  endingLineNumber = "539"
-                  offsetFromSymbolStart = "1580">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CharadesAndPictionary.LobbyViewController.(locateList (Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "CharadesAndPictionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "489993582.732569"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "539"
-                  endingLineNumber = "539"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

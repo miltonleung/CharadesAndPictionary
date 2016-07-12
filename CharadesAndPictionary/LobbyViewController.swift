@@ -47,6 +47,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var countdownView: UIView!
+    @IBOutlet weak var readyButton: UIButton!
     @IBAction func readyButton(sender: UIButton) {
         if isReady == false {
             isReady = true
@@ -424,6 +425,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
             if let ready = room["ready"] as? [String] {
                 self.ready = ready
+                if ready.contains(myName) {
+                    self.readyButton.selected = true
+                } else {
+                    self.readyButton.selected = false
+                }
+                
             } else {
                 self.ready = [String]()
             }
