@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol BuildListViewControllerDelegate {
+    func customCategoryAction(listName: String)
+}
+
 class BuildListViewController: UIViewController, UITextFieldDelegate {
     
     var module:AnyObject?
     var moduleName:String?
+    
+    var delegate:BuildListViewControllerDelegate?
     
     @IBOutlet weak var buildListView: UIView!
     
@@ -30,6 +36,10 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     @IBAction func done(sender: AnyObject) {
         if entryField.text?.characters.count > 0 {
             addEntrytoList()
+            
+        }
+        if isLeader {
+            delegate?.customCategoryAction(moduleName!)
         }
         dismissViewControllerAnimated(true, completion: nil)
     }

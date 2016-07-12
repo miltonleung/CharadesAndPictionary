@@ -568,6 +568,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             let buildList = segue.destinationViewController as! BuildListViewController
             buildList.module = selectedModule
             buildList.moduleName = selectedName
+            buildList.delegate = self
         } else if segue.identifier == "selectListSegue" {
             let selectList = segue.destinationViewController as! SelectListViewController
             selectList.module = selectedModule
@@ -624,7 +625,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
 }
 
-extension LobbyViewController: SelectListViewControllerDelegate{
+extension LobbyViewController: SelectListViewControllerDelegate, BuildListViewControllerDelegate{
     func customCategoryAction(listName: String) {
         let currentModule = modules![listName] as! [String: AnyObject]
         let key = currentModule["list"] as! String
