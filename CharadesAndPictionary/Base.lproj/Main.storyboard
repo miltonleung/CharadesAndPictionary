@@ -71,6 +71,8 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -281,18 +283,18 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCc-Tg-H5j">
-                                        <rect key="frame" x="233" y="92.5" width="19" height="19"/>
+                                        <rect key="frame" x="229" y="90.5" width="23" height="23"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="19" id="u76-Tn-yDP"/>
-                                            <constraint firstAttribute="width" constant="19" id="vm8-Fb-F2W"/>
+                                            <constraint firstAttribute="height" constant="23" id="u76-Tn-yDP"/>
+                                            <constraint firstAttribute="width" constant="23" id="vm8-Fb-F2W"/>
                                         </constraints>
                                         <state key="normal" image="AddEntry"/>
                                         <connections>
                                             <action selector="addEntry:" destination="iSO-th-RUo" eventType="touchUpInside" id="1u9-oa-fJ2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnK-11-Tei">
-                                        <rect key="frame" x="8" y="139" width="154.5" height="41"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnK-11-Tei">
+                                        <rect key="frame" x="0.0" y="138" width="154.5" height="41"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="19"/>
                                         <state key="normal" title="cancel">
                                             <color key="titleColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
@@ -302,6 +304,19 @@
                                             <action selector="cancel:" destination="iSO-th-RUo" eventType="touchUpInside" id="ecu-1G-7dk"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" translatesAutoresizingMaskIntoConstraints="NO" id="Pan-of-Fxl">
+                                        <rect key="frame" x="10" y="10" width="19" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Wvt-L4-0Ke"/>
+                                            <constraint firstAttribute="width" constant="19" id="jxg-JN-9Ul"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4X4-FM-k7D">
+                                        <rect key="frame" x="35" y="6" width="11" height="28"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                        <color key="textColor" red="0.51764705882352935" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Kqo-GA-kqS" firstAttribute="centerX" secondItem="HhD-Z8-zls" secondAttribute="centerX" id="2qA-XN-Y4e"/>
@@ -321,12 +336,16 @@
                                     <constraint firstItem="Kqo-GA-kqS" firstAttribute="top" secondItem="dza-Kc-cFl" secondAttribute="bottom" constant="-6.5" id="YiL-iG-ZW0"/>
                                     <constraint firstItem="2Nh-Dj-Wom" firstAttribute="baseline" secondItem="dza-Kc-cFl" secondAttribute="baseline" id="a5o-sp-Tqc"/>
                                     <constraint firstAttribute="bottom" secondItem="BnK-11-Tei" secondAttribute="bottom" id="c5i-V5-a98"/>
+                                    <constraint firstItem="4X4-FM-k7D" firstAttribute="leading" secondItem="Pan-of-Fxl" secondAttribute="trailing" constant="6" id="dts-4B-1ab"/>
+                                    <constraint firstItem="Pan-of-Fxl" firstAttribute="top" secondItem="HhD-Z8-zls" secondAttribute="top" constant="10" id="j7u-1N-hGN"/>
                                     <constraint firstItem="VCc-Tg-H5j" firstAttribute="trailing" secondItem="Q2n-qh-awk" secondAttribute="trailing" id="lGb-nd-H16"/>
                                     <constraint firstItem="dza-Kc-cFl" firstAttribute="centerX" secondItem="HhD-Z8-zls" secondAttribute="centerX" id="lzY-RQ-cP5"/>
                                     <constraint firstItem="BnK-11-Tei" firstAttribute="top" secondItem="DlG-TT-tTg" secondAttribute="top" id="mZD-jX-hS3"/>
+                                    <constraint firstItem="4X4-FM-k7D" firstAttribute="centerY" secondItem="Pan-of-Fxl" secondAttribute="centerY" id="nqL-I5-gjM"/>
                                     <constraint firstItem="VCc-Tg-H5j" firstAttribute="centerY" secondItem="Q2n-qh-awk" secondAttribute="centerY" id="qWb-4c-AnI"/>
                                     <constraint firstAttribute="width" constant="311" id="rxl-W2-WrO"/>
                                     <constraint firstAttribute="bottom" secondItem="fdd-hM-1lW" secondAttribute="bottom" id="s8C-W1-T4t"/>
+                                    <constraint firstItem="Pan-of-Fxl" firstAttribute="leading" secondItem="HhD-Z8-zls" secondAttribute="leading" constant="10" id="t2R-CC-iIe"/>
                                     <constraint firstItem="DlG-TT-tTg" firstAttribute="centerX" secondItem="HhD-Z8-zls" secondAttribute="centerX" id="tBk-su-qt4"/>
                                     <constraint firstAttribute="bottom" secondItem="DlG-TT-tTg" secondAttribute="bottom" constant="-1" id="x9o-Mv-vjk"/>
                                 </constraints>
@@ -345,6 +364,7 @@
                     </view>
                     <connections>
                         <outlet property="buildListView" destination="HhD-Z8-zls" id="pkw-mW-Qb9"/>
+                        <outlet property="entryCounter" destination="4X4-FM-k7D" id="Dr4-JP-p7Y"/>
                         <outlet property="entryField" destination="Q2n-qh-awk" id="qvj-rH-Dcu"/>
                         <outlet property="listAuthors" destination="2Nh-Dj-Wom" id="FjP-gJ-jTK"/>
                         <outlet property="listDescription" destination="Kqo-GA-kqS" id="tca-yt-azS"/>
@@ -459,14 +479,30 @@
                                             <outlet property="delegate" destination="gk0-2M-D4f" id="EoR-dm-GYb"/>
                                         </connections>
                                     </collectionView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" translatesAutoresizingMaskIntoConstraints="NO" id="G9c-wK-eRf">
+                                        <rect key="frame" x="10" y="10" width="19" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="LmR-Ji-cba"/>
+                                            <constraint firstAttribute="width" constant="19" id="bdk-Wr-Vg9"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwW-I0-2cT">
+                                        <rect key="frame" x="37" y="7" width="11" height="28"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                        <color key="textColor" red="0.51764705879999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="G9c-wK-eRf" firstAttribute="leading" secondItem="11I-Qb-Cgg" secondAttribute="leading" constant="10" id="3BV-Fh-Ra0"/>
                                     <constraint firstItem="iL7-8w-tsK" firstAttribute="centerX" secondItem="11I-Qb-Cgg" secondAttribute="centerX" id="3Vq-fa-zfK"/>
                                     <constraint firstItem="tDU-QX-s22" firstAttribute="leading" secondItem="Kq6-Oy-uCZ" secondAttribute="trailing" id="5mi-dv-YoL"/>
+                                    <constraint firstItem="G9c-wK-eRf" firstAttribute="top" secondItem="11I-Qb-Cgg" secondAttribute="top" constant="10" id="5zR-Q0-bGa"/>
                                     <constraint firstItem="tDU-QX-s22" firstAttribute="top" secondItem="Kq6-Oy-uCZ" secondAttribute="top" id="8tx-f9-0op"/>
                                     <constraint firstItem="cOe-ac-zMz" firstAttribute="centerX" secondItem="11I-Qb-Cgg" secondAttribute="centerX" id="9PI-f1-3bC"/>
                                     <constraint firstAttribute="bottom" secondItem="TaV-Qe-I7F" secondAttribute="bottom" id="9Pz-Kn-Djk"/>
                                     <constraint firstItem="cOe-ac-zMz" firstAttribute="top" secondItem="iL7-8w-tsK" secondAttribute="bottom" constant="-6.5" id="AP0-cv-1aD"/>
+                                    <constraint firstItem="hwW-I0-2cT" firstAttribute="centerY" secondItem="G9c-wK-eRf" secondAttribute="centerY" id="Nsr-Eo-klZ"/>
                                     <constraint firstItem="djq-oa-2Ih" firstAttribute="top" secondItem="cOe-ac-zMz" secondAttribute="bottom" constant="7" id="Q7a-lg-rpX"/>
                                     <constraint firstItem="djq-oa-2Ih" firstAttribute="centerX" secondItem="11I-Qb-Cgg" secondAttribute="centerX" id="S9R-37-gBZ"/>
                                     <constraint firstItem="CRc-GG-Z8Q" firstAttribute="top" secondItem="djq-oa-2Ih" secondAttribute="bottom" id="TA9-xD-ICM"/>
@@ -475,6 +511,7 @@
                                     <constraint firstItem="Kq6-Oy-uCZ" firstAttribute="centerX" secondItem="11I-Qb-Cgg" secondAttribute="centerX" id="bVm-SP-ENg"/>
                                     <constraint firstAttribute="width" constant="311" id="eES-4M-nQF"/>
                                     <constraint firstAttribute="trailing" secondItem="tDU-QX-s22" secondAttribute="trailing" id="eVH-c2-5JQ"/>
+                                    <constraint firstItem="hwW-I0-2cT" firstAttribute="leading" secondItem="G9c-wK-eRf" secondAttribute="trailing" constant="6" id="ffl-xv-MNC"/>
                                     <constraint firstAttribute="bottom" secondItem="tDU-QX-s22" secondAttribute="bottom" id="iC9-sx-HbV"/>
                                     <constraint firstAttribute="bottom" secondItem="Kq6-Oy-uCZ" secondAttribute="bottom" constant="-1" id="moE-FX-Hgq"/>
                                     <constraint firstItem="iL7-8w-tsK" firstAttribute="top" secondItem="11I-Qb-Cgg" secondAttribute="top" constant="12" id="oaC-NM-gw5"/>
@@ -493,6 +530,7 @@
                     <connections>
                         <outlet property="Contributors" destination="djq-oa-2Ih" id="XCR-Cc-2yp"/>
                         <outlet property="cancel" destination="TaV-Qe-I7F" id="F7c-Bo-Vvf"/>
+                        <outlet property="entryCounter" destination="hwW-I0-2cT" id="9rq-jQ-xXH"/>
                         <outlet property="listDescription" destination="cOe-ac-zMz" id="i3v-yH-N0v"/>
                         <outlet property="listName" destination="iL7-8w-tsK" id="6aK-Yq-Nhj"/>
                         <outlet property="select" destination="tDU-QX-s22" id="u7h-Af-b9W"/>
@@ -1371,7 +1409,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddEntry" width="21" height="21"/>
+        <image name="AddEntry" width="25" height="25"/>
         <image name="Bubble1" width="42" height="64"/>
         <image name="Bubble2" width="42" height="67"/>
         <image name="Bubble3" width="42" height="66"/>
@@ -1381,6 +1419,7 @@
         <image name="Card" width="229" height="176"/>
         <image name="Celebrities" width="106" height="84"/>
         <image name="CelebritiesSelected" width="106" height="84"/>
+        <image name="Chat" width="19" height="21"/>
         <image name="Famous" width="106" height="84"/>
         <image name="FamousSelected" width="106" height="84"/>
         <image name="MenuButtonSplitter" width="2" height="41"/>

@@ -125,11 +125,38 @@ extension ModelInterface: FirebaseModelProtocol {
             }
         }
     }
+    func addToCount(listName: String) {
+        ref.child("modules/community/public/\(listName)/count").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            var count = currentData.value as? Int
+            if count == nil {
+                count = 0
+            }
+            count = count! + 1
+            
+            currentData.value = count
+            
+            return FIRTransactionResult.successWithValue(currentData)
+            
+            
+        }) {( error, commited, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
     func fetchSingleList(listKey: String, completion: ([String] -> Void)) {
         ref.child("modules/community/lists/\(listKey)").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             if let list = snapshot.value as? [String] {
             // ...
                 completion(list)
+            }
+        })
+    }
+    func fetchListCount(listName: String, completion: (Int -> Void)) {
+        ref.child("modules/community/public/\(listName)/count").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            if let listCount = snapshot.value as? Int {
+            // ...
+                completion(listCount)
             }
         })
     }

@@ -19,6 +19,8 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var listDescription: UILabel!
     @IBOutlet weak var listAuthors: UILabel!
     
+    @IBOutlet weak var entryCounter: UILabel!
+    
     @IBOutlet weak var entryField: UITextField!
     @IBAction func addEntry(sender: AnyObject) {
         addEntrytoList()
@@ -38,6 +40,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         setAppearance()
+        updateCount()
         
         listName.text = moduleName
         listDescription.text = module!["description"] as! String
@@ -52,9 +55,18 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
     
+    func updateCount() {
+        
+        ModelInterface.sharedInstance.fetchListCount(moduleName!, completion: { count -> Void in
+            self.entryCounter.text = "\(count)"
+        })
+        
+    }
+    
     func addEntrytoList() {
         let listKey = module!["list"] as! String
         ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
+        ModelInterface.sharedInstance.addToCount(moduleName!)
     }
     
     func dismissKeyboard() {

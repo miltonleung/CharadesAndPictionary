@@ -26,6 +26,8 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var Contributors: UILabel!
     
+    @IBOutlet weak var entryCounter: UILabel!
+    
     @IBOutlet weak var select: UIButton!
     @IBAction func selectButton(sender: AnyObject) {
         if isLeader {
@@ -42,6 +44,7 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
         super.viewDidLoad()
 
         setAppearance()
+        updateCount()
         
         listName.text = moduleName
         listDescription.text = module!["description"] as! String
@@ -68,7 +71,13 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
         self.selectListView.layer.backgroundColor = UIColor(red: 225/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1.0).CGColor
     }
 
-    
+    func updateCount() {
+        
+        ModelInterface.sharedInstance.fetchListCount(moduleName!, completion: { count -> Void in
+            self.entryCounter.text = "\(count)"
+        })
+        
+    }
     
     let reuseIdentifier = "cell"
     var items = [String]()
