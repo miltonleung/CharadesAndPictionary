@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        self.ref.child("rooms/\(editedText)/done/famous").setValue([-1])
 //        self.ref.child("rooms/\(editedText)/done/celebs").setValue([-1])
         self.ref.child("rooms/\(editedText)/category").setValue(" ")
-        self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
+//        self.ref.child("rooms/\(editedText)/currentSelection").setValue(-1)
         self.ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
         self.ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
         let myPlayer:[String: AnyObject] = ["\(self.nameField.text!)": ["Threat Level Midnight"]]
