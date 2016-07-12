@@ -173,7 +173,9 @@ class GameViewController: UIViewController {
                 self.label.text = self.movies![self.index!]
                 self.next.hidden = false
             } else {
-                self.label.text = "\(self.currentPlayer)'s Turn"
+                if let current = self.currentPlayer {
+                self.label.text = "\(current)'s Turn"
+                }
                 self.next.hidden = true
             }
             
