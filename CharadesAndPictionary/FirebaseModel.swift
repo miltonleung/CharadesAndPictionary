@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 protocol FirebaseModelProtocol {
+    func readCategories(completion: ([String: AnyObject] -> Void))
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
     func updateDone(roomName: String, done: [Int], category: String)
@@ -17,9 +18,17 @@ protocol FirebaseModelProtocol {
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
     func iamleaving(roomName: String, ready: [String], players: [String])
+    func iamleavinggame(roomName: String, ready: [String], players: [String], currentPlayer: String)
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
     func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String)
+    func fetchLists(completion: ([String: AnyObject] -> Void))
+    func addToList(listName: String, entry: String)
+    func addToCount(listName: String)
+    func fetchSingleList(listKey: String, completion: ([String] -> Void))
+    func fetchListCount(listName: String, completion: (Int -> Void))
+    func addRoom(editedText: String, password: String)
+    
 }
 
 extension ModelInterface: FirebaseModelProtocol {
@@ -147,7 +156,7 @@ extension ModelInterface: FirebaseModelProtocol {
     func fetchSingleList(listKey: String, completion: ([String] -> Void)) {
         ref.child("modules/community/lists/\(listKey)").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             if let list = snapshot.value as? [String] {
-            // ...
+                // ...
                 completion(list)
             }
         })
@@ -155,9 +164,15 @@ extension ModelInterface: FirebaseModelProtocol {
     func fetchListCount(listName: String, completion: (Int -> Void)) {
         ref.child("modules/community/public/\(listName)/count").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             if let listCount = snapshot.value as? Int {
-            // ...
+                // ...
                 completion(listCount)
             }
         })
+    }
+    func addRoom(editedText: String, password: String) {
+        ref.child("rooms/\(editedText)/password").setValue(password)
+        ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
+        ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
+        ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
     }
 }

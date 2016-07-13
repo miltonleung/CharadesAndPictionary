@@ -40,7 +40,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             myName = nameField.text!
             checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
-                    self.addRoom(editedText!)
+                    ModelInterface.sharedInstance.addRoom(editedText!, password: self.passwordField.text!)
+                    self.lobbyRoom = editedText
                     isLeader = true
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
@@ -96,14 +97,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return failed
 
-    }
-    
-    func addRoom(editedText: String) {
-        self.lobbyRoom = editedText
-        self.ref.child("rooms/\(editedText)/password").setValue(self.passwordField.text!)
-        self.ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
-        self.ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
-        self.ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
     }
     
     func addFillerRoom() {
