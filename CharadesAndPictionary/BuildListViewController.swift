@@ -72,14 +72,14 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
             entryErrorMessage.text = ErrorMessages.emptyName
             failed = true
         } else {
-            entryErrorMessage.text = ""
+            if StringUtil.containsSymbols(entryField.text!) {
+                entryErrorMessage.text = ErrorMessages.symbols
+                failed = true
+            } else {
+                entryErrorMessage.text = ""
+            }
         }
-        if StringUtil.containsSymbols(entryField.text!) {
-            entryErrorMessage.text = ErrorMessages.symbols
-            failed = true
-        } else {
-            entryErrorMessage.text = ""
-        }
+        
         return failed
         
     }

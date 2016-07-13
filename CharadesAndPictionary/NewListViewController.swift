@@ -74,13 +74,12 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
             listNameErrorMessage.text = ErrorMessages.emptyName
             failed = true
         } else {
-            listNameErrorMessage.text = ""
-        }
-        if StringUtil.containsSymbols(listName.text!) {
-            listNameErrorMessage.text = ErrorMessages.symbols
-            failed = true
-        } else {
-            listNameErrorMessage.text = ""
+            if StringUtil.containsSymbols(listName.text!) {
+                listNameErrorMessage.text = ErrorMessages.symbols
+                failed = true
+            } else {
+                listNameErrorMessage.text = ""
+            }
         }
         if StringUtil.containsSymbols(descriptionField.text!) {
             descriptionErrorMessage.text = ErrorMessages.symbols

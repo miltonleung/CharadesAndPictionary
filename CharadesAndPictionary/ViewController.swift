@@ -76,25 +76,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
             nameErrorMessage.text = ErrorMessages.emptyName
             failed = true
         } else {
-            nameErrorMessage.text = ""
-        }
-        if StringUtil.containsSymbols(roomField.text!) {
-            roomErrorMessage.text = ErrorMessages.symbols
-            failed = true
-        } else {
-            roomErrorMessage.text = ""
-        }
-        if StringUtil.containsSymbols(nameField.text!) {
-            nameErrorMessage.text = ErrorMessages.symbols
-            failed = true
-        } else {
-            nameErrorMessage.text = ""
+            if StringUtil.containsSymbols(nameField.text!) {
+                nameErrorMessage.text = ErrorMessages.symbols
+                failed = true
+            } else {
+                nameErrorMessage.text = ""
+            }
         }
         if StringUtil.isStringEmpty(roomField.text!) {
             roomErrorMessage.text = ErrorMessages.emptyRoom
             failed = true
         } else {
-            roomErrorMessage.text = ""
+            if StringUtil.containsSymbols(roomField.text!) {
+                roomErrorMessage.text = ErrorMessages.symbols
+                failed = true
+            } else {
+                roomErrorMessage.text = ""
+            }
         }
         return failed
 
