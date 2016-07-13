@@ -19,6 +19,8 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     
     var delegate:BuildListViewControllerDelegate?
     
+    @IBOutlet weak var entryErrorMessage: UILabel!
+    
     @IBOutlet weak var buildListView: UIView!
     
     @IBOutlet weak var listName: UILabel!
@@ -36,7 +38,6 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     @IBAction func done(sender: AnyObject) {
         if entryField.text?.characters.count > 0 {
             addEntrytoList()
-            
         }
         if isLeader {
             delegate?.customCategoryAction(moduleName!)
@@ -65,6 +66,24 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
     
+    func checkForErrorsInput() -> Bool {
+        var failed: Bool = false
+        if StringUtil.isStringEmpty(entryField.text!) {
+            entryErrorMessage.text = ErrorMessages.emptyName
+            failed = true
+        } else {
+            entryErrorMessage.text = ""
+        }
+        if StringUtil.containsSymbols(entryField.text!) {
+            entryErrorMessage.text = ErrorMessages.symbols
+            failed = true
+        } else {
+            entryErrorMessage.text = ""
+        }
+        return failed
+        
+    }
+    
     func updateCount() {
         
         ModelInterface.sharedInstance.fetchListCount(moduleName!, completion: { count -> Void in
@@ -74,9 +93,11 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addEntrytoList() {
-        let listKey = module!["list"] as! String
-        ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
-        ModelInterface.sharedInstance.addToCount(moduleName!)
+        if !checkForErrorsInput() {
+            let listKey = module!["list"] as! String
+            ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
+            ModelInterface.sharedInstance.addToCount(moduleName!)
+        }
     }
     
     func dismissKeyboard() {
@@ -99,7 +120,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         if entryField.text?.characters.count == 0 {
             entryField.background = UIImage(named: "SmallTextFieldBackground")
         }
-//        tap?.enabled = false
+        //        tap?.enabled = false
     }
     
     override func didReceiveMemoryWarning() {

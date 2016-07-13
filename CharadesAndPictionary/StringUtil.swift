@@ -10,13 +10,21 @@ import Foundation
 
 class StringUtil {
     
-    
-    static func checkForSymbols(string: String) -> Bool {
+    static func containsSymbols(string: String) -> Bool {
         let sharedCharacters = badCharacters.intersect(string.characters)
         if sharedCharacters.count > 0 {
             return true
         } else {
             return false
+        }
+    }
+    
+    static func isStringEmpty(string: String) -> Bool {
+        let edited = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if edited.characters.count > 0 {
+            return false
+        } else {
+            return true
         }
     }
     

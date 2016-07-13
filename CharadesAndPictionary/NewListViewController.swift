@@ -18,6 +18,9 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var nameFieldLabel: UILabel!
     @IBOutlet weak var descriptionFieldLabel: UILabel!
     
+    @IBOutlet weak var listNameErrorMessage: UILabel!
+    @IBOutlet weak var descriptionErrorMessage: UILabel!
+    
     var selectedIcon:String?
     var selectedIndex: NSIndexPath?
     
@@ -31,18 +34,20 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     var players:[String]?
     
     func createAction() {
-        var publicOrPrivate:String?
-        if isPrivate == false {
-            publicOrPrivate = "public"
-        } else {
-            publicOrPrivate = "private"
+        if !checkForErrorsInput() {
+            var publicOrPrivate:String?
+            if isPrivate == false {
+                publicOrPrivate = "public"
+            } else {
+                publicOrPrivate = "private"
+            }
+            var description = descriptionField.text
+            if description?.characters.count == 0 {
+                description = " "
+            }
+            ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: description!, publicOrPrivate: publicOrPrivate!)
+            dismissViewControllerAnimated(true, completion: nil)
         }
-        var description = descriptionField.text
-        if description?.characters.count == 0 {
-            description = " "
-        }
-        ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: description!, publicOrPrivate: publicOrPrivate!)
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBOutlet weak var cancel: UIButton!
@@ -61,6 +66,33 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
             lightState()
         }
         collectionView.reloadData()
+    }
+    
+    func checkForErrorsInput() -> Bool {
+        var failed: Bool = false
+        if StringUtil.isStringEmpty(listName.text!) {
+            listNameErrorMessage.text = ErrorMessages.emptyName
+            failed = true
+        } else {
+            listNameErrorMessage.text = ""
+        }
+        if StringUtil.containsSymbols(listName.text!) {
+            listNameErrorMessage.text = ErrorMessages.symbols
+            failed = true
+        } else {
+            listNameErrorMessage.text = ""
+        }
+        if StringUtil.containsSymbols(descriptionField.text!) {
+            descriptionErrorMessage.text = ErrorMessages.symbols
+            failed = true
+        } else {
+            descriptionErrorMessage.text = ""
+        }
+        if selectedIcon == nil {
+            failed = true
+        }
+        return failed
+        
     }
     
     func darkState() {

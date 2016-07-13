@@ -56,10 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 isLeader = true
                             }
                             self.ref.child("rooms/\(editedText!)/players").setValue(existingPlayers)
-                            
-//                            let playerUpdates = ["rooms/\(editedText!)/scores/\(self.nameField.text!)/": ["Threat Level Midnight"]]
                             isLeader = false
-//                            self.ref.updateChildValues(playerUpdates)
                             self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
                             self.nameErrorMessage.text = "A player with the same name already exists in this room"
@@ -74,24 +71,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkForErrorsInput() -> Bool {
-        let editedName = nameField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let editedRoom = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         var failed: Bool = false
-        if editedName?.characters.count == 0 {
+        if StringUtil.isStringEmpty(nameField.text!) {
             nameErrorMessage.text = ErrorMessages.emptyName
             failed = true
+        } else {
+            nameErrorMessage.text = ""
         }
-        if StringUtil.checkForSymbols(editedRoom!) {
+        if StringUtil.containsSymbols(roomField.text!) {
             roomErrorMessage.text = ErrorMessages.symbols
             failed = true
+        } else {
+            roomErrorMessage.text = ""
         }
-        if StringUtil.checkForSymbols(editedName!) {
+        if StringUtil.containsSymbols(nameField.text!) {
             nameErrorMessage.text = ErrorMessages.symbols
             failed = true
+        } else {
+            nameErrorMessage.text = ""
         }
-        if editedRoom?.characters.count == 0 {
+        if StringUtil.isStringEmpty(roomField.text!) {
             roomErrorMessage.text = ErrorMessages.emptyRoom
             failed = true
+        } else {
+            roomErrorMessage.text = ""
         }
         return failed
 
