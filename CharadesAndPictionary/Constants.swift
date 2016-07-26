@@ -39,7 +39,20 @@ enum category {
 }
 
 enum avatarImages {
-    static let skinColorMale = ["MaleBrownFaceIcon", "MaleDBrownIcon", "MaleWhiteFaceIcon"]
+    static let skinColorMale = ["MaleBrownFaceIcon", "MaleDBrownFaceIcon", "MaleWhiteFaceIcon"]
+    static let skinColorWomen = ["WomenWhiteFaceIcon", "WomenTanFaceIcon"]
+    static let hairMale = ["MaleBrownBuzzIcon", "MaleDBrownBuzzIcon", "MaleBrownHairIcon", "MaleDBrownHairIcon",]
+    static let hairWomen = ["WomenLongDBrownHairIcon", "WomenLongBlackHairIcon", "WomenBrownBangsIcon", "WomenLongBrownHairIcon"]
+    static let topMale = ["MaleIanConnerIcon", "MaleYeezyIcon", "MaleRagsIcon", "MaleRedTIcon"]
+    static let topWomen = ["WomenBlueSundressIcon", "WomenRedSundressIcon", "WomenNYTankIcon", "WomenVeniceTankIcon"]
+    static let topColor = ["MaleGreenTIcon", "MaleRedTIcon", "MaleWhiteTIcon"]
+    static let pantsMale = ["MaleBlueJeansIcon", "MaleBlueShortsIcon"]
+    static let pantsWomen = ["WomenBlackShortShortsIcon", "WomenBrownShortShortsIcon"]
+    static let shoesMale = ["Grey750sIcon", "BlueFlatsIcon", "Grey950sIcon", "Tan950sIcon"]
+    static let shoesMaleOutfit = ["Grey750sIcon", "Grey950sIcon", "Tan950sIcon"]
+    static let shoesWomen = ["WhiteFlatsIcon", "BlueFlatsIcon"]
+    static let accessories = ["TruckerIcon", "SnapbackIcon"]
+    
 }
 
 var badCharacters: Set<Character> = ["#", "[", "]", "*", "?", ".", "$"]
