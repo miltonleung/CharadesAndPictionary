@@ -73,8 +73,20 @@ class AvatarViewController: UIViewController {
     var selectedChoice:Int?
     var previewBoxes:[UIImageView]?
     
+    var buttonSelect:[Int: Bool] = [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false]
+    
     
     @IBAction func next(sender: UIButton) {
+        if buttonSelect[sender.tag] == true {
+            let offset = flowChartView.contentOffset.y
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 270.0), animated: true)
+//                sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            UIView.animateWithDuration(0.5) { () -> Void in
+                sender.imageView?.transform = CGAffineTransformMakeRotation(0)
+                
+            }
+            buttonSelect[sender.tag] = false
+        }
         if selectedChoice != nil {
             if sender.tag == category.gender {
                 
@@ -89,7 +101,18 @@ class AvatarViewController: UIViewController {
             selectedChoice = nil
             let offset = flowChartView.contentOffset.y
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 270.0), animated: true)
+            
+            buttonSelect[sender.tag] = true
+            UIView.animateWithDuration(0.5) { () -> Void in
+                sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+
+            }
+
+           
         }
+    }
+    func rotateButton(button:UIButton) {
+        
     }
     @IBAction func finish(sender: UIButton) {
         if selectedChoice != nil {
