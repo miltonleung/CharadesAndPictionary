@@ -67,7 +67,7 @@ class AvatarViewController: UIViewController {
     
     @IBOutlet weak var earlyDone: UIButton!
     
-    @IBOutlet weak var lineDivider: UIImageView!
+    @IBOutlet weak var lineDividerHeight: NSLayoutConstraint!
     
     var avatar = [Int]()
     var selectedChoice:Int?
@@ -92,7 +92,8 @@ class AvatarViewController: UIViewController {
         }
     }
     @IBAction func finish(sender: UIButton) {
-    
+        if selectedChoice != nil {
+        }
     }
     @IBAction func choice(sender: UIButton) {
         selectedChoice = sender.tag
@@ -148,10 +149,10 @@ class AvatarViewController: UIViewController {
         case 3:
             if gender == 0 {
                 switch choice {
-                case 1,2,3:
+                case 0,1,2:
                     image = 3
                     setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.shoesMaleOutfit, deselectButtons: womenShorts2!)
-                case 4:
+                case 3:
                     image = 3
                     setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.topColor, deselectButtons: womenShorts2!)
                 default:
@@ -167,6 +168,7 @@ class AvatarViewController: UIViewController {
                     image = 2
                     setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.accessories)
                     earlyDone.hidden = false
+                    lineDividerHeight.constant = 1570
                 } else {
                     image = 2                       // Guy, T
                     setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.pantsMale)
@@ -175,6 +177,7 @@ class AvatarViewController: UIViewController {
                 image = 2                           // Girl, DONE
                 setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.shoesWomen)
                 earlyDone.hidden = false
+                lineDividerHeight.constant = 1570
             }
         case 5:
             image = 4
