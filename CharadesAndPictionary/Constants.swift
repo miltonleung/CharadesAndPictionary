@@ -1,5 +1,5 @@
 //
-//  Variables.swift
+//  Constants.swift
 //  CharadesAndPictionary
 //
 //  Created by Milton Leung on 2016-06-26.
@@ -25,6 +25,21 @@ enum ErrorMessages {
     static let emptyName = "Please enter a name"
     static let emptyRoom = "Please enter a room name"
     static let symbols = "Please refrain from using # [ ] * ? . or $"
+}
+
+enum category {
+    static let gender = 0
+    static let skinColor = 1
+    static let hair = 2
+    static let top = 3
+    static let topColor = 4
+    static let pants = 5
+    static let shoes = 6
+    static let accessories = 7
+}
+
+enum avatarImages {
+    static let skinColorMale = ["MaleBrownFaceIcon", "MaleDBrownIcon", "MaleWhiteFaceIcon"]
 }
 
 var badCharacters: Set<Character> = ["#", "[", "]", "*", "?", ".", "$"]

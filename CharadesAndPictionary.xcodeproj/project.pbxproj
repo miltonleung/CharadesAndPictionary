@@ -18,7 +18,7 @@
 		5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215842E1D2A182700F6E503 /* CountdownView.swift */; };
 		52186C511D2081DA0090872F /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C501D2081DA0090872F /* FirebaseModel.swift */; };
 		52186C531D2082810090872F /* ModelInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C521D2082810090872F /* ModelInterface.swift */; };
-		52186C551D20D60E0090872F /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C541D20D60E0090872F /* Variables.swift */; };
+		52186C551D20D60E0090872F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52186C541D20D60E0090872F /* Constants.swift */; };
 		5227B0581D3596460025DE96 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5227B0571D3596460025DE96 /* StringUtil.swift */; };
 		526F8C891D1CBE4700EF729C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 526F8C881D1CBE4700EF729C /* GoogleService-Info.plist */; };
 		526F8C931D1D0F7500EF729C /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F8C921D1D0F7500EF729C /* LobbyViewController.swift */; };
@@ -34,6 +34,7 @@
 		528701901D2709A10004BFC0 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5287018F1D2709A10004BFC0 /* Keyboard.xib */; };
 		529CC9A51D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529CC9A41D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift */; };
 		529CC9A71D3353C7003D03F8 /* BuildListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529CC9A61D3353C7003D03F8 /* BuildListViewController.swift */; };
+		52E0550C1D46C6E200A39024 /* AvatarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0550B1D46C6E200A39024 /* AvatarUtil.swift */; };
 		52ECA3961D305AD2001213EE /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECA3951D305AD2001213EE /* NewListViewController.swift */; };
 		52EF8E981D45C441000B32CB /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF8E971D45C441000B32CB /* AvatarViewController.swift */; };
 		DF94515D503AC7406C10DF8C /* Pods_CharadesAndPictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3744D29742D0512B3BD892AB /* Pods_CharadesAndPictionary.framework */; };
@@ -76,7 +77,7 @@
 		5215842E1D2A182700F6E503 /* CountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		52186C501D2081DA0090872F /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		52186C521D2082810090872F /* ModelInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelInterface.swift; sourceTree = "<group>"; };
-		52186C541D20D60E0090872F /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		52186C541D20D60E0090872F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5227B0571D3596460025DE96 /* StringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		526F8C881D1CBE4700EF729C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		526F8C921D1D0F7500EF729C /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		5287018F1D2709A10004BFC0 /* Keyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		529CC9A41D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		529CC9A61D3353C7003D03F8 /* BuildListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildListViewController.swift; sourceTree = "<group>"; };
+		52E0550B1D46C6E200A39024 /* AvatarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarUtil.swift; sourceTree = "<group>"; };
 		52ECA3951D305AD2001213EE /* NewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		52EF8E971D45C441000B32CB /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		8FB9DB8FC381DADDD73BB883 /* Pods-CharadesAndPictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CharadesAndPictionary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CharadesAndPictionary/Pods-CharadesAndPictionary.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,8 +163,9 @@
 				520956B11D1B9F1D00FFDE3E /* AppDelegate.swift */,
 				526F8C921D1D0F7500EF729C /* LobbyViewController.swift */,
 				520956B31D1B9F1D00FFDE3E /* ViewController.swift */,
-				52186C541D20D60E0090872F /* Variables.swift */,
+				52186C541D20D60E0090872F /* Constants.swift */,
 				5227B0571D3596460025DE96 /* StringUtil.swift */,
+				52E0550B1D46C6E200A39024 /* AvatarUtil.swift */,
 				52186C501D2081DA0090872F /* FirebaseModel.swift */,
 				52186C521D2082810090872F /* ModelInterface.swift */,
 				520956B51D1B9F1D00FFDE3E /* Main.storyboard */,
@@ -409,7 +412,8 @@
 				52ECA3961D305AD2001213EE /* NewListViewController.swift in Sources */,
 				5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */,
 				526F8C951D1DC12700EF729C /* GameViewController.swift in Sources */,
-				52186C551D20D60E0090872F /* Variables.swift in Sources */,
+				52E0550C1D46C6E200A39024 /* AvatarUtil.swift in Sources */,
+				52186C551D20D60E0090872F /* Constants.swift in Sources */,
 				5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */,
 				527B0F161D34530000D7141F /* ContributorsLabelCollectionViewCell.swift in Sources */,
 				520956B41D1B9F1D00FFDE3E /* ViewController.swift in Sources */,
