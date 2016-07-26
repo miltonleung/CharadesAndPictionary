@@ -65,6 +65,17 @@ class AvatarViewController: UIViewController {
     @IBOutlet weak var access2of2: UIButton!
     var access2:[UIButton]?
     
+    @IBOutlet weak var previewImage0: UIView!
+    @IBOutlet weak var previewImage1: UIView!
+    @IBOutlet weak var previewImage2: UIView!
+    @IBOutlet weak var previewImage3: UIView!
+    @IBOutlet weak var previewImage4: UIView!
+    @IBOutlet weak var previewImage5: UIView!
+    @IBOutlet weak var previewImage6: UIView!
+    @IBOutlet weak var previewImage7: UIView!
+    var previewImages:[UIView]?
+    
+    
     @IBOutlet weak var earlyDone: UIButton!
     
     @IBOutlet weak var lineDividerHeight: NSLayoutConstraint!
@@ -75,6 +86,7 @@ class AvatarViewController: UIViewController {
     
     var buttonSelect:[Int: Bool] = [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false]
     
+    var section:Int = 0
     
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
@@ -85,6 +97,7 @@ class AvatarViewController: UIViewController {
                 sender.imageView?.transform = CGAffineTransformMakeRotation(0)
                 
             }
+            section -= 1
             buttonSelect[sender.tag] = false
         }
         if selectedChoice != nil {
@@ -103,6 +116,7 @@ class AvatarViewController: UIViewController {
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 270.0), animated: true)
             
             buttonSelect[sender.tag] = true
+            section += 1
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
 
@@ -111,15 +125,14 @@ class AvatarViewController: UIViewController {
            
         }
     }
-    func rotateButton(button:UIButton) {
-        
-    }
     @IBAction func finish(sender: UIButton) {
         if selectedChoice != nil {
         }
     }
     @IBAction func choice(sender: UIButton) {
         selectedChoice = sender.tag
+        addSubview(UIImageView(image: UIImage(named: "WomenTanSkinSmall")))
+        previewImages![section].addSubview(UIImageView(image: UIImage(named: "BlackEyesFaceSmall")))
     }
     
     func setupIcons(count: Int, selectButtons: [UIButton], selectIcons:[String], deselectButtons: [UIButton]) {
@@ -228,6 +241,7 @@ class AvatarViewController: UIViewController {
         super.viewDidLoad()
         
         previewBoxes = [previewBox0, previewBox1, previewBox2, previewBox3, previewBox4, previewBox5, previewBox6, previewBox7]
+        previewImages = [previewImage0, previewImage1, previewImage2, previewImage3, previewImage4, previewImage5, previewImage6, previewImage7]
         skin3 = [skinButton1of3, skinButton2, skinButton3of3]
         skin2 = [skinButton1of2, skinButton2]
         hair4 = [hairButton1of4, hairButton2of4, hairButton3of4, hairButton4of4]
@@ -239,8 +253,6 @@ class AvatarViewController: UIViewController {
         access2 = [access1of2, access2of2]
         
         earlyDone.hidden = true
-        
-        previewBox4.image = UIImage(named: "PreviewBoxFour")
         
         femaleButton.setImage(UIImage(named: "Female"), forState: .Normal)
         maleButton.setImage(UIImage(named: "Male"), forState: .Normal)
