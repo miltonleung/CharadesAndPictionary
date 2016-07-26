@@ -203,6 +203,7 @@ class AvatarViewController: UIViewController {
         maleShoes4 = [shoes1of4, shoes2of4, shoes3of4, shoes4of4]
         access2 = [access1of2, access2of2]
         
+        previewBox4.image = UIImage(named: "PreviewBoxFour")
         
         femaleButton.setImage(UIImage(named: "Female"), forState: .Normal)
         maleButton.setImage(UIImage(named: "Male"), forState: .Normal)

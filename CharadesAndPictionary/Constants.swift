@@ -47,7 +47,7 @@ enum avatarImages {
     static let topWomen = ["WomenBlueSundressIcon", "WomenRedSundressIcon", "WomenNYTankIcon", "WomenVeniceTankIcon"]
     static let topColor = ["MaleGreenTIcon", "MaleRedTIcon", "MaleWhiteTIcon"]
     static let pantsMale = ["MaleBlueJeansIcon", "MaleBlueShortsIcon"]
-    static let pantsWomen = ["WomenBlackShortShortsIcon", "WomenBrownShortShortsIcon"]
+    static let pantsWomen = ["WomenBlackShortShortsIcon", "WomenBlueShortShortsIcon"]
     static let shoesMale = ["Grey750sIcon", "BlueFlatsIcon", "Grey950sIcon", "Tan950sIcon"]
     static let shoesMaleOutfit = ["Grey750sIcon", "Grey950sIcon", "Tan950sIcon"]
     static let shoesWomen = ["WhiteFlatsIcon", "BlueFlatsIcon"]
