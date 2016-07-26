@@ -484,15 +484,15 @@
                                                     <action selector="choice:" destination="rbM-xR-YXm" eventType="touchUpInside" id="pgr-t7-Hej"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITL-fM-YIQ" userLabel="next">
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITL-fM-YIQ" userLabel="finish">
                                                 <rect key="frame" x="130" y="2116" width="30" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="Nva-9m-EjJ"/>
-                                                    <constraint firstAttribute="height" constant="30" id="i3F-1W-s8R"/>
+                                                    <constraint firstAttribute="width" constant="42" id="Nva-9m-EjJ"/>
+                                                    <constraint firstAttribute="height" constant="42" id="i3F-1W-s8R"/>
                                                 </constraints>
-                                                <state key="normal" image="Next"/>
+                                                <state key="normal" image="Finish"/>
                                                 <connections>
-                                                    <action selector="next:" destination="rbM-xR-YXm" eventType="touchUpInside" id="jGS-Gq-yLt"/>
+                                                    <action selector="finish:" destination="rbM-xR-YXm" eventType="touchUpInside" id="05v-5j-2O0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK8-Jt-HVx">
@@ -519,6 +519,17 @@
                                                     <constraint firstAttribute="width" constant="151" id="ybD-Ho-asS"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBA-j0-9mF" userLabel="finish">
+                                                <rect key="frame" x="155" y="1599" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="Js0-Jy-XLJ"/>
+                                                    <constraint firstAttribute="width" constant="42" id="bxe-vj-24M"/>
+                                                </constraints>
+                                                <state key="normal" image="Finish"/>
+                                                <connections>
+                                                    <action selector="finish:" destination="rbM-xR-YXm" eventType="touchUpInside" id="KfT-n9-07W"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="TNT-3z-fBg" firstAttribute="leading" secondItem="Uj8-jy-b5B" secondAttribute="trailing" id="0Ny-O6-WsG"/>
@@ -526,6 +537,7 @@
                                             <constraint firstItem="eH8-De-wXW" firstAttribute="top" secondItem="c49-nN-3eT" secondAttribute="top" id="13N-B0-7yB"/>
                                             <constraint firstItem="fei-Qz-nPE" firstAttribute="centerY" secondItem="zO0-cE-Kgw" secondAttribute="centerY" id="1E7-rL-ywi"/>
                                             <constraint firstItem="TxV-rz-koK" firstAttribute="leading" secondItem="LTv-dH-8Ne" secondAttribute="trailing" id="1TE-Hd-XOP"/>
+                                            <constraint firstItem="jBA-j0-9mF" firstAttribute="top" secondItem="Uj8-jy-b5B" secondAttribute="bottom" constant="23" id="2QZ-92-rYU"/>
                                             <constraint firstItem="juB-qb-uOg" firstAttribute="bottom" secondItem="c49-nN-3eT" secondAttribute="bottom" id="2uc-Ku-Xkr"/>
                                             <constraint firstItem="M32-lD-hv4" firstAttribute="leading" secondItem="2xm-mg-YiW" secondAttribute="trailing" id="3CG-nd-GUt"/>
                                             <constraint firstItem="ITL-fM-YIQ" firstAttribute="centerX" secondItem="AS9-da-Y6e" secondAttribute="centerX" id="3y5-Vf-2aS"/>
@@ -551,6 +563,7 @@
                                             <constraint firstItem="t2G-QI-hdn" firstAttribute="bottom" secondItem="Ket-aK-ooZ" secondAttribute="bottom" id="Jr2-y3-34m"/>
                                             <constraint firstItem="POc-WV-Zns" firstAttribute="top" secondItem="Ket-aK-ooZ" secondAttribute="bottom" constant="23" id="KWp-ra-m78"/>
                                             <constraint firstItem="LZJ-p1-TEs" firstAttribute="centerY" secondItem="zO0-cE-Kgw" secondAttribute="centerY" id="LNy-3x-N8E"/>
+                                            <constraint firstItem="jBA-j0-9mF" firstAttribute="centerX" secondItem="Uj8-jy-b5B" secondAttribute="centerX" id="Lq2-Ps-SQG"/>
                                             <constraint firstItem="t2G-QI-hdn" firstAttribute="leading" secondItem="Ket-aK-ooZ" secondAttribute="trailing" id="MCl-ve-lWc"/>
                                             <constraint firstItem="LZJ-p1-TEs" firstAttribute="leading" secondItem="zO0-cE-Kgw" secondAttribute="trailing" id="O8Q-mb-Cn2"/>
                                             <constraint firstItem="AS9-da-Y6e" firstAttribute="centerX" secondItem="xCa-Pp-lb2" secondAttribute="centerX" id="PXz-9f-10A"/>
@@ -641,12 +654,14 @@
                         <outlet property="access1of2" destination="G7A-ae-Z9c" id="N0N-EQ-hiy"/>
                         <outlet property="access2of2" destination="oK8-Jt-HVx" id="SqA-lb-yQe"/>
                         <outlet property="avatarView" destination="132-3E-yYw" id="c88-cr-DjY"/>
+                        <outlet property="earlyDone" destination="jBA-j0-9mF" id="Ye4-3r-dCv"/>
                         <outlet property="femaleButton" destination="kox-e0-I8u" id="Ipj-Xd-OYc"/>
                         <outlet property="flowChartView" destination="bSe-Jo-v2x" id="uz8-6a-pPo"/>
                         <outlet property="hairButton1of4" destination="Y4M-FN-GhZ" id="MIb-LZ-TYv"/>
                         <outlet property="hairButton2of4" destination="dZ0-wq-cTV" id="E38-pZ-jox"/>
                         <outlet property="hairButton3of4" destination="t2G-QI-hdn" id="R5R-j4-ouH"/>
                         <outlet property="hairButton4of4" destination="5uR-lN-x99" id="B7e-0S-KVb"/>
+                        <outlet property="lineDivider" destination="g5c-Zm-xoE" id="egw-6q-5Ij"/>
                         <outlet property="maleButton" destination="hWb-5Z-6lY" id="tfS-Jf-nE5"/>
                         <outlet property="previewBox0" destination="OI7-Jx-JBK" id="M9C-Mz-0b3"/>
                         <outlet property="previewBox1" destination="TxV-rz-koK" id="bqn-H2-QXx"/>
@@ -2073,6 +2088,7 @@
         <image name="Famous" width="106" height="84"/>
         <image name="FamousSelected" width="106" height="84"/>
         <image name="Female" width="72" height="72"/>
+        <image name="Finish" width="42" height="42"/>
         <image name="LineDivider" width="2" height="2384"/>
         <image name="Male" width="72" height="72"/>
         <image name="MenuButtonSplitter" width="2" height="41"/>

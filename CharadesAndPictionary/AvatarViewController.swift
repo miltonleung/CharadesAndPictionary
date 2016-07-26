@@ -65,6 +65,10 @@ class AvatarViewController: UIViewController {
     @IBOutlet weak var access2of2: UIButton!
     var access2:[UIButton]?
     
+    @IBOutlet weak var earlyDone: UIButton!
+    
+    @IBOutlet weak var lineDivider: UIImageView!
+    
     var avatar = [Int]()
     var selectedChoice:Int?
     var previewBoxes:[UIImageView]?
@@ -84,8 +88,11 @@ class AvatarViewController: UIViewController {
             
             selectedChoice = nil
             let offset = flowChartView.contentOffset.y
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 272.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 270.0), animated: true)
         }
+    }
+    @IBAction func finish(sender: UIButton) {
+    
     }
     @IBAction func choice(sender: UIButton) {
         selectedChoice = sender.tag
@@ -159,6 +166,7 @@ class AvatarViewController: UIViewController {
                 if avatar[category.top] < 3 {       // Guy, Outfit, DONE
                     image = 2
                     setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.accessories)
+                    earlyDone.hidden = false
                 } else {
                     image = 2                       // Guy, T
                     setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.pantsMale)
@@ -166,6 +174,7 @@ class AvatarViewController: UIViewController {
             } else {
                 image = 2                           // Girl, DONE
                 setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.shoesWomen)
+                earlyDone.hidden = false
             }
         case 5:
             image = 4
@@ -202,6 +211,8 @@ class AvatarViewController: UIViewController {
         maleShortsWomenShoes2 = [shortsShoes1of2, shortsShoes2of2]
         maleShoes4 = [shoes1of4, shoes2of4, shoes3of4, shoes4of4]
         access2 = [access1of2, access2of2]
+        
+        earlyDone.hidden = true
         
         previewBox4.image = UIImage(named: "PreviewBoxFour")
         
