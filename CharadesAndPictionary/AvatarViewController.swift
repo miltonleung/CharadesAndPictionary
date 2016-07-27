@@ -89,15 +89,19 @@ class AvatarViewController: UIViewController {
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
             let offset = flowChartView.contentOffset.y
+            
+            section -= 1
+            setAvatar()
+            
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 272.0), animated: true)
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(0)
                 
             }
-            section -= 1
+            selectedChoice = avatar.last
+            
             buttonSelect[sender.tag] = false
-        }
-        if selectedChoice != nil {
+        } else if selectedChoice != nil {
             if sender.tag == avatarType.gender {
                 
                 
@@ -108,16 +112,19 @@ class AvatarViewController: UIViewController {
             let previewBox = previewBoxes![sender.tag + 1]
             setupViews(sender.tag, choice: selectedChoice!, previewBox: previewBox)
             
-            selectedChoice = nil
             let offset = flowChartView.contentOffset.y
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 272.0), animated: true)
             
             buttonSelect[sender.tag] = true
-            let subviews = previewImages![section].subviews
+            
             section += 1
-            for views in subviews {
-                previewImages![section].addSubview(views)
+            if section < avatar.count {
+                
+                selectedChoice = avatar[section]
+            } else {
+                selectedChoice = nil
             }
+            
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                 
@@ -146,6 +153,10 @@ class AvatarViewController: UIViewController {
         } else {
             avatar.insert(selectedChoice!, atIndex: section)
         }
+        setAvatar()
+    }
+    
+    func setAvatar() {
         var imageStrings = buildAvatar()
         if avatarPath! == womenTPath {
             imageStrings.append(imageStrings.removeAtIndex(3))
@@ -171,6 +182,7 @@ class AvatarViewController: UIViewController {
             }
         }
     }
+    
     var avatarPath:[[String]]?
     func buildAvatar() -> [String] {
         var imageStrings = [String]()
