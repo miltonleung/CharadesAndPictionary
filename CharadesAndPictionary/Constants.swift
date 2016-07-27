@@ -21,7 +21,9 @@ var isPrivate = false
 
 var stockLists:[String] = ["movies", "tv", "famous", "celebs"]
 
-let womenPath = [avatarImages.faceWomen, avatarImages.skinColorWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.pantsWomen, avatarImages.shoesWomen]
+let womenOutfitPath = [avatarImages.faceWomen, avatarImages.skinColorWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.shoesWomen]
+
+let womenTPath = [avatarImages.faceWomen, avatarImages.skinColorWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.pantsWomen, avatarImages.shoesWomen]
 
 let maleTPath = [avatarImages.faceMale, avatarImages.skinColorMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.topColor, avatarImages.pantsMale, avatarImages.shoesMale, avatarImages.accessories]
 

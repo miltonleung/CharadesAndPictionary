@@ -91,7 +91,7 @@ class AvatarViewController: UIViewController {
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
             let offset = flowChartView.contentOffset.y
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 270.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 274.0), animated: true)
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(0)
                 
@@ -115,7 +115,11 @@ class AvatarViewController: UIViewController {
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 270.0), animated: true)
             
             buttonSelect[sender.tag] = true
+            let subviews = previewImages![section].subviews
             section += 1
+            for views in subviews {
+                previewImages![section].addSubview(views)
+            }
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                 
@@ -134,7 +138,12 @@ class AvatarViewController: UIViewController {
         for previewImage in previewImages![section].subviews {
             previewImage.removeFromSuperview()
         }
-        avatar.insert(selectedChoice!, atIndex: section)
+        if avatar.indices.contains(section) {
+            avatar[section] = selectedChoice!
+        } else {
+            avatar.insert(selectedChoice!, atIndex: section)
+        }
+        
         
         for image in buildAvatar() {
             previewImages![section].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
@@ -152,7 +161,12 @@ class AvatarViewController: UIViewController {
                 }
             }
         } else {
-            avatarPath = womenPath
+            avatarPath = womenOutfitPath
+            if avatar.count >= 4 {
+                if avatar[3] == 1 || avatar[3] == 2 {
+                    avatarPath = womenTPath
+                }
+            }
         }
         
         for i in 0...avatar.count - 1 {
@@ -166,66 +180,11 @@ class AvatarViewController: UIViewController {
             }
             imageStrings.append(imageString)
         }
-        return imageStrings
-    }
-    
-    func getPreviewAvatar(currentSection: Int, choice: Int) -> [String] {
-        var imageStrings = [String]()
-        let gender = avatar.first
-        switch currentSection {
-        case 0:
-            switch choice {
-            case 0:
-                return previewAvatar.male
-            case 1:
-                return previewAvatar.female
-            default:
-                return [""]
+        if avatar.count < avatarPath!.count {
+            for i in avatar.count...(avatarPath?.count)! - 1 {
+                let imageString = avatarPath![i].first
+                imageStrings.append(imageString!)
             }
-        case 1:
-            if gender == 0 {
-                setupIcons(4, selectButtons: hair4!, selectIcons: avatarImages.hairMale)
-            } else if gender == 1 {
-                setupIcons(4, selectButtons: hair4!, selectIcons: avatarImages.hairWomen)
-            }
-        case 2:
-            if gender == 0 {
-                setupIcons(4, selectButtons: top4!, selectIcons: avatarImages.topMale)
-            } else if gender == 1 {
-                setupIcons(4, selectButtons: top4!, selectIcons: avatarImages.topWomen)
-            }
-        case 3:
-            if gender == 0 {
-                switch choice {
-                case 0,1,2:
-                    setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.shoesMaleOutfit, deselectButtons: womenShorts2!)
-                case 3:
-                    setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.topColor, deselectButtons: womenShorts2!)
-                default:
-                    return [""]
-                }
-            } else {
-                setupIcons(2, selectButtons: womenShorts2!, selectIcons: avatarImages.pantsWomen, deselectButtons: topColor3!)
-            }
-        case 4:
-            if avatar[avatarType.gender] == 0 {
-                if avatar[avatarType.top] < 3 {       // Guy, Outfit, DONE
-                    setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.accessories)
-                    earlyDone.hidden = false
-                    lineDividerHeight.constant = 1570
-                } else {                     // Guy, T
-                    setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.pantsMale)
-                }
-            } else {                        // Girl, DONE
-                setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.shoesWomen)
-                earlyDone.hidden = false
-                lineDividerHeight.constant = 1570
-            }
-        case 5:
-            setupIcons(2, selectButtons: maleShoes4!, selectIcons: avatarImages.shoesMale)
-        case 6:                           // Guy, TShirt, DONE
-            setupIcons(2, selectButtons: access2!, selectIcons: avatarImages.accessories)
-        default: return [""]
         }
         return imageStrings
     }
