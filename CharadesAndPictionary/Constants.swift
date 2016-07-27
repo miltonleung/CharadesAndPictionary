@@ -21,13 +21,13 @@ var isPrivate = false
 
 var stockLists:[String] = ["movies", "tv", "famous", "celebs"]
 
-let womenOutfitPath = [avatarImages.faceWomen, avatarImages.skinColorWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.shoesWomen]
+let womenOutfitPath = [avatarImages.faceWomen, avatarImages.skinWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.shoesWomen]
 
-let womenTPath = [avatarImages.faceWomen, avatarImages.skinColorWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.pantsWomen, avatarImages.shoesWomen]
+let womenTPath = [avatarImages.faceWomen, avatarImages.skinWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.pantsWomen, avatarImages.shoesWomen]
 
-let maleTPath = [avatarImages.faceMale, avatarImages.skinColorMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.topColor, avatarImages.pantsMale, avatarImages.shoesMale, avatarImages.accessories]
+let maleTPath = [avatarImages.faceMale, avatarImages.skinMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.topColor, avatarImages.pantsMale, avatarImages.shoesMale, avatarImages.accessories]
 
-let maleOutfitPath = [avatarImages.faceMale, avatarImages.skinColorMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.shoesMaleOutfit, avatarImages.accessories]
+let maleOutfitPath = [avatarImages.faceMale, avatarImages.skinMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.shoesMaleOutfit, avatarImages.accessories]
 
 enum ErrorMessages {
     static let emptyName = "Please enter a name"
@@ -47,11 +47,13 @@ enum avatarType {
 }
 
 enum avatarImages {
-    static let faceMale = ["MaleBrownSkin", "MaleBrownHead", "MaleBrownHair", "BlackEyesFace"]
-    static let faceWomen = ["WomenTanSkin", "WomenBrownHair", "BlackEyesFace"]
+    static let faceMale = ["MaleBrownHead", "BlackEyesFace"]
+    static let faceWomen = ["BlackEyesFace"]
+    static let skinMale = ["MaleBrownSkin", "MaleDBrownSkin", "MaleWhiteSkin"]
+    static let skinWomen = ["WomenWhiteSkin", "WomenTanSkin"]
     static let skinColorMale = ["MaleBrownFace", "MaleDBrownFace", "MaleWhiteFace"]
     static let skinColorWomen = ["WomenWhiteFace", "WomenTanFace"]
-    static let hairMale = ["MaleBrownBuzz", "MaleBrownHair", "MaleDBrownHair", "MaleDBrownBuzz"]
+    static let hairMale = ["MaleBrownHair", "MaleBrownBuzz", "MaleDBrownBuzz", "MaleDBrownHair"]
     static let hairWomen = ["WomenLongDBrownHair", "WomenLongBlackHair", "WomenBrownBangs", "WomenLongBrownHair"]
     static let topMale = ["MaleIanConner", "MaleRags", "MaleRedT", "MaleYeezy"]
     static let topWomen = ["WomenBlueSundress", "WomenNYTank", "WomenVeniceTank", "WomenRedSundress"]

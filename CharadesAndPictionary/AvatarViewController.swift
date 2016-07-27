@@ -91,7 +91,7 @@ class AvatarViewController: UIViewController {
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
             let offset = flowChartView.contentOffset.y
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 274.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 272.0), animated: true)
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(0)
                 
@@ -112,7 +112,7 @@ class AvatarViewController: UIViewController {
             
             selectedChoice = nil
             let offset = flowChartView.contentOffset.y
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 270.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 272.0), animated: true)
             
             buttonSelect[sender.tag] = true
             let subviews = previewImages![section].subviews
@@ -171,19 +171,23 @@ class AvatarViewController: UIViewController {
         
         for i in 0...avatar.count - 1 {
             let selectedItem = avatar[i]
-            let imageString = avatarPath![i][selectedItem]
+            
             
             if i == 0 {
                 for image in avatarPath![i] {
                     imageStrings.append(image)
                 }
+            } else {
+                let imageString = avatarPath![i][selectedItem]
+                imageStrings.append(imageString)
             }
-            imageStrings.append(imageString)
         }
         if avatar.count < avatarPath!.count {
             for i in avatar.count...(avatarPath?.count)! - 1 {
-                let imageString = avatarPath![i].first
-                imageStrings.append(imageString!)
+                if avatar.first != 0 || i != (avatarPath?.count)! - 1 {
+                    let imageString = avatarPath![i].first
+                    imageStrings.append(imageString!)
+                }
             }
         }
         return imageStrings

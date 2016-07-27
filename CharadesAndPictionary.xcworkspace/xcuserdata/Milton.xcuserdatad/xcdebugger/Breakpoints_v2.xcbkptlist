@@ -90,7 +90,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "491292450.523499"
+                  timestampString = "491297200.81245"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "546"
@@ -105,7 +105,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/LobbyViewController.swift"
-                  timestampString = "491292450.52364"
+                  timestampString = "491297200.812565"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "546"
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491292552.91405"
+            timestampString = "491297200.61979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491292552.91405"
+            timestampString = "491297200.61979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491292552.91405"
+            timestampString = "491297200.61979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -198,7 +198,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
@@ -214,7 +214,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
@@ -223,6 +223,70 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
             endingLineNumber = "172"
+            landmarkName = "buildAvatar()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/AvatarViewController.swift"
+            timestampString = "491297200.61979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "buildAvatar()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.AvatarViewController.buildAvatar () -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/AvatarViewController.swift"
+                  timestampString = "491295234.925486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "3404">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.AvatarViewController.buildAvatar () -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/AvatarViewController.swift"
+                  timestampString = "491295234.925644"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "6126">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/AvatarViewController.swift"
+            timestampString = "491297200.61979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "buildAvatar()"
             landmarkType = "5">
          </BreakpointContent>
