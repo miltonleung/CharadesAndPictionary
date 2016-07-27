@@ -138,14 +138,31 @@ class AvatarViewController: UIViewController {
         for previewImage in previewImages![section].subviews {
             previewImage.removeFromSuperview()
         }
+        for previewImage in previewImages![section + 1].subviews {
+            previewImage.removeFromSuperview()
+        }
         if avatar.indices.contains(section) {
             avatar[section] = selectedChoice!
         } else {
             avatar.insert(selectedChoice!, atIndex: section)
         }
-        
-        
-        for image in buildAvatar() {
+        var imageStrings = buildAvatar()
+        if avatarPath! == womenTPath {
+            imageStrings.append(imageStrings.removeAtIndex(3))
+            imageStrings.append(imageStrings.removeAtIndex(0))
+            
+        } else if avatarPath! == womenOutfitPath {
+            imageStrings.append(imageStrings.removeAtIndex(0))
+        } else if avatarPath! == maleTPath {
+            imageStrings.append(imageStrings.removeAtIndex(5))
+            imageStrings.append(imageStrings.removeAtIndex(0))
+        } else if avatarPath! == maleOutfitPath {
+            imageStrings.append(imageStrings.removeAtIndex(1))
+            imageStrings.append(imageStrings.removeAtIndex(2))
+//            imageStrings.append(imageStrings.removeAtIndex(4))
+            imageStrings.append(imageStrings.removeAtIndex(0))
+        }
+        for image in imageStrings {
             previewImages![section].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
             previewImages![section + 1].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
         }
@@ -156,7 +173,7 @@ class AvatarViewController: UIViewController {
         if avatar.first == 0 {
             avatarPath = maleOutfitPath
             if avatar.count >= 4 {
-                if avatar[3] < 3 {
+                if avatar[3] == 2 {
                     avatarPath = maleTPath
                 }
             }
@@ -172,7 +189,9 @@ class AvatarViewController: UIViewController {
         for i in 0...avatar.count - 1 {
             let selectedItem = avatar[i]
             
-            
+            if i == 1  && avatar.first == 0 {
+                imageStrings.append(avatarImages.headMale[selectedItem])
+            }
             if i == 0 {
                 for image in avatarPath![i] {
                     imageStrings.append(image)
@@ -184,6 +203,10 @@ class AvatarViewController: UIViewController {
         }
         if avatar.count < avatarPath!.count {
             for i in avatar.count...(avatarPath?.count)! - 1 {
+                if avatar.first == 0 && i == 1 {
+                    let imageString = avatarImages.headMale.first
+                    imageStrings.append(imageString!)
+                }
                 if avatar.first != 0 || i != (avatarPath?.count)! - 1 {
                     let imageString = avatarPath![i].first
                     imageStrings.append(imageString!)
@@ -243,10 +266,10 @@ class AvatarViewController: UIViewController {
         case 3:
             if gender == 0 {
                 switch choice {
-                case 0,1,2:
+                case 0,1,3:
                     image = 3
                     setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.shoesMaleOutfit, deselectButtons: womenShorts2!)
-                case 3:
+                case 2:
                     image = 3
                     setupIcons(3, selectButtons: topColor3!, selectIcons: avatarImages.topColor, deselectButtons: womenShorts2!)
                 default:

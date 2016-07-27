@@ -47,15 +47,16 @@ enum avatarType {
 }
 
 enum avatarImages {
-    static let faceMale = ["MaleBrownHead", "BlackEyesFace"]
+    static let faceMale = ["BlackEyesFace"]
     static let faceWomen = ["BlackEyesFace"]
-    static let skinMale = ["MaleBrownSkin", "MaleDBrownSkin", "MaleWhiteSkin"]
+    static let skinMale = ["MaleBrownSkin", "MaleBlackSkin", "MaleWhiteSkin"]
     static let skinWomen = ["WomenWhiteSkin", "WomenTanSkin"]
+    static let headMale = ["MaleBrownHead", "MaleBlackHead", "MaleWhiteHead"]
     static let skinColorMale = ["MaleBrownFace", "MaleDBrownFace", "MaleWhiteFace"]
     static let skinColorWomen = ["WomenWhiteFace", "WomenTanFace"]
     static let hairMale = ["MaleBrownHair", "MaleBrownBuzz", "MaleDBrownBuzz", "MaleDBrownHair"]
     static let hairWomen = ["WomenLongDBrownHair", "WomenLongBlackHair", "WomenBrownBangs", "WomenLongBrownHair"]
-    static let topMale = ["MaleIanConner", "MaleRags", "MaleRedT", "MaleYeezy"]
+    static let topMale = ["MaleIanConner", "MaleRagsOutfit", "MaleRedT", "MaleYeezy"]
     static let topWomen = ["WomenBlueSundress", "WomenNYTank", "WomenVeniceTank", "WomenRedSundress"]
     static let topColor = ["MaleGreenT", "MaleRedT", "MaleWhiteT"]
     static let pantsMale = ["MaleBlueJeans", "MaleBlueShorts"]
