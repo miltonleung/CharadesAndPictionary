@@ -55,11 +55,9 @@ class AvatarViewController: UIViewController {
     @IBOutlet weak var shortsShoes2of2: UIButton!
     var maleShortsWomenShoes2:[UIButton]?
     
-    @IBOutlet weak var shoes1of4: UIButton!
-    @IBOutlet weak var shoes2of4: UIButton!
-    @IBOutlet weak var shoes3of4: UIButton!
-    @IBOutlet weak var shoes4of4: UIButton!
-    var maleShoes4:[UIButton]?
+    @IBOutlet weak var shoes1of2: UIButton!
+    @IBOutlet weak var shoes2of2: UIButton!
+    var maleShoes2:[UIButton]?
     
     @IBOutlet weak var access1of2: UIButton!
     @IBOutlet weak var access2of2: UIButton!
@@ -138,8 +136,10 @@ class AvatarViewController: UIViewController {
         for previewImage in previewImages![section].subviews {
             previewImage.removeFromSuperview()
         }
-        for previewImage in previewImages![section + 1].subviews {
-            previewImage.removeFromSuperview()
+        if section < 7 {
+            for previewImage in previewImages![section + 1].subviews {
+                previewImage.removeFromSuperview()
+            }
         }
         if avatar.indices.contains(section) {
             avatar[section] = selectedChoice!
@@ -159,12 +159,16 @@ class AvatarViewController: UIViewController {
         } else if avatarPath! == maleOutfitPath {
             imageStrings.append(imageStrings.removeAtIndex(1))
             imageStrings.append(imageStrings.removeAtIndex(2))
-//            imageStrings.append(imageStrings.removeAtIndex(4))
+            if imageStrings.count == 7 {
+                imageStrings.append(imageStrings.removeAtIndex(4))
+            }
             imageStrings.append(imageStrings.removeAtIndex(0))
         }
         for image in imageStrings {
             previewImages![section].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
-            previewImages![section + 1].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
+            if section < 7 {
+                previewImages![section + 1].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
+            }
         }
     }
     var avatarPath:[[String]]?
@@ -281,7 +285,7 @@ class AvatarViewController: UIViewController {
             }
         case 4:
             if avatar[avatarType.gender] == 0 {
-                if avatar[avatarType.top] < 3 {       // Guy, Outfit, DONE
+                if avatar[avatarType.top] != 2 {       // Guy, Outfit, DONE
                     image = 2
                     setupIcons(2, selectButtons: maleShortsWomenShoes2!, selectIcons: avatarImages.accessories)
                     earlyDone.hidden = false
@@ -297,8 +301,8 @@ class AvatarViewController: UIViewController {
                 lineDividerHeight.constant = 1570
             }
         case 5:
-            image = 4
-            setupIcons(2, selectButtons: maleShoes4!, selectIcons: avatarImages.shoesMale)
+            image = 2
+            setupIcons(2, selectButtons: maleShoes2!, selectIcons: avatarImages.shoesMale)
         case 6:
             image = 2                               // Guy, TShirt, DONE
             setupIcons(2, selectButtons: access2!, selectIcons: avatarImages.accessories)
@@ -330,7 +334,7 @@ class AvatarViewController: UIViewController {
         topColor3 = [topColor1of3, topColorPantsShoes2, topColor3of3]
         womenShorts2 = [shorts1of2, topColorPantsShoes2]
         maleShortsWomenShoes2 = [shortsShoes1of2, shortsShoes2of2]
-        maleShoes4 = [shoes1of4, shoes2of4, shoes3of4, shoes4of4]
+        maleShoes2 = [shoes1of2, shoes2of2]
         access2 = [access1of2, access2of2]
         
         earlyDone.hidden = true
