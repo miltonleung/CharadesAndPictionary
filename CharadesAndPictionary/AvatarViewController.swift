@@ -75,6 +75,7 @@ class AvatarViewController: UIViewController {
     
     
     @IBOutlet weak var earlyDone: UIButton!
+    @IBOutlet weak var earlyEarlyDone: UIButton!
     
     @IBOutlet weak var lineDividerHeight: NSLayoutConstraint!
     
@@ -105,16 +106,17 @@ class AvatarViewController: UIViewController {
             selectedChoice = avatar.last
             
             buttonSelect[sender.tag] = false
-        } else if selectedChoice != nil {
-            if sender.tag == avatarType.gender {
-                
-                
-            } else if sender.tag == avatarType.skinColor {
-                
+        } else {
+            if selectedChoice == nil {
+                avatar.insert(0, atIndex: section)
+                selectedChoice = 0
+                madeAChoice()
             }
             
             let previewBox = previewBoxes![sender.tag + 1]
             setupViews(sender.tag, choice: selectedChoice!, previewBox: previewBox)
+            
+            
             
             let offset = flowChartView.contentOffset.y
             self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 274.0), animated: true)
@@ -133,12 +135,10 @@ class AvatarViewController: UIViewController {
                 sender.imageView?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
                 
             }
-            
-            
         }
     }
     @IBAction func finish(sender: UIButton) {
-        if selectedChoice != nil {
+        if selectedChoice != nil || avatar.first == 0 {
             delegate?.refreshAvatar(avatarImage!)
             dismissViewControllerAnimated(true, completion: nil)
             
@@ -146,7 +146,10 @@ class AvatarViewController: UIViewController {
     }
     @IBAction func choice(sender: UIButton) {
         selectedChoice = sender.tag
+        madeAChoice()
         
+    }
+    func madeAChoice() {
         for previewImage in previewImages![section].subviews {
             previewImage.removeFromSuperview()
         }
@@ -162,8 +165,11 @@ class AvatarViewController: UIViewController {
         }
         setAvatar()
     }
-    
     func setAvatar() {
+        for previewImage in previewImages![section].subviews {
+            previewImage.removeFromSuperview()
+        }
+        
         var imageStrings = buildAvatar()
         if avatarPath! == womenTPath {
             imageStrings.append(imageStrings.removeAtIndex(3))
@@ -301,7 +307,16 @@ class AvatarViewController: UIViewController {
                 }
             } else {
                 image = 2
-                setupIcons(2, selectButtons: womenShorts2!, selectIcons: avatarImages.pantsWomen, deselectButtons: topColor3!)
+                switch choice {
+                case 0, 3:
+                    setupIcons(2, selectButtons: womenShorts2!, selectIcons: avatarImages.shoesWomen, deselectButtons: topColor3!)
+                    earlyEarlyDone.hidden = false
+                    lineDividerHeight.constant = 1233
+                case 1, 2:
+                    setupIcons(2, selectButtons: womenShorts2!, selectIcons: avatarImages.pantsWomen, deselectButtons: topColor3!)
+                default:
+                    return
+                }
             }
         case 4:
             if avatar[avatarType.gender] == 0 {
@@ -362,6 +377,7 @@ class AvatarViewController: UIViewController {
         access2 = [access1of2, access2of2]
         
         earlyDone.hidden = true
+        earlyEarlyDone.hidden = true
         
         femaleButton.setImage(UIImage(named: "Female"), forState: .Normal)
         maleButton.setImage(UIImage(named: "Male"), forState: .Normal)
