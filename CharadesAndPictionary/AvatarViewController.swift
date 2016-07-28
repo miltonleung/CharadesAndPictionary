@@ -93,7 +93,7 @@ class AvatarViewController: UIViewController {
             section -= 1
             setAvatar()
             
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 272.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset - 274.0), animated: true)
             UIView.animateWithDuration(0.5) { () -> Void in
                 sender.imageView?.transform = CGAffineTransformMakeRotation(0)
                 
@@ -113,7 +113,7 @@ class AvatarViewController: UIViewController {
             setupViews(sender.tag, choice: selectedChoice!, previewBox: previewBox)
             
             let offset = flowChartView.contentOffset.y
-            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 272.0), animated: true)
+            self.flowChartView.setContentOffset(CGPoint(x: 0, y: offset + 274.0), animated: true)
             
             buttonSelect[sender.tag] = true
             
@@ -336,6 +336,10 @@ class AvatarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        avatarView.layer.borderWidth = 2
+        avatarView.layer.borderColor = UIColor(red: 92/255.0, green: 92/255.0, blue: 92/255.0, alpha: 1).CGColor
+        avatarView.layer.cornerRadius = 20
         
         previewBoxes = [previewBox0, previewBox1, previewBox2, previewBox3, previewBox4, previewBox5, previewBox6, previewBox7]
         previewImages = [previewImage0, previewImage1, previewImage2, previewImage3, previewImage4, previewImage5, previewImage6, previewImage7]

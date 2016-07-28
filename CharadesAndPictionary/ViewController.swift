@@ -30,6 +30,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBOutlet weak var avatar: UIButton!
+    @IBAction func avatarEdit(sender: UIButton) {
+        performSegueWithIdentifier("avatarEdit", sender: nil)
+    }
     func submit() {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
