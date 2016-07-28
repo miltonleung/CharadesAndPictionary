@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "SmallTextFieldBackgroundWhite.png",
+      "filename" : "TextFieldBackgroundDark.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "SmallTextFieldBackgroundWhite@2x.png",
+      "filename" : "TextFieldBackgroundDark@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "SmallTextFieldBackgroundWhite@3x.png",
+      "filename" : "TextFieldBackgroundDark@3x.png",
       "scale" : "3x"
     }
   ],

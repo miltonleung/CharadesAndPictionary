@@ -21,6 +21,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var roomErrorMessage: UILabel!
     @IBOutlet weak var nameErrorMessage: UILabel!
     
+    @IBOutlet weak var nameError: UIImageView!
+    @IBOutlet weak var roomError: UIImageView!
+    @IBOutlet weak var passError: UIImageView!
+    
     @IBOutlet weak var emojiInputView: UIView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -80,26 +84,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func checkForErrorsInput() -> Bool {
         var failed: Bool = false
         if StringUtil.isStringEmpty(nameField.text!) {
-            nameErrorMessage.text = ErrorMessages.emptyName
+            nameError.hidden = false
+            nameError.image = UIImage(named: "emptyMessage")
             failed = true
         } else {
             if StringUtil.containsSymbols(nameField.text!) {
-                nameErrorMessage.text = ErrorMessages.symbols
+                nameError.image = UIImage(named: "symbolMessage")
                 failed = true
             } else {
-                nameErrorMessage.text = ""
+                nameError.hidden = true
             }
         }
         if StringUtil.isStringEmpty(roomField.text!) {
-            roomErrorMessage.text = ErrorMessages.emptyRoom
+            roomError.hidden = false
+            roomError.image = UIImage(named: "emptyMessage")
             failed = true
         } else {
             if StringUtil.containsSymbols(roomField.text!) {
-                roomErrorMessage.text = ErrorMessages.symbols
+                roomError.hidden = false
+                roomError.image = UIImage(named: "symbolMessage")
                 failed = true
             } else {
-                roomErrorMessage.text = ""
+                roomError.hidden = true
             }
+        }
+        if StringUtil.isStringEmpty(passwordField.text!) {
+            passError.hidden = false
+            passError.image = UIImage(named: "emptyMessage")
         }
         return failed
 
@@ -126,16 +137,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func loadBackground() {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        if screenWidth == 414 {
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient6Plus")!)
+        } else if screenWidth == 375 {
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient6")!)
+            
+        } else if screenWidth < 375 {
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient5")!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         ref = FIRDatabase.database().reference()
         
-        avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
+        nameError.hidden = true
+        roomError.hidden = true
+        passError.hidden = true
         
-        roomErrorMessage.text = ""
-        nameErrorMessage.text = ""
+        loadBackground()
+        
+        avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
+        if avatar.subviews.count == 0 {
+            refreshAvatar(defaultAvatar)
+        }
         
         let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
         if !firstRun {
@@ -176,7 +206,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             nameField.text = name
         }
         if nameField.text?.characters.count > 0 {
-            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
+            nameField.background = UIImage(named: "SmallTextFieldBackgroundDark")
         }
         let roomExists = NSUserDefaults.standardUserDefaults().objectForKey("room")
         if roomExists != nil {
@@ -189,10 +219,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             passwordField.text = pass
         }
         if passwordField.text?.characters.count > 0 {
-            passwordField.background = UIImage(named: "TextFieldBackgroundWhite")
+            passwordField.background = UIImage(named: "TextFieldBackgroundDark")
         }
         if roomField.text?.characters.count > 0 {
-            roomField.background = UIImage(named: "TextFieldBackgroundWhite")
+            roomField.background = UIImage(named: "TextFieldBackgroundDark")
         }
     }
     
@@ -213,7 +243,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     func keyboardWillShow(notification: NSNotification) {
         if nameField.editing {
-            nameField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
+            nameField.background = UIImage(named: "SmallTextFieldBackgroundDark")
             if passwordField.text?.characters.count == 0 {
                 passwordField.background = UIImage(named: "TextFieldBackground")
             }
@@ -222,7 +252,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         } else {
             if roomField.editing {
-                roomField.background = UIImage(named: "TextFieldBackgroundWhite")
+                roomField.background = UIImage(named: "TextFieldBackgroundDark")
                 if passwordField.text?.characters.count == 0 {
                     passwordField.background = UIImage(named: "TextFieldBackground")
                 }
@@ -231,7 +261,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             else {
-                passwordField.background = UIImage(named: "TextFieldBackgroundWhite")
+                passwordField.background = UIImage(named: "TextFieldBackgroundDark")
                 if roomField.text?.characters.count == 0 {
                     roomField.background = UIImage(named: "TextFieldBackground")
                 }
@@ -528,6 +558,9 @@ protocol RefreshDelegate {
 }
 extension ViewController: RefreshDelegate {
     func refreshAvatar(imageStrings: [String]) {
+        for views in avatar.subviews {
+            views.removeFromSuperview()
+        }
         for image in imageStrings {
             let imageView = UIImageView(image: UIImage(named: "\(image)Small"))
             avatar.addSubview(imageView)
