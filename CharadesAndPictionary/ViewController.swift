@@ -30,10 +30,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBOutlet weak var avatar: UIButton!
-    @IBAction func avatarEdit(sender: UIButton) {
+    @IBOutlet weak var avatar: UIView!
+
+    func onClickAvatar() {
         performSegueWithIdentifier("avatarEdit", sender: nil)
     }
+    
     func submit() {
         print(roomField.text)
         let editedText = roomField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -130,6 +132,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         ref = FIRDatabase.database().reference()
         
+        avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
+        
         roomErrorMessage.text = ""
         nameErrorMessage.text = ""
         
@@ -147,6 +151,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: Selector("onClickAvatar"))
+//        gesture.delegate = self
+        avatar.addGestureRecognizer(gesture)
         
         
         nameField.delegate = self
@@ -327,6 +335,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if (segue.identifier == "lobbySegue") {
             let lobby = segue.destinationViewController as! LobbyViewController
             lobby.roomName = lobbyRoom
+        } else if segue.identifier == "avatarEdit" {
+            let avatar = segue.destinationViewController as! AvatarViewController
+            avatar.delegate = self
         }
         else {
             super.prepareForSegue(segue, sender: sender)
@@ -511,7 +522,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    
+}
+protocol RefreshDelegate {
+    func refreshAvatar(imageStrings: [String])
+}
+extension ViewController: RefreshDelegate {
+    func refreshAvatar(imageStrings: [String]) {
+        for image in imageStrings {
+            let imageView = UIImageView(image: UIImage(named: "\(image)Small"))
+            avatar.addSubview(imageView)
+        }
+    }
 }
 

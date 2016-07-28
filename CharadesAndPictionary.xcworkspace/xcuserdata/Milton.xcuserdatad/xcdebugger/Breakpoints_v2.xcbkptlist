@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/ViewController.swift"
-            timestampString = "491357796.830475"
+            timestampString = "491361580.72682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "submit()"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491356530.071279"
+            timestampString = "491361821.73018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491356530.071279"
+            timestampString = "491361821.73018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491356530.071279"
+            timestampString = "491361821.73018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "setupViews(_:choice:previewBox:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/AvatarViewController.swift"
-            timestampString = "491356530.071279"
+            timestampString = "491361821.73018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "choice(_:)"
             landmarkType = "5">
          </BreakpointContent>

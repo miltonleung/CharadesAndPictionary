@@ -86,6 +86,10 @@ class AvatarViewController: UIViewController {
     
     var section:Int = 0
     
+    var delegate:RefreshDelegate?
+    var avatarImage:[String]?
+    
+    
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
             let offset = flowChartView.contentOffset.y
@@ -135,6 +139,9 @@ class AvatarViewController: UIViewController {
     }
     @IBAction func finish(sender: UIButton) {
         if selectedChoice != nil {
+            delegate?.refreshAvatar(avatarImage!)
+            dismissViewControllerAnimated(true, completion: nil)
+            
         }
     }
     @IBAction func choice(sender: UIButton) {
@@ -175,6 +182,7 @@ class AvatarViewController: UIViewController {
             }
             imageStrings.append(imageStrings.removeAtIndex(0))
         }
+        avatarImage = imageStrings
         for image in imageStrings {
             previewImages![section].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
             if section < 7 {

@@ -861,13 +861,14 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zl3-1r-tsx">
-                                <rect key="frame" x="316" y="431" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="avatarEdit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8mx-55-Pfz"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-Tq-PmS">
+                                <rect key="frame" x="265" y="403" width="60" height="85"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5bv-IF-JaS"/>
+                                    <constraint firstAttribute="width" constant="55" id="60S-dH-SiY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.46274509803921571" green="0.83921568627450982" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -878,15 +879,15 @@
                             <constraint firstItem="5jF-iJ-UIT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DuI-Rc-iFf"/>
                             <constraint firstItem="sNT-Pa-IE6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="134" id="Ftt-Ep-BF9"/>
                             <constraint firstItem="fSu-r2-yXG" firstAttribute="top" secondItem="5jF-iJ-UIT" secondAttribute="bottom" constant="32" id="Fus-FV-hGS"/>
+                            <constraint firstItem="Hfb-Tq-PmS" firstAttribute="top" secondItem="CB0-dn-wFa" secondAttribute="bottom" constant="16" id="KkB-4J-PaI"/>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="top" secondItem="fSu-r2-yXG" secondAttribute="bottom" constant="-3" id="NaH-PD-JtT"/>
                             <constraint firstItem="VxI-FO-Fdp" firstAttribute="width" secondItem="HDJ-dZ-IuE" secondAttribute="width" id="Q74-ex-2ov"/>
-                            <constraint firstItem="zl3-1r-tsx" firstAttribute="top" secondItem="CB0-dn-wFa" secondAttribute="bottom" constant="44" id="QL2-kU-P5d"/>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RXc-Kc-TCF"/>
                             <constraint firstItem="hHc-hf-UCo" firstAttribute="top" secondItem="HDJ-dZ-IuE" secondAttribute="bottom" constant="15" id="Ry3-P5-XGI"/>
+                            <constraint firstItem="Hfb-Tq-PmS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U3F-0p-rs1"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="height" secondItem="HDJ-dZ-IuE" secondAttribute="height" id="WV7-24-4Sa"/>
                             <constraint firstItem="TTi-5C-1ht" firstAttribute="top" secondItem="5jF-iJ-UIT" secondAttribute="bottom" id="XAC-Z7-UhN"/>
                             <constraint firstItem="TTi-5C-1ht" firstAttribute="centerX" secondItem="5jF-iJ-UIT" secondAttribute="centerX" id="XJO-DY-538"/>
-                            <constraint firstItem="zl3-1r-tsx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YzZ-3j-dbt"/>
                             <constraint firstItem="sNT-Pa-IE6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hkh-Kj-5QC"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="width" secondItem="HDJ-dZ-IuE" secondAttribute="width" id="pyf-Wu-I4E"/>
                             <constraint firstItem="hHc-hf-UCo" firstAttribute="leading" secondItem="HDJ-dZ-IuE" secondAttribute="leading" id="qTg-AA-qvq"/>
@@ -897,7 +898,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="avatar" destination="zl3-1r-tsx" id="Hc6-kr-Cnp"/>
+                        <outlet property="avatar" destination="Hfb-Tq-PmS" id="wDE-In-BDj"/>
                         <outlet property="emojiInputView" destination="fTc-wI-ncF" id="Glb-OE-Ozh"/>
                         <outlet property="nameErrorMessage" destination="TTi-5C-1ht" id="FuK-dB-2OJ"/>
                         <outlet property="nameField" destination="5jF-iJ-UIT" id="t0Q-pR-tXq"/>
