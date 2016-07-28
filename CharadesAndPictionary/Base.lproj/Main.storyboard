@@ -72,8 +72,6 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -817,18 +815,6 @@
                                 <rect key="frame" x="81" y="-55" width="33" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxI-FO-Fdp">
-                                <rect key="frame" x="252" y="265" width="196.5" height="15"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTi-5C-1ht">
-                                <rect key="frame" x="338" y="172" width="24" height="15"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="namegoeshere" translatesAutoresizingMaskIntoConstraints="NO" id="RTN-cZ-QdA" userLabel="I">
                                 <rect key="frame" x="287" y="122" width="125" height="22"/>
                             </imageView>
@@ -882,8 +868,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VxI-FO-Fdp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="23w-vW-qCf"/>
-                            <constraint firstItem="VxI-FO-Fdp" firstAttribute="top" secondItem="HDJ-dZ-IuE" secondAttribute="bottom" constant="-3" id="4Ia-Ny-OoO"/>
                             <constraint firstItem="Kdz-0G-qLD" firstAttribute="leading" secondItem="5jF-iJ-UIT" secondAttribute="trailing" constant="15" id="68q-V4-fg1"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6dj-Cx-g5m"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="top" secondItem="CHw-q4-2Nn" secondAttribute="bottom" constant="-23" id="8zz-hP-1JE"/>
@@ -898,13 +882,10 @@
                             <constraint firstItem="RTN-cZ-QdA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KZd-0D-XGl"/>
                             <constraint firstItem="Hfb-Tq-PmS" firstAttribute="top" secondItem="CB0-dn-wFa" secondAttribute="bottom" constant="16" id="KkB-4J-PaI"/>
                             <constraint firstItem="1bT-2j-ff0" firstAttribute="leading" secondItem="CB0-dn-wFa" secondAttribute="trailing" constant="10" id="LtH-Ze-ssa"/>
-                            <constraint firstItem="VxI-FO-Fdp" firstAttribute="width" secondItem="HDJ-dZ-IuE" secondAttribute="width" id="Q74-ex-2ov"/>
                             <constraint firstItem="HDJ-dZ-IuE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RXc-Kc-TCF"/>
                             <constraint firstItem="Hfb-Tq-PmS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U3F-0p-rs1"/>
                             <constraint firstItem="lJO-tX-a85" firstAttribute="centerX" secondItem="Hfb-Tq-PmS" secondAttribute="centerX" multiplier="1.04" id="Voq-Ee-Cac"/>
                             <constraint firstItem="CB0-dn-wFa" firstAttribute="height" secondItem="HDJ-dZ-IuE" secondAttribute="height" id="WV7-24-4Sa"/>
-                            <constraint firstItem="TTi-5C-1ht" firstAttribute="top" secondItem="5jF-iJ-UIT" secondAttribute="bottom" id="XAC-Z7-UhN"/>
-                            <constraint firstItem="TTi-5C-1ht" firstAttribute="centerX" secondItem="5jF-iJ-UIT" secondAttribute="centerX" id="XJO-DY-538"/>
                             <constraint firstItem="5jF-iJ-UIT" firstAttribute="top" secondItem="RTN-cZ-QdA" secondAttribute="bottom" id="eqm-EC-AZ8"/>
                             <constraint firstItem="TgJ-aN-Txb" firstAttribute="leading" secondItem="HDJ-dZ-IuE" secondAttribute="leading" id="euQ-NH-1m9"/>
                             <constraint firstItem="Kdz-0G-qLD" firstAttribute="bottom" secondItem="5jF-iJ-UIT" secondAttribute="bottom" id="hsE-fE-PWF"/>
@@ -920,12 +901,10 @@
                         <outlet property="avatar" destination="Hfb-Tq-PmS" id="wDE-In-BDj"/>
                         <outlet property="emojiInputView" destination="fTc-wI-ncF" id="Glb-OE-Ozh"/>
                         <outlet property="nameError" destination="Kdz-0G-qLD" id="kN2-rk-874"/>
-                        <outlet property="nameErrorMessage" destination="TTi-5C-1ht" id="FuK-dB-2OJ"/>
                         <outlet property="nameField" destination="5jF-iJ-UIT" id="t0Q-pR-tXq"/>
                         <outlet property="passError" destination="1bT-2j-ff0" id="rlH-5W-Pr4"/>
                         <outlet property="passwordField" destination="CB0-dn-wFa" id="Wkz-Gk-0kH"/>
                         <outlet property="roomError" destination="lSu-ed-Lre" id="wkm-bx-EfB"/>
-                        <outlet property="roomErrorMessage" destination="VxI-FO-Fdp" id="5kW-BM-1nh"/>
                         <outlet property="roomField" destination="HDJ-dZ-IuE" id="c4N-9v-Z6N"/>
                         <segue destination="5dO-jh-rTK" kind="show" identifier="lobbySegue" id="HOg-Ik-fyM"/>
                         <segue destination="rbM-xR-YXm" kind="presentation" identifier="avatarEdit" modalPresentationStyle="overCurrentContext" id="mt9-O6-6hL"/>

@@ -17,10 +17,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var lobbyRoom:String?
     
-    
-    @IBOutlet weak var roomErrorMessage: UILabel!
-    @IBOutlet weak var nameErrorMessage: UILabel!
-    
     @IBOutlet weak var nameError: UIImageView!
     @IBOutlet weak var roomError: UIImageView!
     @IBOutlet weak var passError: UIImageView!
@@ -70,11 +66,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             isLeader = false
                             self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
-                            self.nameErrorMessage.text = "A player with the same name already exists in this room"
+                            self.nameError.hidden = false
+                            self.nameError.image = UIImage(named: "existsMessage")
                             
                         }
-                        
-                        
+                    } else {
+                        self.passError.hidden = false
+                        self.passError.image = UIImage(named: "wrongMessage")
                     }
                 }
             })
@@ -379,7 +377,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             let roomData = snapshot.value as! [String: AnyObject]
-            print(snapshot.value)
             completion(roomData)
             
         }) { (error) in
