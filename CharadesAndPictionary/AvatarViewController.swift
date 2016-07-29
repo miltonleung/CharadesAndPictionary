@@ -94,7 +94,7 @@ class AvatarViewController: UIViewController {
     @IBAction func next(sender: UIButton) {
         if buttonSelect[sender.tag] == true {
             let offset = flowChartView.contentOffset.y
-            
+            hideDone()
             section -= 1
             setAvatar()
             
@@ -180,13 +180,23 @@ class AvatarViewController: UIViewController {
         } else if avatarPath! == maleTPath {
             imageStrings.append(imageStrings.removeAtIndex(5))
             imageStrings.append(imageStrings.removeAtIndex(0))
+            if imageStrings.count >= 7 {
+                if (avatar[avatarType.hair] == 0 || avatar[avatarType.hair] == 3) && imageStrings.contains(avatarImages.accessories[0]){
+                    imageStrings.removeAtIndex(2)
+                }
+            }
         } else if avatarPath! == maleOutfitPath {
             imageStrings.append(imageStrings.removeAtIndex(1))
             imageStrings.append(imageStrings.removeAtIndex(2))
             if imageStrings.count == 7 {
+                if (avatar[avatarType.hair] == 0 || avatar[avatarType.hair] == 3) && imageStrings.contains(avatarImages.accessories[0]){
+                    imageStrings.removeLast()
+                }
                 imageStrings.append(imageStrings.removeAtIndex(4))
+                
             }
             imageStrings.append(imageStrings.removeAtIndex(0))
+            
         }
         avatarImage = imageStrings
         for image in imageStrings {
@@ -263,6 +273,10 @@ class AvatarViewController: UIViewController {
         }
     }
     
+    func hideDone() {
+        earlyDone.hidden = true
+        earlyEarlyDone.hidden = true
+    }
     
     func setupViews(type: Int, choice: Int, previewBox: UIImageView) {
         let gender = avatar.first
@@ -376,8 +390,7 @@ class AvatarViewController: UIViewController {
         maleShoes2 = [shoes1of2, shoes2of2]
         access2 = [access1of2, access2of2]
         
-        earlyDone.hidden = true
-        earlyEarlyDone.hidden = true
+        hideDone()
         
         femaleButton.setImage(UIImage(named: "Female"), forState: .Normal)
         maleButton.setImage(UIImage(named: "Male"), forState: .Normal)
