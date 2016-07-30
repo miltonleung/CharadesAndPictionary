@@ -138,10 +138,13 @@ class AvatarViewController: UIViewController {
         }
     }
     @IBAction func finish(sender: UIButton) {
-        if selectedChoice != nil || avatar.first == 0 {
+        if selectedChoice == nil && avatar.first == 1 {
+            avatar.insert(0, atIndex: section)
+            selectedChoice = 0
+            madeAChoice()
+        } else if selectedChoice != nil || avatar.first == 0 {
             delegate?.refreshAvatar(avatarImage!)
             dismissViewControllerAnimated(true, completion: nil)
-            
         }
     }
     @IBAction func choice(sender: UIButton) {
