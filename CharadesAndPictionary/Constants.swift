@@ -31,6 +31,8 @@ let maleTPath = [avatarImages.faceMale, avatarImages.skinMale, avatarImages.hair
 
 let maleOutfitPath = [avatarImages.faceMale, avatarImages.skinMale, avatarImages.hairMale, avatarImages.topMale, avatarImages.shoesMaleOutfit, avatarImages.accessories]
 
+let avatarPaths = [womenOutfitPath, womenTPath, maleTPath, maleOutfitPath]
+
 enum ErrorMessages {
     static let emptyName = "Please enter a name"
     static let emptyRoom = "Please enter a room name"

@@ -162,7 +162,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
         if avatar.subviews.count == 0 {
-            refreshAvatar(defaultAvatar)
+            let randomAvatar = AvatarUtil.randomAvatar()
+            refreshAvatar(AvatarUtil.arrangeAvatar(randomAvatar.0, images: randomAvatar.1))
         }
         
         let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool

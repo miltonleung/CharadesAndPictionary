@@ -174,33 +174,9 @@ class AvatarViewController: UIViewController {
         }
         
         var imageStrings = buildAvatar()
-        if avatarPath! == womenTPath {
-            imageStrings.append(imageStrings.removeAtIndex(3))
-            imageStrings.append(imageStrings.removeAtIndex(0))
-            
-        } else if avatarPath! == womenOutfitPath {
-            imageStrings.append(imageStrings.removeAtIndex(0))
-        } else if avatarPath! == maleTPath {
-            imageStrings.append(imageStrings.removeAtIndex(5))
-            imageStrings.append(imageStrings.removeAtIndex(0))
-            if imageStrings.count >= 7 {
-                if (avatar[avatarType.hair] == 0 || avatar[avatarType.hair] == 3) && imageStrings.contains(avatarImages.accessories[0]){
-                    imageStrings.removeAtIndex(2)
-                }
-            }
-        } else if avatarPath! == maleOutfitPath {
-            imageStrings.append(imageStrings.removeAtIndex(1))
-            imageStrings.append(imageStrings.removeAtIndex(2))
-            if imageStrings.count == 7 {
-                if (avatar[avatarType.hair] == 0 || avatar[avatarType.hair] == 3) && imageStrings.contains(avatarImages.accessories[0]){
-                    imageStrings.removeLast()
-                }
-                imageStrings.append(imageStrings.removeAtIndex(4))
-                
-            }
-            imageStrings.append(imageStrings.removeAtIndex(0))
-            
-        }
+        
+        imageStrings = AvatarUtil.arrangeAvatar(avatarPath!, images: imageStrings)
+        
         avatarImage = imageStrings
         for image in imageStrings {
             previewImages![section].addSubview(UIImageView(image: UIImage(named: "\(image)Small")))
