@@ -257,7 +257,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.hidden = true
         
         countdownView.hidden = true
-        //        collectionView.hidden = true
         
         famousButton.selected = false
         tvButton.selected = false
