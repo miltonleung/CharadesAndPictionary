@@ -243,10 +243,11 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var rand:Int?
     var players:[String]?
     var ready:[String]?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         roomNameLabel.text = roomName
         
         setupGame("movies")
