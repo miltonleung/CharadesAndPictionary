@@ -66,8 +66,6 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
-            <string>Poppins-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1438,18 +1436,6 @@
                                             <outlet property="delegate" destination="WFF-dO-UD6" id="rn8-fH-1DB"/>
                                         </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xP-oQ-gL3">
-                                        <rect key="frame" x="59" y="112" width="24" height="15"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
-                                        <color key="textColor" red="0.47450980392156861" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAT-sV-Y8B">
-                                        <rect key="frame" x="59" y="165.5" width="24" height="15"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
-                                        <color key="textColor" red="0.47450980392156861" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yyo-NI-x7z">
                                         <rect key="frame" x="164" y="86" width="79" height="29"/>
                                         <constraints>
@@ -1466,7 +1452,6 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="8xP-oQ-gL3" firstAttribute="top" secondItem="8tf-Ds-Gya" secondAttribute="bottom" constant="-3" id="0EI-oD-0RX"/>
                                     <constraint firstItem="yyo-NI-x7z" firstAttribute="leading" secondItem="8tf-Ds-Gya" secondAttribute="trailing" constant="10" id="0Ej-2y-RGL"/>
                                     <constraint firstItem="8KS-WT-6xt" firstAttribute="top" secondItem="d5d-wQ-kZA" secondAttribute="top" constant="8" id="2hW-5V-BiI"/>
                                     <constraint firstItem="8tf-Ds-Gya" firstAttribute="top" secondItem="R8K-pe-Ksa" secondAttribute="bottom" constant="28.5" id="2z8-nB-vin"/>
@@ -1480,7 +1465,6 @@
                                     <constraint firstItem="R8K-pe-Ksa" firstAttribute="top" secondItem="6LI-7i-aqJ" secondAttribute="bottom" constant="-6.5" id="DnF-ls-Fxi"/>
                                     <constraint firstItem="yyo-NI-x7z" firstAttribute="centerY" secondItem="8tf-Ds-Gya" secondAttribute="centerY" id="EjJ-Uz-KYk"/>
                                     <constraint firstItem="6LI-7i-aqJ" firstAttribute="top" secondItem="d5d-wQ-kZA" secondAttribute="top" constant="12" id="HdY-Yb-JCZ"/>
-                                    <constraint firstItem="EAT-sV-Y8B" firstAttribute="leading" secondItem="Y3g-dt-vQz" secondAttribute="leading" id="Is2-Pm-Oj0"/>
                                     <constraint firstItem="NWK-JY-aek" firstAttribute="leading" secondItem="Y3g-dt-vQz" secondAttribute="leading" id="JBB-TR-bdT"/>
                                     <constraint firstAttribute="bottom" secondItem="FrK-Al-ILJ" secondAttribute="bottom" constant="-1" id="OUb-iL-XdB"/>
                                     <constraint firstItem="8tf-Ds-Gya" firstAttribute="top" secondItem="zPH-cI-SiV" secondAttribute="bottom" constant="-4" id="Pce-R5-iEf"/>
@@ -1498,10 +1482,8 @@
                                     <constraint firstAttribute="trailing" secondItem="STB-vg-dOK" secondAttribute="trailing" constant="8" id="l3k-2X-ONi"/>
                                     <constraint firstItem="Y3g-dt-vQz" firstAttribute="centerX" secondItem="d5d-wQ-kZA" secondAttribute="centerX" id="lDy-4b-iAp"/>
                                     <constraint firstItem="R8K-pe-Ksa" firstAttribute="centerX" secondItem="d5d-wQ-kZA" secondAttribute="centerX" id="n3R-Ar-XW1"/>
-                                    <constraint firstItem="EAT-sV-Y8B" firstAttribute="top" secondItem="Y3g-dt-vQz" secondAttribute="bottom" constant="-3" id="w8G-sO-kOl"/>
                                     <constraint firstItem="3iH-GN-jhD" firstAttribute="leading" secondItem="Y3g-dt-vQz" secondAttribute="leading" id="xr1-pc-iiC"/>
                                     <constraint firstItem="LfG-Sr-mf1" firstAttribute="top" secondItem="FrK-Al-ILJ" secondAttribute="top" id="yMi-E0-6ti"/>
-                                    <constraint firstItem="8xP-oQ-gL3" firstAttribute="leading" secondItem="8tf-Ds-Gya" secondAttribute="leading" id="zZW-aR-h0u"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1517,12 +1499,10 @@
                         <outlet property="collectionView" destination="3iH-GN-jhD" id="t9d-sY-YfT"/>
                         <outlet property="create" destination="pq2-Rg-c5y" id="SJ2-l5-n3f"/>
                         <outlet property="descriptionError" destination="STB-vg-dOK" id="2jO-WN-jt7"/>
-                        <outlet property="descriptionErrorMessage" destination="EAT-sV-Y8B" id="3Wf-Yq-GaW"/>
                         <outlet property="descriptionField" destination="Y3g-dt-vQz" id="5iw-JR-9Oo"/>
                         <outlet property="descriptionFieldLabel" destination="NWK-JY-aek" id="Bb9-Qm-hRF"/>
                         <outlet property="listName" destination="8tf-Ds-Gya" id="M3v-4J-6my"/>
                         <outlet property="listNameError" destination="yyo-NI-x7z" id="gaB-xK-bQ9"/>
-                        <outlet property="listNameErrorMessage" destination="8xP-oQ-gL3" id="klu-Pb-XMI"/>
                         <outlet property="nameFieldLabel" destination="zPH-cI-SiV" id="26T-TN-fU5"/>
                         <outlet property="newListView" destination="d5d-wQ-kZA" id="9Rf-rJ-UBE"/>
                         <outlet property="privateButton" destination="8KS-WT-6xt" id="GbN-yO-8AA"/>

@@ -18,9 +18,6 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var nameFieldLabel: UILabel!
     @IBOutlet weak var descriptionFieldLabel: UILabel!
     
-    @IBOutlet weak var listNameErrorMessage: UILabel!
-    @IBOutlet weak var descriptionErrorMessage: UILabel!
-    
     @IBOutlet weak var listNameError: UIImageView!
     @IBOutlet weak var descriptionError: UIImageView!
     
@@ -63,10 +60,12 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         if isPrivate == false {
             isPrivate = true
             darkState()
+            checkForErrorsInput()
             
         } else {
             isPrivate = false
             lightState()
+            checkForErrorsInput()
         }
         collectionView.reloadData()
     }
@@ -75,12 +74,20 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         var failed: Bool = false
         if StringUtil.isStringEmpty(listName.text!) {
             listNameError.hidden = false
-            listNameError.image = UIImage(named: "emptyMessage")
+            if isPrivate {
+                listNameError.image = UIImage(named: "emptyMessageDark")
+            } else {
+                listNameError.image = UIImage(named: "emptyMessage")
+            }
             failed = true
         } else {
             if StringUtil.containsSymbols(listName.text!) {
                 listNameError.hidden = false
-                listNameError.image = UIImage(named: "symbolMessage")
+                if isPrivate {
+                listNameError.image = UIImage(named: "symbolMessageDark")
+                } else {
+                    listNameError.image = UIImage(named: "symbolMessage")
+                }
                 failed = true
             } else {
                 listNameError.hidden = true
@@ -88,7 +95,11 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         if StringUtil.containsSymbols(descriptionField.text!) {
             descriptionError.hidden = false
-            descriptionError.image = UIImage(named: "symbolMessage")
+            if isPrivate {
+            descriptionError.image = UIImage(named: "symbolMessageDark")
+            } else {
+                descriptionError.image = UIImage(named: "symbolMessage")
+            }
             failed = true
         } else {
             descriptionError.hidden = true
@@ -112,7 +123,6 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         descriptionField.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
         nameFieldLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
         descriptionFieldLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
-        
         if listName.text?.characters.count == 0 {
             listName.background = UIImage(named: "SmallTextFieldBackgroundLight")
         } else {
