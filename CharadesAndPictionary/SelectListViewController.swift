@@ -67,8 +67,8 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
     func setAppearance() {
         selectListView.layer.cornerRadius = 24
         self.selectListView.layer.borderWidth = 2
-        self.selectListView.layer.borderColor = UIColor(red: 214/255.0, green: 214/255.0, blue: 214/255.0, alpha: 1.0).CGColor
-        self.selectListView.layer.backgroundColor = UIColor(red: 225/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1.0).CGColor
+        self.selectListView.layer.borderColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1.0).CGColor
+        self.selectListView.layer.backgroundColor = UIColor.whiteColor().CGColor
     }
 
     func updateCount() {

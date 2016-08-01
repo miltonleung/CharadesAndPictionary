@@ -141,7 +141,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if screenWidth == 414 {
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient6Plus")!)
         } else if screenWidth == 375 {
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient6")!)
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient")!)
             
         } else if screenWidth < 375 {
             self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient5")!)

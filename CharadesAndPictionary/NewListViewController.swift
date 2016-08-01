@@ -21,6 +21,9 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var listNameErrorMessage: UILabel!
     @IBOutlet weak var descriptionErrorMessage: UILabel!
     
+    @IBOutlet weak var listNameError: UIImageView!
+    @IBOutlet weak var descriptionError: UIImageView!
+    
     var selectedIcon:String?
     var selectedIndex: NSIndexPath?
     
@@ -71,21 +74,24 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     func checkForErrorsInput() -> Bool {
         var failed: Bool = false
         if StringUtil.isStringEmpty(listName.text!) {
-            listNameErrorMessage.text = ErrorMessages.emptyName
+            listNameError.hidden = false
+            listNameError.image = UIImage(named: "emptyMessage")
             failed = true
         } else {
             if StringUtil.containsSymbols(listName.text!) {
-                listNameErrorMessage.text = ErrorMessages.symbols
+                listNameError.hidden = false
+                listNameError.image = UIImage(named: "symbolMessage")
                 failed = true
             } else {
-                listNameErrorMessage.text = ""
+                listNameError.hidden = true
             }
         }
         if StringUtil.containsSymbols(descriptionField.text!) {
-            descriptionErrorMessage.text = ErrorMessages.symbols
+            descriptionError.hidden = false
+            descriptionError.image = UIImage(named: "symbolMessage")
             failed = true
         } else {
-            descriptionErrorMessage.text = ""
+            descriptionError.hidden = true
         }
         if selectedIcon == nil {
             failed = true
@@ -108,12 +114,12 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         descriptionFieldLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
         
         if listName.text?.characters.count == 0 {
-            listName.background = UIImage(named: "SmallTextFieldBackground")
+            listName.background = UIImage(named: "SmallTextFieldBackgroundLight")
         } else {
             listName.background = UIImage(named: "SmallTextFieldBackgroundWhite")
         }
         if descriptionField.text?.characters.count == 0 {
-            descriptionField.background = UIImage(named: "SmallTextFieldBackground")
+            descriptionField.background = UIImage(named: "SmallTextFieldBackgroundLight")
         } else {
             descriptionField.background = UIImage(named: "SmallTextFieldBackgroundWhite")
         }
@@ -122,8 +128,8 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     func lightState() {
         newListView.layer.cornerRadius = 24
         self.newListView.layer.borderWidth = 2
-        self.newListView.layer.borderColor = UIColor(red: 214/255.0, green: 214/255.0, blue: 214/255.0, alpha: 1.0).CGColor
-        self.newListView.layer.backgroundColor = UIColor(red: 225/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1.0).CGColor
+        self.newListView.layer.borderColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1.0).CGColor
+        self.newListView.layer.backgroundColor = UIColor.whiteColor().CGColor
         buildAList.textColor = UIColor(red: 104/255.0, green: 104/255.0, blue: 104/255.0, alpha: 0.85)
         status.textColor = UIColor(red: 104/255.0, green: 104/255.0, blue: 104/255.0, alpha: 0.85)
         status.text = "(public)"
@@ -154,7 +160,8 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         lightState()
         
-        
+        listNameError.hidden = true
+        descriptionError.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -187,12 +194,20 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         if listName.editing {
             listName.background = UIImage(named: "SmallTextFieldBackground\(dark)")
             if descriptionField.text?.characters.count == 0 {
-                descriptionField.background = UIImage(named: "SmallTextFieldBackground")
+                if isPrivate == true {
+                    descriptionField.background = UIImage(named: "SmallTextFieldBackgroundLight")
+                } else {
+                    descriptionField.background = UIImage(named: "SmallTextFieldBackground")
+                }
             }
         } else if descriptionField.editing {
             descriptionField.background = UIImage(named: "SmallTextFieldBackground\(dark)")
             if listName.text?.characters.count == 0 {
-                listName.background = UIImage(named: "SmallTextFieldBackground")
+                if isPrivate == true {
+                    listName.background = UIImage(named: "SmallTextFieldBackgroundLight")
+                } else {
+                    listName.background = UIImage(named: "SmallTextFieldBackground")
+                }
             }
         }
         tap?.enabled = true
@@ -200,10 +215,18 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func keyboardWillHide(notification: NSNotification) {
         if listName.text?.characters.count == 0 {
-            listName.background = UIImage(named: "SmallTextFieldBackground")
+            if isPrivate == true {
+                listName.background = UIImage(named: "SmallTextFieldBackgroundLight")
+            } else {
+                listName.background = UIImage(named: "SmallTextFieldBackground")
+            }
         }
         if descriptionField.text?.characters.count == 0 {
-            descriptionField.background = UIImage(named: "SmallTextFieldBackground")
+            if isPrivate == true {
+                descriptionField.background = UIImage(named: "SmallTextFieldBackgroundLight")
+            } else {
+                descriptionField.background = UIImage(named: "SmallTextFieldBackground")
+            }
         }
         tap?.enabled = false
     }
