@@ -12,6 +12,7 @@ class AvatarViewController: UIViewController {
     
     @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var flowChartView: UIScrollView!
+    @IBOutlet weak var blurView: UIImageView!
     
     @IBOutlet weak var previewBox0: UIImageView!
     @IBOutlet weak var previewBox1: UIImageView!
@@ -349,6 +350,9 @@ class AvatarViewController: UIViewController {
         }
     }
     
+    func closeView() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -356,6 +360,16 @@ class AvatarViewController: UIViewController {
         avatarView.layer.borderWidth = 2
         avatarView.layer.borderColor = UIColor(red: 92/255.0, green: 92/255.0, blue: 92/255.0, alpha: 1).CGColor
         avatarView.layer.cornerRadius = 20
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.alpha = 0.5
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.insertSubview(blurEffectView, atIndex: 0)
+        
+        let tap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        view.addGestureRecognizer(tap)
         
         previewBoxes = [previewBox0, previewBox1, previewBox2, previewBox3, previewBox4, previewBox5, previewBox6, previewBox7]
         previewImages = [previewImage0, previewImage1, previewImage2, previewImage3, previewImage4, previewImage5, previewImage6, previewImage7]

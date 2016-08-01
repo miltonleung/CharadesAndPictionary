@@ -81,6 +81,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="3000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBd-SE-ijb">
+                                <rect key="frame" x="0.0" y="1121" width="240" height="128"/>
+                            </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="132-3E-yYw">
                                 <rect key="frame" x="153" y="465" width="297" height="2900"/>
                                 <subviews>
@@ -700,9 +703,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="KBd-SE-ijb" secondAttribute="trailing" constant="-20" id="32f-hq-8Sh"/>
                             <constraint firstItem="132-3E-yYw" firstAttribute="width" secondItem="ELR-6h-pcN" secondAttribute="width" multiplier="0.95" id="MoT-bw-i8N"/>
+                            <constraint firstItem="2vt-n6-s3E" firstAttribute="top" secondItem="KBd-SE-ijb" secondAttribute="bottom" constant="-20" id="Qaj-2w-ruj"/>
                             <constraint firstItem="132-3E-yYw" firstAttribute="centerX" secondItem="ELR-6h-pcN" secondAttribute="centerX" id="XN0-gW-XWn"/>
+                            <constraint firstItem="KBd-SE-ijb" firstAttribute="leading" secondItem="ELR-6h-pcN" secondAttribute="leadingMargin" constant="-20" id="e09-Wc-0IW"/>
                             <constraint firstItem="132-3E-yYw" firstAttribute="centerY" secondItem="ELR-6h-pcN" secondAttribute="centerY" multiplier="0.8" id="l03-BT-gsB"/>
+                            <constraint firstItem="KBd-SE-ijb" firstAttribute="top" secondItem="223-rb-4of" secondAttribute="bottom" constant="-20" id="n6i-rP-mYz"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -711,6 +718,7 @@
                         <outlet property="access1of2" destination="G7A-ae-Z9c" id="N0N-EQ-hiy"/>
                         <outlet property="access2of2" destination="oK8-Jt-HVx" id="SqA-lb-yQe"/>
                         <outlet property="avatarView" destination="132-3E-yYw" id="c88-cr-DjY"/>
+                        <outlet property="blurView" destination="KBd-SE-ijb" id="hdV-VU-3uS"/>
                         <outlet property="earlyDone" destination="jBA-j0-9mF" id="Ye4-3r-dCv"/>
                         <outlet property="earlyEarlyDone" destination="EpS-aY-twd" id="eXy-Ci-rSe"/>
                         <outlet property="femaleButton" destination="kox-e0-I8u" id="Ipj-Xd-OYc"/>
@@ -2148,7 +2156,7 @@
         <image name="Bubble4" width="42" height="64"/>
         <image name="Bubble5" width="42" height="63"/>
         <image name="Bubble6" width="42" height="63"/>
-        <image name="Card" width="318" height="288"/>
+        <image name="Card" width="311" height="279"/>
         <image name="Celebrities" width="106" height="84"/>
         <image name="CelebritiesSelected" width="106" height="84"/>
         <image name="Chat" width="19" height="21"/>

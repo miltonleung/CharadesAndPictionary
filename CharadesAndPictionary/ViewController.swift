@@ -182,7 +182,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         let gesture = UITapGestureRecognizer(target: self, action: Selector("onClickAvatar"))
-//        gesture.delegate = self
         avatar.addGestureRecognizer(gesture)
         
         
