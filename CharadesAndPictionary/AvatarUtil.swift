@@ -20,7 +20,27 @@ class AvatarUtil {
             if item == path[1] && (path == avatarPaths[2] || path == avatarPaths[3]) {
                 imageStrings.append(avatarImages.headMale[randItem % avatarImages.headMale.count])
             }
-            imageStrings.append(item[randItem % item.count])
+            if item == path[3] {
+                var rand:Int?
+                if path == womenOutfitPath {
+                    repeat {
+                        rand = randItem % item.count
+                    } while (rand != 0 && rand != 3)
+                } else if path == womenTPath {
+                    repeat {
+                        rand = randItem % item.count
+                    } while (rand != 1 && rand != 2)
+                } else if path == maleTPath {
+                    rand = 2
+                } else if path == maleOutfitPath {
+                    repeat {
+                        rand = randItem % item.count
+                    } while (rand != 0 && rand != 1 && rand != 3)
+                }
+                imageStrings.append(item[rand!])
+            } else {
+                imageStrings.append(item[randItem % item.count])
+            }
         }
         return (path, imageStrings)
     }
