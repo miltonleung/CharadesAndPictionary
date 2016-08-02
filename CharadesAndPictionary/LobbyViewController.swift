@@ -29,6 +29,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    var playerLabels:[UILabel]?
+    var statusButton:[UIButton]?
+    
+    var roomName:String?
+    
+    var rand:Int?
+    var players:[String]?
+    var ready:[String]?
+    
     var isReady:Bool = false
     var canStart:Bool = false
     var timer = NSTimer()
@@ -233,24 +242,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         
     }
-    
-    var roomName:String?
-    var movies:[String]?
-    var famous:[String]?
-    var celebs:[String]?
-    var tv:[String]?
-    
-    var rand:Int?
-    var players:[String]?
-    var ready:[String]?
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setWhiteGradientBackground()
+        
+        playerLabels = [player1 , player2 , player3 , player4 , player5 , player6]
+        statusButton = [status1 , status2 , status3 , status4 , status5 , status6]
         
         roomNameLabel.text = roomName
-        
-        self.view.setWhiteGradientBackground()
         
         setupGame("movies")
         
@@ -321,36 +321,17 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func clearPlayers() {
-        player1.hidden = true
-        player2.hidden = true
-        player3.hidden = true
-        player4.hidden = true
-        player5.hidden = true
-        player6.hidden = true
+        for player in playerLabels! {
+            player.hidden = true
+        }
         
-        status1.hidden = true
-        status2.hidden = true
-        status3.hidden = true
-        status4.hidden = true
-        status5.hidden = true
-        status6.hidden = true
+        for status in statusButton! {
+            status.hidden = true
+        }
     }
     
     func setupLabels() {
-        player1.hidden = true
-        player2.hidden = true
-        player3.hidden = true
-        player4.hidden = true
-        player5.hidden = true
-        player6.hidden = true
-        
-        status1.hidden = true
-        status2.hidden = true
-        status3.hidden = true
-        status4.hidden = true
-        status5.hidden = true
-        status6.hidden = true
-        
+        clearPlayers()
         
         if players!.count > 0 {
             player1.hidden = false
