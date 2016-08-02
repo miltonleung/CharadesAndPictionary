@@ -26,11 +26,17 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var status5: UIButton!
     @IBOutlet weak var status6: UIButton!
     
+    @IBOutlet weak var moviesButton: UIButton!
+    @IBOutlet weak var celebritiesButton: UIButton!
+    @IBOutlet weak var tvButton: UIButton!
+    @IBOutlet weak var famousButton: UIButton!
+    
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
     
     var playerLabels:[UILabel]?
     var statusButton:[UIButton]?
+    var stockCategories:[UIButton]?
     
     var roomName:String?
     
@@ -119,24 +125,21 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         switch segmentedControl.selectedSegmentIndex
         {
         case 0:
-            tvButton.hidden = false
-            moviesButton.hidden = false
-            celebritiesButton.hidden = false
-            famousButton.hidden = false
+            for button in stockCategories! {
+                button.hidden = false
+            }
             collectionView.hidden = true
         case 1:
-            tvButton.hidden = true
-            moviesButton.hidden = true
-            celebritiesButton.hidden = true
-            famousButton.hidden = true
+            for button in stockCategories! {
+                button.hidden = true
+            }
             collectionView.hidden = false
         default:
             break;
         }
     }
     
-    @IBOutlet weak var moviesButton: UIButton!
-    @IBAction func movies(sender: UIButton) {
+    @IBAction func stockCategorySelect(sender: UIButton) {
         if sender.selected {
             sender.selected = false
             if isLeader == true {
@@ -146,76 +149,17 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else {
             if isLeader == true {
                 sender.selected = true
-                celebritiesButton.selected = false
-                tvButton.selected = false
-                famousButton.selected = false
-                
-                categoryAction("movies")
+                for button in stockCategories! {
+                    if button != stockCategories![sender.tag] {
+                        button.selected = false
+                    }
+                }
+                categoryAction(stockLists[sender.tag])
             }
         }
     }
     
-    @IBOutlet weak var celebritiesButton: UIButton!
-    @IBAction func celebrities(sender: UIButton) {
-        if sender.selected {
-            sender.selected = false
-            if isLeader == true {
-                categorySelected = false
-                startButton.alpha = 0.5
-            }
-        } else {
-            if isLeader == true {
-                sender.selected = true
-                moviesButton.selected = false
-                tvButton.selected = false
-                famousButton.selected = false
-                
-                categoryAction("celebs")
-            } else {
-                sender.adjustsImageWhenHighlighted = false
-            }
-        }
-    }
-    
-    @IBOutlet weak var tvButton: UIButton!
-    @IBAction func tv(sender: UIButton) {
-        if sender.selected {
-            sender.selected = false
-            if isLeader == true {
-                categorySelected = false
-                startButton.alpha = 0.5
-            }
-        } else {
-            if isLeader == true {
-                sender.selected = true
-                moviesButton.selected = false
-                celebritiesButton.selected = false
-                famousButton.selected = false
-                
-                categoryAction("tv")
-            }
-        }
-    }
-    
-    @IBOutlet weak var famousButton: UIButton!
-    @IBAction func famous(sender: UIButton) {
-        if sender.selected {
-            sender.selected = false
-            if isLeader == true {
-                categorySelected = false
-                startButton.alpha = 0.5
-            }
-        } else {
-            if isLeader == true {
-                sender.selected = true
-                moviesButton.selected = false
-                tvButton.selected = false
-                celebritiesButton.selected = false
-                
-                categoryAction("famous")
-            }
-        }
-    }
+
     
     func categoryAction(listName: String) {
         selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
@@ -249,6 +193,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         playerLabels = [player1 , player2 , player3 , player4 , player5 , player6]
         statusButton = [status1 , status2 , status3 , status4 , status5 , status6]
+        stockCategories = [moviesButton, famousButton, celebritiesButton, tvButton]
         
         roomNameLabel.text = roomName
         
@@ -260,10 +205,9 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         countdownView.hidden = true
         
-        famousButton.selected = false
-        tvButton.selected = false
-        moviesButton.selected = false
-        celebritiesButton.selected = false
+        for button in stockCategories! {
+            button.selected = false
+        }
         
         if isLeader == true {
             startButton.alpha = 0.5
@@ -310,8 +254,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
                 NSNotificationCenter.defaultCenter().postNotificationName("timeChange", object: nil)
             } else {
                 invalidateTimer()
-                
-                
             }
         } else {
             invalidateTimer()
@@ -333,60 +275,16 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     func setupLabels() {
         clearPlayers()
         
-        if players!.count > 0 {
-            player1.hidden = false
-            status1.hidden = false
-            status1.setTitle("..", forState: UIControlState.Normal)
-            player1.text = players![0]
-        }
-        if players!.count > 1 {
-            player2.hidden = false
-            status2.hidden = false
-            status2.setTitle("..", forState: UIControlState.Normal)
-            player2.text = players![1]
-        }
-        if players!.count > 2 {
-            player3.hidden = false
-            status3.hidden = false
-            status3.setTitle("..", forState: UIControlState.Normal)
-            player3.text = players![2]
-        }
-        if players!.count > 3 {
-            player4.hidden = false
-            status4.hidden = false
-            status4.setTitle("..", forState: UIControlState.Normal)
-            player4.text = players![3]
-        }
-        if players!.count > 4 {
-            player5.hidden = false
-            status5.hidden = false
-            status5.setTitle("..", forState: UIControlState.Normal)
-            player5.text = players![4]
-        }
-        if players!.count > 5 {
-            player6.hidden = false
-            status6.hidden = false
-            status6.setTitle("..", forState: UIControlState.Normal)
-            player6.text = players![5]
+        for i in 0...players!.count - 1 {
+            playerLabels![i].hidden = false
+            statusButton![i].hidden = false
+            statusButton![i].setTitle("..", forState: UIControlState.Normal)
+            playerLabels![i].text = players![i]
         }
         
         for player in ready! {
             if let index = players?.indexOf("\(player)") {
-                switch Int(index) {
-                case 0:
-                    status1.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 1:
-                    status2.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 2:
-                    status3.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 3:
-                    status4.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 4:
-                    status5.setTitle("👍🏼", forState: UIControlState.Normal)
-                case 5:
-                    status6.setTitle("👍🏼", forState: UIControlState.Normal)
-                default: break
-                }
+                statusButton![index].setTitle("👍🏼", forState: UIControlState.Normal)
             }
         }
     }
@@ -632,8 +530,6 @@ extension LobbyViewController: SelectListViewControllerDelegate, BuildListViewCo
             } while temp_done.contains(self.rand!)
             temp_done.append(self.rand!)
             ModelInterface.sharedInstance.updateDone(self.roomName!, done: temp_done, category: listName)
-            
-            
             
             self.selectedList = list
             

@@ -1565,25 +1565,25 @@
                                 <state key="selected" image="MoviesSelected"/>
                                 <state key="highlighted" image="MoviesSelected"/>
                                 <connections>
-                                    <action selector="movies:" destination="5dO-jh-rTK" eventType="touchUpInside" id="K7e-oQ-fjX"/>
+                                    <action selector="stockCategorySelect:" destination="5dO-jh-rTK" eventType="touchUpInside" id="2iL-kc-kYU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84y-5b-UCo">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84y-5b-UCo">
                                 <rect key="frame" x="139" y="253" width="106" height="84"/>
                                 <state key="normal" image="Celebrities"/>
                                 <state key="selected" image="CelebritiesSelected"/>
                                 <state key="highlighted" image="CelebritiesSelected"/>
                                 <connections>
-                                    <action selector="celebrities:" destination="5dO-jh-rTK" eventType="touchUpInside" id="sMJ-ji-i0R"/>
+                                    <action selector="stockCategorySelect:" destination="5dO-jh-rTK" eventType="touchUpInside" id="jKW-CS-qrS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbj-ys-cFW">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbj-ys-cFW">
                                 <rect key="frame" x="139" y="159" width="106" height="84"/>
                                 <state key="normal" image="TVShows"/>
                                 <state key="selected" image="TVShowsSelected"/>
                                 <state key="highlighted" image="TVShowsSelected"/>
                                 <connections>
-                                    <action selector="tv:" destination="5dO-jh-rTK" eventType="touchUpInside" id="5P4-x5-Jd4"/>
+                                    <action selector="stockCategorySelect:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Kqf-1v-68s"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-88-ONJ">
@@ -1594,6 +1594,15 @@
                                 </state>
                                 <connections>
                                     <action selector="startButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="gL0-dW-hGq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-Hv-9rG">
+                                <rect key="frame" x="454" y="253" width="106" height="84"/>
+                                <state key="normal" image="Famous"/>
+                                <state key="selected" image="FamousSelected"/>
+                                <state key="highlighted" image="FamousSelected"/>
+                                <connections>
+                                    <action selector="stockCategorySelect:" destination="5dO-jh-rTK" eventType="touchUpInside" id="IPS-74-Ip5"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvD-Ec-TYS">
@@ -1735,15 +1744,6 @@
                                     <action selector="indexChanged:" destination="5dO-jh-rTK" eventType="valueChanged" id="rqE-MN-PCP"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-Hv-9rG">
-                                <rect key="frame" x="454" y="253" width="106" height="84"/>
-                                <state key="normal" image="Famous"/>
-                                <state key="selected" image="FamousSelected"/>
-                                <state key="highlighted" image="FamousSelected"/>
-                                <connections>
-                                    <action selector="famous:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Yuq-5E-UvE"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xfK-MD-GxX">
                                 <rect key="frame" x="140" y="159" width="420" height="178"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
