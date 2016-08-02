@@ -163,12 +163,25 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    func closeView() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         collectionView.allowsSelection = true
         
         super.viewDidLoad()
         
         lightState()
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.alpha = 0.5
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.insertSubview(blurEffectView, atIndex: 0)
+        let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        view.addGestureRecognizer(closeTap)
         
         listNameError.hidden = true
         descriptionError.hidden = true

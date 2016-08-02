@@ -44,14 +44,29 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func closeView() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setAppearance()
         updateCount()
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.alpha = 0.5
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.insertSubview(blurEffectView, atIndex: 0)
+        let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        view.addGestureRecognizer(closeTap)
         
         listName.text = moduleName
         listDescription.text = module!["description"] as! String

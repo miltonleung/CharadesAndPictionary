@@ -114,13 +114,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    func addFillerRoom() {
-        self.ref.child("rooms/capfill/password").setValue("123")
-    }
-    func addFillerCommunity() {
-        self.ref.child("modules/community/public/capfill/author").setValue(" ")
-    }
-    
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
         if room.isEmpty {
             return true
@@ -172,8 +165,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         setupTextFields()
-        addFillerCommunity()
-        addFillerRoom()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -376,8 +367,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let roomPath = self.ref.child("rooms")
         roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
-            let roomData = snapshot.value as! [String: AnyObject]
-            completion(roomData)
+            if let roomData = snapshot.value as? [String: AnyObject] {
+                completion(roomData)
+            } else {
+                completion([String: AnyObject]())
+            }
             
         }) { (error) in
             print(error.localizedDescription)

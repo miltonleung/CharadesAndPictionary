@@ -35,8 +35,9 @@ extension ModelInterface: FirebaseModelProtocol {
     func readCategories(completion: ([String: AnyObject] -> Void)) {
         let categoriesRef = ref.child("modules/public/")
         categoriesRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let categories = snapshot.value as! [String: AnyObject]
-            completion(categories)
+            if let categories = snapshot.value as? [String: AnyObject] {
+                completion(categories)
+            }
         })
         
     }
@@ -50,9 +51,9 @@ extension ModelInterface: FirebaseModelProtocol {
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void)) {
         let ref = FIRDatabase.database().reference()
         ref.child("rooms/\(roomName)/").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let playersDict = snapshot.value as! [String : AnyObject]
-            // ...
-            completion(playersDict)
+            if let playersDict = snapshot.value as? [String : AnyObject] {
+                completion(playersDict)
+            }
         })
     }
     
@@ -110,9 +111,9 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func fetchLists(completion: ([String: AnyObject] -> Void)) {
         ref.child("modules/community/public").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            let playersDict = snapshot.value as! [String : AnyObject]
-            // ...
-            completion(playersDict)
+            if let playersDict = snapshot.value as? [String : AnyObject] {
+                completion(playersDict)
+            }
         })
     }
     func addToList(listName: String, entry: String) {
