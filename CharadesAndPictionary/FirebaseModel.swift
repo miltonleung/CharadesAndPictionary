@@ -11,6 +11,8 @@ import Firebase
 
 protocol FirebaseModelProtocol {
     func readCategories(completion: ([String: AnyObject] -> Void))
+    func checkForRoom(completion: [String: AnyObject] -> Void)
+    func addPlayer(roomName: String)
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
     func updateDone(roomName: String, done: [Int], category: String)
@@ -40,6 +42,41 @@ extension ModelInterface: FirebaseModelProtocol {
             }
         })
         
+    }
+    
+    func checkForRoom(completion: [String: AnyObject] -> Void) {
+        let roomPath = ref.child("rooms")
+        roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // Get user value
+            if let roomData = snapshot.value as? [String: AnyObject] {
+                completion(roomData)
+            } else {
+                completion([String: AnyObject]())
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func addPlayer(roomName: String) {
+        ref.child("rooms/\(roomName)/players").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            var entries = currentData.value as? [String: [String]]
+            if entries == nil {
+                entries = [String: [String]]()
+            }
+            entries![myName] = myAvatarImage
+            
+            currentData.value = entries
+            
+            return FIRTransactionResult.successWithValue(currentData)
+            
+            
+        }) {( error, commited, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func updateScore(roomName: String, player: String, newScore: [String]) {
@@ -106,8 +143,6 @@ extension ModelInterface: FirebaseModelProtocol {
                 "author": authors,
                 "description": description,
                 "list": key])
-        
-        //        ref.child("modules/community/lists/\(key)").setValue(["Threat Level Midnight"])
     }
     func fetchLists(completion: ([String: AnyObject] -> Void)) {
         ref.child("modules/community/public").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
@@ -172,7 +207,6 @@ extension ModelInterface: FirebaseModelProtocol {
     }
     func addRoom(editedText: String, password: String) {
         ref.child("rooms/\(editedText)/password").setValue(password)
-        ref.child("rooms/\(editedText)/players").setValue(["\(myName)"])
         ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
         ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
     }

@@ -243,11 +243,11 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var rand:Int?
     var players:[String]?
     var ready:[String]?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         roomNameLabel.text = roomName
         
         setupGame("movies")
@@ -420,8 +420,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
             //            self.players = room["scores"] as? [String: [String]]
-            if let players = room["players"] as? [String] {
-                self.players = players
+            if let playersData = room["players"] as? [String: [String]] {
+                var existingPlayers = [String]()
+                for (name, _) in playersData {
+                    existingPlayers.append(name)
+                }
+                self.players = existingPlayers
             }
             if let ready = room["ready"] as? [String] {
                 self.ready = ready
@@ -519,14 +523,12 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         ModelInterface.sharedInstance.fetchLists( { modules -> Void in
             self.modules = modules
             for (name, _) in modules {
-                if name != "capfill" {
-                    if !self.items.contains(name) {
-                        self.items.insert(name, atIndex: 1)
-                        let list = modules[name] as! [String: AnyObject]
-                        let image = list["icon"] as! String
-                        self.itemsImage.insert(image, atIndex: 1)
-                        self.collectionView.reloadData()
-                    }
+                if !self.items.contains(name) {
+                    self.items.insert(name, atIndex: 1)
+                    let list = modules[name] as! [String: AnyObject]
+                    let image = list["icon"] as! String
+                    self.itemsImage.insert(image, atIndex: 1)
+                    self.collectionView.reloadData()
                 }
             }
         })

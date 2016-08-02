@@ -162,8 +162,12 @@ class GameViewController: UIViewController {
                 self.scores = [String: [String]]()
             }
             self.ready = players["ready"] as? [String]
-            self.players = players["players"] as? [String]
-            
+            let playersData = players["players"] as! [String: [String]]
+            var existingPlayers = [String]()
+            for (name, _) in playersData {
+                existingPlayers.append(name)
+            }
+            self.players = existingPlayers
             
             
             self.hideButtons()

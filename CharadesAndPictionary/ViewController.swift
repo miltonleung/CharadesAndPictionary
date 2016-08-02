@@ -44,9 +44,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             NSUserDefaults.standardUserDefaults().setObject(roomField.text, forKey: "room")
             NSUserDefaults.standardUserDefaults().setObject(passwordField.text, forKey: "password")
             myName = nameField.text!
-            checkForRoom({ room -> Void in
+            ModelInterface.sharedInstance.checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
                     ModelInterface.sharedInstance.addRoom(editedText!, password: self.passwordField.text!)
+                    ModelInterface.sharedInstance.addPlayer(editedText!)
                     self.lobbyRoom = editedText
                     isLeader = true
                     
@@ -56,13 +57,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     self.lobbyRoom = editedText!
                     if self.passwordField.text! == attributes["password"] as! String {
                         
-                        var existingPlayers = attributes["players"] as! [String]
+                        let playersData = attributes["players"] as! [String: [String]]
+                        var existingPlayers = [String]()
+                        for (name, _) in playersData {
+                            existingPlayers.append(name)
+                        }
                         if !existingPlayers.contains(myName) {
                             existingPlayers.append(myName)
-                            if existingPlayers[1] == myName {
+                            if existingPlayers.count == 1 {
                                 isLeader = true
                             }
-                            self.ref.child("rooms/\(editedText!)/players").setValue(existingPlayers)
+                            ModelInterface.sharedInstance.addPlayer(editedText!)
                             isLeader = false
                             self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         } else {
@@ -154,9 +159,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loadBackground()
         
         avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
-        if avatar.subviews.count == 0 {
+        let avatarExists = NSUserDefaults.standardUserDefaults().objectForKey("avatarImage")
+        if avatarExists == nil {
             let randomAvatar = AvatarUtil.randomAvatar()
             refreshAvatar(AvatarUtil.arrangeAvatar(randomAvatar.0, images: randomAvatar.1))
+        } else {
+            refreshAvatar(avatarExists as! [String])
         }
         
         let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
@@ -362,21 +370,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             super.prepareForSegue(segue, sender: sender)
         }
     }
-    
-    func checkForRoom(completion: [String: AnyObject] -> Void) {
-        let roomPath = self.ref.child("rooms")
-        roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            // Get user value
-            if let roomData = snapshot.value as? [String: AnyObject] {
-                completion(roomData)
-            } else {
-                completion([String: AnyObject]())
-            }
-            
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
+
     
     
     
@@ -556,6 +550,8 @@ extension ViewController: RefreshDelegate {
             let imageView = UIImageView(image: UIImage(named: "\(image)Small"))
             avatar.addSubview(imageView)
         }
+        myAvatarImage = imageStrings
+        NSUserDefaults.standardUserDefaults().setObject(myAvatarImage, forKey: "avatarImage")
     }
 }
 

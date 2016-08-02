@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 var myName = ""
+var myAvatarImage:[String]?
 
 var isLeader = false
 
@@ -20,8 +21,6 @@ var countDownTime = 8
 var isPrivate = false
 
 var stockLists:[String] = ["movies", "tv", "famous", "celebs"]
-
-let defaultAvatar = ["MaleBrownSkin", "MaleYeezy", "Grey950s", "MaleBrownHead", "MaleBrownBuzz", "Snapback", "BlackEyesFace"]
 
 let womenOutfitPath = [avatarImages.faceWomen, avatarImages.skinWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.shoesWomen]
 
