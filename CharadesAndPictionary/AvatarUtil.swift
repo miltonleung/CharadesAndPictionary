@@ -23,19 +23,16 @@ class AvatarUtil {
             if item == path[3] {
                 var rand:Int?
                 if path == womenOutfitPath {
-                    repeat {
-                        rand = randItem % item.count
-                    } while (rand != 0 && rand != 3)
+                        let options = [0, 3]
+                        rand = options[randItem % options.count]
                 } else if path == womenTPath {
-                    repeat {
-                        rand = randItem % item.count
-                    } while (rand != 1 && rand != 2)
+                    let options = [1, 2]
+                    rand = options[randItem % options.count]
                 } else if path == maleTPath {
                     rand = 2
                 } else if path == maleOutfitPath {
-                    repeat {
-                        rand = randItem % item.count
-                    } while (rand != 0 && rand != 1 && rand != 3)
+                    let options = [0, 1, 3]
+                    rand = options[randItem % options.count]
                 }
                 imageStrings.append(item[rand!])
             } else {

@@ -5,7 +5,6 @@
 
 target 'CharadesAndPictionary' do
 	use_frameworks!
-	pod ‘Kanna’, ‘~> 1.0.0’
     pod 'Firebase'
     pod 'Firebase/Database'
 end

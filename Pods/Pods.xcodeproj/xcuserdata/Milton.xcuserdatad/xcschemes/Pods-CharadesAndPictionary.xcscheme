@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B6C83C13AD5BD6B670D967E8'
+               BlueprintIdentifier = 'CB7CE9956DC963F2951D08A4'
                BlueprintName = 'Pods-CharadesAndPictionary'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_CharadesAndPictionary.framework'>
