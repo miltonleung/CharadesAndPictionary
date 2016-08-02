@@ -154,6 +154,8 @@ class GameViewController: UIViewController {
         
         roomLabel.text = roomName
 
+        self.view.setWhiteGradientBackground()
+        
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { players -> Void in
             
             if let playersDict = players["scores"] as? [String: [String]] {

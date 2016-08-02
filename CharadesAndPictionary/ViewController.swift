@@ -133,19 +133,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func loadBackground() {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenSize.width
-        if screenWidth == 414 {
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient6Plus")!)
-        } else if screenWidth == 375 {
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient")!)
-            
-        } else if screenWidth < 375 {
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient5")!)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -156,7 +143,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         roomError.hidden = true
         passError.hidden = true
         
-        loadBackground()
+        self.view.setWhiteGradientBackground()
         
         avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
         let avatarExists = NSUserDefaults.standardUserDefaults().objectForKey("avatarImage")

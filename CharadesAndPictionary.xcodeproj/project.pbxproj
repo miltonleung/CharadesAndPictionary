@@ -34,6 +34,7 @@
 		528701901D2709A10004BFC0 /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5287018F1D2709A10004BFC0 /* Keyboard.xib */; };
 		529CC9A51D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529CC9A41D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift */; };
 		529CC9A71D3353C7003D03F8 /* BuildListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529CC9A61D3353C7003D03F8 /* BuildListViewController.swift */; };
+		52BEFD601D50989A008330CC /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BEFD5F1D50989A008330CC /* ViewUtil.swift */; };
 		52E0550C1D46C6E200A39024 /* AvatarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0550B1D46C6E200A39024 /* AvatarUtil.swift */; };
 		52ECA3961D305AD2001213EE /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECA3951D305AD2001213EE /* NewListViewController.swift */; };
 		52EF8E981D45C441000B32CB /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF8E971D45C441000B32CB /* AvatarViewController.swift */; };
@@ -91,6 +92,7 @@
 		5287018F1D2709A10004BFC0 /* Keyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		529CC9A41D31F94A003D03F8 /* SmallCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		529CC9A61D3353C7003D03F8 /* BuildListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildListViewController.swift; sourceTree = "<group>"; };
+		52BEFD5F1D50989A008330CC /* ViewUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		52E0550B1D46C6E200A39024 /* AvatarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarUtil.swift; sourceTree = "<group>"; };
 		52ECA3951D305AD2001213EE /* NewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		52EF8E971D45C441000B32CB /* AvatarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				5227B0571D3596460025DE96 /* StringUtil.swift */,
 				52E0550B1D46C6E200A39024 /* AvatarUtil.swift */,
+				52BEFD5F1D50989A008330CC /* ViewUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */,
 				526F8C951D1DC12700EF729C /* GameViewController.swift in Sources */,
 				52E0550C1D46C6E200A39024 /* AvatarUtil.swift in Sources */,
+				52BEFD601D50989A008330CC /* ViewUtil.swift in Sources */,
 				52186C551D20D60E0090872F /* Constants.swift in Sources */,
 				5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */,
 				527B0F161D34530000D7141F /* ContributorsLabelCollectionViewCell.swift in Sources */,

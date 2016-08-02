@@ -250,6 +250,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         roomNameLabel.text = roomName
         
+        self.view.setWhiteGradientBackground()
+        
         setupGame("movies")
         
         clearPlayers()
