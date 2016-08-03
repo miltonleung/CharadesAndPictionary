@@ -30,6 +30,17 @@ class GameViewController: UIViewController {
     @IBOutlet weak var name4: UILabel!
     @IBOutlet weak var name5: UILabel!
     @IBOutlet weak var name6: UILabel!
+    
+    @IBOutlet weak var avatar1: UIView!
+    @IBOutlet weak var avatar2: UIView!
+    @IBOutlet weak var avatar3: UIView!
+    @IBOutlet weak var avatar4: UIView!
+    @IBOutlet weak var avatar5: UIView!
+    @IBOutlet weak var avatar6: UIView!
+    
+    var avatarViews:[UIView]?
+    
+    
     @IBAction func backButton(sender: AnyObject) {
         ModelInterface.sharedInstance.removeListener(roomName!)
         performSegueWithIdentifier("lobbySegue", sender: nil)
@@ -153,6 +164,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         roomLabel.text = roomName
+        
+        avatarViews = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6]
+        
 
         self.view.setWhiteGradientBackground()
         

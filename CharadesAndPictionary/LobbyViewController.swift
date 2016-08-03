@@ -34,7 +34,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    @IBOutlet weak var avatar1: UIView!
+    @IBOutlet weak var avatar2: UIView!
+    @IBOutlet weak var avatar3: UIView!
+    @IBOutlet weak var avatar4: UIView!
+    @IBOutlet weak var avatar5: UIView!
+    @IBOutlet weak var avatar6: UIView!
+ 
     var playerLabels:[UILabel]?
+    var avatarViews:[UIView]?
     var statusButton:[UIButton]?
     var stockCategories:[UIButton]?
     
@@ -42,6 +50,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     var rand:Int?
     var players:[String]?
+    var avatars:[[String]]?
     var ready:[String]?
     
     var isReady:Bool = false
@@ -192,8 +201,13 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.view.setWhiteGradientBackground()
         
         playerLabels = [player1 , player2 , player3 , player4 , player5 , player6]
+        avatarViews = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6]
         statusButton = [status1 , status2 , status3 , status4 , status5 , status6]
         stockCategories = [moviesButton, famousButton, celebritiesButton, tvButton]
+        
+//        for avatar in avatarViews! {
+//            avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
+//        }
         
         roomNameLabel.text = roomName
         
@@ -267,6 +281,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             player.hidden = true
         }
         
+        for avatar in avatarViews! {
+            avatar.hidden = true
+        }
+        
         for status in statusButton! {
             status.hidden = true
         }
@@ -280,6 +298,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             statusButton![i].hidden = false
             statusButton![i].setTitle("..", forState: UIControlState.Normal)
             playerLabels![i].text = players![i]
+            avatarViews![i].hidden = false
+            avatarViews![i].setAvatarGameView(avatars![i])
         }
         
         for player in ready! {
@@ -303,10 +323,13 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             //            self.players = room["scores"] as? [String: [String]]
             if let playersData = room["players"] as? [String: [String]] {
                 var existingPlayers = [String]()
-                for (name, _) in playersData {
+                var existingAvatars = [[String]]()
+                for (name, avatar) in playersData {
                     existingPlayers.append(name)
+                    existingAvatars.append(avatar)
                 }
                 self.players = existingPlayers
+                self.avatars = existingAvatars
             }
             if let ready = room["ready"] as? [String] {
                 self.ready = ready

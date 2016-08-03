@@ -20,6 +20,8 @@ var countDownTime = 8
 
 var isPrivate = false
 
+var badCharacters: Set<Character> = ["#", "[", "]", "*", "?", ".", "$"]
+
 var stockLists:[String] = ["movies", "tv", "famous", "celebs"]
 
 let womenOutfitPath = [avatarImages.faceWomen, avatarImages.skinWomen, avatarImages.hairWomen, avatarImages.topWomen, avatarImages.shoesWomen]
@@ -71,22 +73,3 @@ enum avatarImages {
     
 }
 
-enum previewAvatar {
-    static let male = ["MaleBrownSkinSmall", "YeezyOutfitSmall", "MaleBrownHeadSmall", "MaleBrownHairSmall", "BlackEyesFaceSmall", "Grey950Small"]
-    static let female = ["WomenTanSkinSmall", "WomenBrownHairSmall", "BlackEyesFaceSmall", "WomenRedSundressSmall", "WhiteFlatsSmall"]
-    static let skinColorMale = ["MaleBrownFaceSmall", "MaleDBrownFaceSmall", "MaleWhiteFaceSmall"]
-    static let skinColorWomen = ["WomenWhiteFaceSmall", "WomenTanFaceSmall"]
-    static let hairMale = ["MaleBrownBuzzSmall", "MaleDBrownBuzzSmall", "MaleBrownHairSmall", "MaleDBrownHairSmall",]
-    static let hairWomen = ["WomenLongDBrownHairSmall", "WomenLongBlackHairSmall", "WomenBrownBangsSmall", "WomenLongBrownHairSmall"]
-    static let topMale = ["MaleIanConnerSmall", "MaleYeezySmall", "MaleRagsSmall", "MaleRedTSmall"]
-    static let topWomen = ["WomenBlueSundressSmall", "WomenRedSundressSmall", "WomenNYTankSmall", "WomenVeniceTankSmall"]
-    static let topColor = ["MaleGreenTSmall", "MaleRedTSmall", "MaleWhiteTSmall"]
-    static let pantsMale = ["MaleBlueJeansSmall", "MaleBlueShortsSmall"]
-    static let pantsWomen = ["WomenBlackShortShortsSmall", "WomenBlueShortShortsSmall"]
-    static let shoesMale = ["Grey750sSmall", "BlueFlatsSmall", "Grey950sSmall", "Tan950sSmall"]
-    static let shoesMaleOutfit = ["Grey750sSmall", "Grey950sSmall", "Tan950sSmall"]
-    static let shoesWomen = ["WhiteFlatsSmall", "BlueFlatsSmall"]
-    static let accessories = ["TruckerSmall", "SnapbackSmall"]
-}
-
-var badCharacters: Set<Character> = ["#", "[", "]", "*", "?", ".", "$"]

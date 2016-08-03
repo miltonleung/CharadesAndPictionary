@@ -530,13 +530,7 @@ protocol RefreshDelegate {
 }
 extension ViewController: RefreshDelegate {
     func refreshAvatar(imageStrings: [String]) {
-        for views in avatar.subviews {
-            views.removeFromSuperview()
-        }
-        for image in imageStrings {
-            let imageView = UIImageView(image: UIImage(named: "\(image)Small"))
-            avatar.addSubview(imageView)
-        }
+        avatar.setAvatarView(imageStrings)
         myAvatarImage = imageStrings
         NSUserDefaults.standardUserDefaults().setObject(myAvatarImage, forKey: "avatarImage")
     }

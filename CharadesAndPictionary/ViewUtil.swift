@@ -23,4 +23,24 @@ extension UIView {
             self.backgroundColor = UIColor(patternImage: UIImage(named: "WhiteGradient5")!)
         }
     }
+    
+    func setAvatarView(imageStrings: [String]) {
+        for views in self.subviews {
+            views.removeFromSuperview()
+        }
+        for image in imageStrings {
+            let imageView = UIImageView(image: UIImage(named: "\(image)Small"))
+            self.addSubview(imageView)
+        }
+    }
+    
+    func setAvatarGameView(imageStrings: [String]) {
+        for views in self.subviews {
+            views.removeFromSuperview()
+        }
+        for image in imageStrings {
+            let imageView = UIImageView(image: UIImage(named: "\(image)Game"))
+            self.addSubview(imageView)
+        }
+    }
 }
