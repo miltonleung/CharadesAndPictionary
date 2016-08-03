@@ -40,7 +40,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var avatar4: UIView!
     @IBOutlet weak var avatar5: UIView!
     @IBOutlet weak var avatar6: UIView!
- 
+    
     var playerLabels:[UILabel]?
     var avatarViews:[UIView]?
     var statusButton:[UIButton]?
@@ -91,17 +91,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     @IBAction func backButton(sender: AnyObject) {
-        //        if ready!.contains(myName) {
-        //            let index = ready?.indexOf(myName)
-        //            ready?.removeAtIndex(index!)
-        //
-        //        }
-        //        if players!.contains(myName) {
-        //            let index = players?.indexOf(myName)
-        //            players?.removeAtIndex(index!)
-        //        }
-        //        isLeader = false
-        //        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+        willEnterBackground()
         self.performSegueWithIdentifier("roomsSegue", sender: nil)
     }
     
@@ -168,7 +158,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-
+    
     
     func categoryAction(listName: String) {
         selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
@@ -195,7 +185,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setWhiteGradientBackground()
@@ -204,10 +194,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         avatarViews = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6]
         statusButton = [status1 , status2 , status3 , status4 , status5 , status6]
         stockCategories = [moviesButton, famousButton, celebritiesButton, tvButton]
-        
-//        for avatar in avatarViews! {
-//            avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
-//        }
         
         roomNameLabel.text = roomName
         
@@ -251,12 +237,24 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             ready?.removeAtIndex(index!)
             
         }
-        if players!.contains(myName) {
-            let index = players?.indexOf(myName)
-            players?.removeAtIndex(index!)
+        if players!.count == 1 {
+            ModelInterface.sharedInstance.removeListener(roomName!)
         }
-        isLeader = false
-        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, players: players!)
+        if isLeader == true {
+            if players!.count >= 1 {
+                var newLeader:String?
+                for player in players! {
+                    if player != myName {
+                        newLeader = player
+                        break
+                    }
+                }
+                ModelInterface.sharedInstance.setLeader(roomName!, name: newLeader!)
+            } else {
+                ModelInterface.sharedInstance.removeLeader(roomName!)
+            }
+        }
+        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!)
         
     }
     
@@ -271,6 +269,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         } else {
             invalidateTimer()
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
             performSegueWithIdentifier("movieSegue", sender: nil)
             
         }
@@ -321,12 +320,14 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
             //            self.players = room["scores"] as? [String: [String]]
-            if let playersData = room["players"] as? [String: [String]] {
+            if let playersData = room["players"] as? [String: AnyObject] {
                 var existingPlayers = [String]()
                 var existingAvatars = [[String]]()
-                for (name, avatar) in playersData {
-                    existingPlayers.append(name)
-                    existingAvatars.append(avatar)
+                for (_, data) in playersData {
+                    for (name, avatar) in data as! [String: [String]] {
+                        existingPlayers.append(name)
+                        existingAvatars.append(avatar)
+                    }
                 }
                 self.players = existingPlayers
                 self.avatars = existingAvatars
@@ -353,13 +354,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
                 }
             }
             
-            if self.players!.count > 0 {
-                if self.players![0] == myName {
+            if let leader = room["leader"] as? String {
+                if leader == myName {
                     isLeader = true
                     if self.timerRunning == false {
                         self.startButton.hidden = false
                         self.startButton.alpha = 0.5
                     }
+                } else {
+                    isLeader = false
                 }
             }
             

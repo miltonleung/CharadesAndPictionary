@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak var avatar: UIView!
-
+    
     func onClickAvatar() {
         performSegueWithIdentifier("avatarEdit", sender: nil)
     }
@@ -47,33 +47,45 @@ class ViewController: UIViewController, UITextFieldDelegate {
             ModelInterface.sharedInstance.checkForRoom({ room -> Void in
                 if self.isAvailable(editedText!, room: room) {
                     ModelInterface.sharedInstance.addRoom(editedText!, password: self.passwordField.text!)
-                    ModelInterface.sharedInstance.addPlayer(editedText!)
+                    myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
                     self.lobbyRoom = editedText
-                    isLeader = true
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
                     if self.passwordField.text! == attributes["password"] as! String {
-                        
-                        let playersData = attributes["players"] as! [String: [String]]
-                        var existingPlayers = [String]()
-                        for (name, _) in playersData {
-                            existingPlayers.append(name)
-                        }
-                        if !existingPlayers.contains(myName) {
-                            existingPlayers.append(myName)
-                            if existingPlayers.count == 1 {
-                                isLeader = true
-                            }
-                            ModelInterface.sharedInstance.addPlayer(editedText!)
-                            isLeader = false
-                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
-                        } else {
-                            self.nameError.hidden = false
-                            self.nameError.image = UIImage(named: "existsMessage")
+                        if let players = attributes["players"] as? [String: AnyObject] {
+                            var existingPlayers = [String]()
                             
+                            for (_, data) in players {
+                                for (name, _) in data as! [String: AnyObject] {
+                                    existingPlayers.append(name)
+                                }
+                            }
+                            
+                            if !existingPlayers.contains(myName) {
+                                if let leader = attributes["leader"] as? String {
+                                    if leader == myName {
+                                        isLeader = true
+                                    } else {
+                                        isLeader = false
+                                    }
+                                } else {
+                                    ModelInterface.sharedInstance.setLeader(editedText!, name: myName)
+                                }
+                                myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                                self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                            } else {
+                                self.nameError.hidden = false
+                                self.nameError.image = UIImage(named: "existsMessage")
+                                
+                            }
+                        } else {
+                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                            self.lobbyRoom = editedText
+                            
+                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
                         }
                     } else {
                         self.passError.hidden = false
@@ -116,7 +128,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             passError.image = UIImage(named: "emptyMessage")
         }
         return failed
-
+        
     }
     
     func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
@@ -357,173 +369,173 @@ class ViewController: UIViewController, UITextFieldDelegate {
             super.prepareForSegue(segue, sender: sender)
         }
     }
-
     
     
     
-//    var listFamous = [String]()
-//    func fetchFamous() {
-//        fetchFamousPage("https://www.randomlists.com/random-people?qty=1000")
-//        self.ref.child("modules/public/famous").setValue(listFamous)
-//
-//    }
-//    
-//    func fetchFamousPage(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//span[@class='name']") {
-//                var name = link.text!
-//                if name == "Sean Combs" {
-//                    listFamous.append("P. Diddy")
-//                }
-//                listFamous.append(name)
-//            }
-//        }
-//    }
-//    
-//    
-//    var listCelebs = [String]()
-//    func fetchCelebs() {
-//        fetchCelebsPage("http://www.vulture.com/2015/11/vultures-most-valuable-stars-of-2015.html")
-//        fetchArtistsPage("http://www.billboard.com/charts/artist-100")
-//        fetchRandomCelebs("https://www.randomlists.com/random-celebrities?qty=1000")
-//        self.ref.child("modules/public/celebs").setValue(listCelebs)
-//    }
-//    
-//    func fetchRandomCelebs(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//span[@class='name']") {
-//                var name = link.text!
-//                if !listCelebs.contains(name) {
-//                    
-//                    listCelebs.append(name)
-//                }
-//                
-//            }
-//        }
-//    }
-//    func fetchCelebsPage(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//div[@class='valuable-stars-list']/section/div/h2") {
-//                var name = link.text!
-//                let index = name.characters.indexOf("\n")
-//                
-//                let truncated = name.substringToIndex(index!)
-//                
-//                listCelebs.append(truncated)
-//                
-//            }
-//        }
-//    }
-//    func fetchArtistsPage(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//h2[@class='chart-row__song']") {
-//                var name = link.text!
-//                
-//                listCelebs.append(name)
-//                
-//            }
-//        }
-//    }
-//    
-//    
-//    var listTV = [String]()
-//    func fetchTV() {
-//        fetchTVPage("http://www.hollywoodreporter.com/lists/best-tv-shows-ever-top-819499/item/friends-hollywoods-100-favorite-tv-821361")
-//        self.ref.child("modules/public/tv").setValue(listTV)
-//    }
-//    
-//    func fetchTVPage(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//h1[@class='list-item__title']") {
-//                listTV.append(link.text!)
-//                
-//            }
-//        }
-//    }
-//    
-//    
-//    var listMovies = [String]()
-//    func fetchMovies() {
-//        for i in 1...7 {
-//            fetchMoviesPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
-//        }
-//        self.ref.child("modules/public/movies").setValue(listMovies)
-//    }
-//    
-//    func fetchMoviesPage(URL: String) {
-//        guard let pageURL = NSURL(string: URL) else {
-//            print("Error: \(URL) doesn't seem to be a valid URL")
-//            return
-//        }
-//        var pageHTML:String?
-//        do {
-//            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//        
-//        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
-//            for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
-//                listMovies.append(link.text!)
-//                
-//            }
-//        }
-//    }
+    
+    //    var listFamous = [String]()
+    //    func fetchFamous() {
+    //        fetchFamousPage("https://www.randomlists.com/random-people?qty=1000")
+    //        self.ref.child("modules/public/famous").setValue(listFamous)
+    //
+    //    }
+    //
+    //    func fetchFamousPage(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//span[@class='name']") {
+    //                var name = link.text!
+    //                if name == "Sean Combs" {
+    //                    listFamous.append("P. Diddy")
+    //                }
+    //                listFamous.append(name)
+    //            }
+    //        }
+    //    }
+    //
+    //
+    //    var listCelebs = [String]()
+    //    func fetchCelebs() {
+    //        fetchCelebsPage("http://www.vulture.com/2015/11/vultures-most-valuable-stars-of-2015.html")
+    //        fetchArtistsPage("http://www.billboard.com/charts/artist-100")
+    //        fetchRandomCelebs("https://www.randomlists.com/random-celebrities?qty=1000")
+    //        self.ref.child("modules/public/celebs").setValue(listCelebs)
+    //    }
+    //
+    //    func fetchRandomCelebs(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//span[@class='name']") {
+    //                var name = link.text!
+    //                if !listCelebs.contains(name) {
+    //
+    //                    listCelebs.append(name)
+    //                }
+    //
+    //            }
+    //        }
+    //    }
+    //    func fetchCelebsPage(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//div[@class='valuable-stars-list']/section/div/h2") {
+    //                var name = link.text!
+    //                let index = name.characters.indexOf("\n")
+    //
+    //                let truncated = name.substringToIndex(index!)
+    //
+    //                listCelebs.append(truncated)
+    //
+    //            }
+    //        }
+    //    }
+    //    func fetchArtistsPage(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//h2[@class='chart-row__song']") {
+    //                var name = link.text!
+    //
+    //                listCelebs.append(name)
+    //
+    //            }
+    //        }
+    //    }
+    //
+    //
+    //    var listTV = [String]()
+    //    func fetchTV() {
+    //        fetchTVPage("http://www.hollywoodreporter.com/lists/best-tv-shows-ever-top-819499/item/friends-hollywoods-100-favorite-tv-821361")
+    //        self.ref.child("modules/public/tv").setValue(listTV)
+    //    }
+    //
+    //    func fetchTVPage(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//h1[@class='list-item__title']") {
+    //                listTV.append(link.text!)
+    //
+    //            }
+    //        }
+    //    }
+    //
+    //
+    //    var listMovies = [String]()
+    //    func fetchMovies() {
+    //        for i in 1...7 {
+    //            fetchMoviesPage("http://www.boxofficemojo.com/alltime/world/?pagenum=\(i)&p=.htm")
+    //        }
+    //        self.ref.child("modules/public/movies").setValue(listMovies)
+    //    }
+    //
+    //    func fetchMoviesPage(URL: String) {
+    //        guard let pageURL = NSURL(string: URL) else {
+    //            print("Error: \(URL) doesn't seem to be a valid URL")
+    //            return
+    //        }
+    //        var pageHTML:String?
+    //        do {
+    //            pageHTML = try String(contentsOfURL: pageURL, encoding: NSUTF8StringEncoding)
+    //        } catch let error as NSError {
+    //            print("Error: \(error)")
+    //        }
+    //        
+    //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
+    //            for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
+    //                listMovies.append(link.text!)
+    //                
+    //            }
+    //        }
+    //    }
 }
 protocol RefreshDelegate {
     func refreshAvatar(imageStrings: [String])

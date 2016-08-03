@@ -1958,10 +1958,10 @@
                         <viewControllerLayoutGuide type="bottom" id="0h9-hd-WiL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0ge-WH-64L">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Card" translatesAutoresizingMaskIntoConstraints="NO" id="4C8-yT-8c6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Card" translatesAutoresizingMaskIntoConstraints="NO" id="4C8-yT-8c6">
                                 <rect key="frame" x="235" y="152" width="229" height="176"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="229" id="TlD-d3-1FO"/>
@@ -1999,54 +1999,44 @@
                                         <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY0-mg-E7I">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY0-mg-E7I">
                                         <rect key="frame" x="78" y="1" width="42" height="62"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" backgroundImage="Bubble2">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="player2:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="fu0-Ve-nwi"/>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="VOj-Tw-ds6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb2-8S-Dxo">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb2-8S-Dxo">
                                         <rect key="frame" x="138" y="1" width="42" height="59"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" backgroundImage="Bubble3">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="player3:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="bx1-Jr-yzh"/>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="QBt-Gr-pHs"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="705-08-4rE">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="705-08-4rE">
                                         <rect key="frame" x="198" y="1" width="42" height="60"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" backgroundImage="Bubble4">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="player4:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="bQk-9c-E80"/>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="rDO-fJ-f1u"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWU-Nz-i5Q">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWU-Nz-i5Q">
                                         <rect key="frame" x="258" y="1" width="42" height="58"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                         <state key="normal" backgroundImage="Bubble5">
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="player5:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="B82-f5-hQr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K47-ss-faS">
-                                        <rect key="frame" x="318" y="1" width="42" height="58"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
-                                        <state key="normal" backgroundImage="Bubble6">
-                                            <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="player6:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="i5B-LN-7ct"/>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="led-gy-M5U"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR3-Ba-Zng">
@@ -2056,7 +2046,7 @@
                                             <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="player1:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="Bay-3t-r60"/>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="YFG-M3-miN"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwv-gd-oP1">
@@ -2104,6 +2094,14 @@
                                         <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yOU-7J-pcX">
+                                        <rect key="frame" x="14" y="94" width="50" height="114"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="PAM-7x-oJY"/>
+                                            <constraint firstAttribute="height" constant="114" id="sZ6-jF-4iM"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cew-PD-lqH">
                                         <rect key="frame" x="70" y="66" width="50" height="114"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2124,14 +2122,16 @@
                                         <rect key="frame" x="310" y="66" width="50" height="114"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yOU-7J-pcX">
-                                        <rect key="frame" x="14" y="94" width="50" height="114"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="PAM-7x-oJY"/>
-                                            <constraint firstAttribute="height" constant="114" id="sZ6-jF-4iM"/>
-                                        </constraints>
-                                    </view>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K47-ss-faS">
+                                        <rect key="frame" x="318" y="1" width="42" height="58"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
+                                        <state key="normal" backgroundImage="Bubble6">
+                                            <color key="titleColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectPlayer:" destination="9Jr-Rb-Qr1" eventType="touchUpInside" id="Kzn-Zw-LSG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="K47-ss-faS" firstAttribute="top" secondItem="uR3-Ba-Zng" secondAttribute="top" id="3cl-jN-dur"/>
@@ -2181,7 +2181,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-jx-dcl">
                                 <rect key="frame" x="312" y="45" width="76" height="36.5"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYk-YX-fSc">

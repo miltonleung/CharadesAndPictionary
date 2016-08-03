@@ -11,7 +11,7 @@ import Firebase
 
 var myName = ""
 var myAvatarImage:[String]?
-
+var myPlayerKey:String?
 var isLeader = false
 
 let ref = FIRDatabase.database().reference()

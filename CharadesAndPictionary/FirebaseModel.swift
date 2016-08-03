@@ -12,15 +12,15 @@ import Firebase
 protocol FirebaseModelProtocol {
     func readCategories(completion: ([String: AnyObject] -> Void))
     func checkForRoom(completion: [String: AnyObject] -> Void)
-    func addPlayer(roomName: String)
+    func addPlayer(roomName: String) -> String
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
     func updateDone(roomName: String, done: [Int], category: String)
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String)
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
-    func iamleaving(roomName: String, ready: [String], players: [String])
-    func iamleavinggame(roomName: String, ready: [String], players: [String], currentPlayer: String)
+    func iamleaving(roomName: String, ready: [String])
+    func iamleavinggame(roomName: String, ready: [String], currentPlayer: String)
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
     func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String)
@@ -59,24 +59,12 @@ extension ModelInterface: FirebaseModelProtocol {
         }
     }
     
-    func addPlayer(roomName: String) {
-        ref.child("rooms/\(roomName)/players").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            var entries = currentData.value as? [String: [String]]
-            if entries == nil {
-                entries = [String: [String]]()
-            }
-            entries![myName] = myAvatarImage
-            
-            currentData.value = entries
-            
-            return FIRTransactionResult.successWithValue(currentData)
-            
-            
-        }) {( error, commited, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+    func addPlayer(roomName: String) -> String{
+        let key = ref.child("rooms/\(roomName)/players").childByAutoId().key
+        let avatarImage = myAvatarImage as! AnyObject
+        let player = [myName: avatarImage]
+        ref.updateChildValues(["/rooms/\(roomName)/players/\(key)": player])
+        return key
     }
     
     func updateScore(roomName: String, player: String, newScore: [String]) {
@@ -121,14 +109,20 @@ extension ModelInterface: FirebaseModelProtocol {
     func iamready(roomName: String, ready: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
     }
-    func iamleaving(roomName: String, ready: [String], players: [String]) {
+    func iamleaving(roomName: String, ready: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
-        ref.child("rooms/\(roomName)/players").setValue(players)
+        ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
+        print(myPlayerKey)
     }
-    func iamleavinggame(roomName: String, ready: [String], players: [String], currentPlayer: String) {
+    func iamleavinggame(roomName: String, ready: [String],currentPlayer: String) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
-        ref.child("rooms/\(roomName)/players").setValue(players)
+        ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
         ref.child("rooms/\(roomName)/currentPlayer").setValue(currentPlayer)
+    }
+    func iamleavinggame(roomName: String, ready: [String]) {
+        ref.child("rooms/\(roomName)/ready").setValue(ready)
+        ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
+        ref.child("rooms/\(roomName)/currentPlayer").removeValue()
     }
     func startGame(roomName: String, startTime: Int) {
         ref.child("rooms/\(roomName)/startTime").setValue(startTime)
@@ -209,5 +203,12 @@ extension ModelInterface: FirebaseModelProtocol {
         ref.child("rooms/\(editedText)/password").setValue(password)
         ref.child("rooms/\(editedText)/currentPlayer").setValue("\(myName)")
         ref.child("rooms/\(editedText)/startTime").setValue("\(0)")
+        ref.child("rooms/\(editedText)/leader").setValue("\(myName)")
+    }
+    func setLeader(editedText:String, name: String) {
+        ref.child("rooms/\(editedText)/leader").setValue("\(name)")
+    }
+    func removeLeader(roomName: String) {
+        ref.child("rooms/\(roomName)/leader").removeValue()
     }
 }
