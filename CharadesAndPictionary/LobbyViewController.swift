@@ -241,7 +241,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             ModelInterface.sharedInstance.removeListener(roomName!)
         }
         if isLeader == true {
-            if players!.count >= 1 {
+            if players!.count > 1 {
                 var newLeader:String?
                 for player in players! {
                     if player != myName {

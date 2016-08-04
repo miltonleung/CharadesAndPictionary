@@ -181,7 +181,7 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.insertSubview(blurEffectView, atIndex: 0)
         let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
-        view.addGestureRecognizer(closeTap)
+        view.subviews.first?.addGestureRecognizer(closeTap)
         
         listNameError.hidden = true
         descriptionError.hidden = true

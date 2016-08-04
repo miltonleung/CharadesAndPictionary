@@ -57,7 +57,7 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.insertSubview(blurEffectView, atIndex: 0)
         let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
-        view.addGestureRecognizer(closeTap)
+        view.subviews.first?.addGestureRecognizer(closeTap)
         
         listName.text = moduleName
         listDescription.text = module!["description"] as! String
