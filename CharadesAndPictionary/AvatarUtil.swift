@@ -39,6 +39,12 @@ class AvatarUtil {
                 imageStrings.append(item[randItem % item.count])
             }
         }
+        if path == maleTPath || path == maleOutfitPath {
+            let rand = Int(arc4random_uniform(UInt32(1)))
+            if rand == 0 {
+                imageStrings.removeLast()
+            }
+        }
         return (path, imageStrings)
     }
     
