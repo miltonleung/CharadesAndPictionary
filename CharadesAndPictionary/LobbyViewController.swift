@@ -70,6 +70,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    @IBOutlet weak var showingLabel: UIButton!
+    @IBOutlet weak var expand: UIButton!
+    
     @IBOutlet weak var countdownView: UIView!
     @IBOutlet weak var readyButton: UIButton!
     @IBAction func readyButton(sender: UIButton) {
@@ -128,6 +132,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
                 button.hidden = false
             }
             expand.hidden = true
+            showingLabel.hidden = true
             collectionView.hidden = true
         case 1:
             for button in stockCategories! {
@@ -135,6 +140,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
             collectionView.hidden = false
             expand.hidden = false
+            showingLabel.hidden = false
             collectionView.flashScrollIndicators()
         default:
             break;
@@ -165,7 +171,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.collectionViewFullTop.active = false
         self.collectionViewFullBottom.active = false
     }
-    @IBOutlet weak var expand: UIButton!
     
     @IBOutlet weak var collectionViewTrailing: NSLayoutConstraint!
     @IBOutlet weak var collectionViewTop: NSLayoutConstraint!
@@ -201,6 +206,18 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
+    
+    @IBAction func showingLabel(sender: UIButton) {
+        if sender.selected {
+            sender.selected = false
+            sender.setTitle("showing public lists", forState: .Normal)
+            
+        } else {
+            sender.selected = true
+            sender.setTitle("showing private lists", forState: .Normal)
+            
+        }
+    }
     
     func categoryAction(listName: String) {
         selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
@@ -246,6 +263,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         setConstraints()
         
         expand.hidden = true
+        showingLabel.hidden = true
         collectionView.hidden = true
         
         countdownView.hidden = true

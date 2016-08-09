@@ -1553,7 +1553,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ay-hUz">
-                                <rect key="frame" x="309.5" y="38" width="81.5" height="51"/>
+                                <rect key="frame" x="310" y="38" width="81.5" height="51"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="31"/>
                                 <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1685,17 +1685,6 @@
                                 </state>
                                 <connections>
                                     <action selector="backButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="V9U-bM-gEe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dC-vK-dq1">
-                                <rect key="frame" x="612" y="97" width="77" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="3oR-XF-LAE"/>
-                                    <constraint firstAttribute="height" constant="30" id="uHr-ZU-Qdt"/>
-                                </constraints>
-                                <state key="normal" image="expand"/>
-                                <connections>
-                                    <action selector="expand:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Pqf-v1-Pba"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvD-Ec-TYS">
@@ -1877,6 +1866,27 @@
                                     <constraint firstItem="vvO-2k-T4u" firstAttribute="centerX" secondItem="ZfH-HW-UKV" secondAttribute="centerX" id="zkH-aV-svF"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-vz-GnE">
+                                <rect key="frame" x="294.5" y="130" width="111" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="showing public lists">
+                                    <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showingLabel:" destination="5dO-jh-rTK" eventType="touchUpInside" id="pnO-da-4vX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dC-vK-dq1">
+                                <rect key="frame" x="530" y="112" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3oR-XF-LAE"/>
+                                    <constraint firstAttribute="height" constant="30" id="uHr-ZU-Qdt"/>
+                                </constraints>
+                                <state key="normal" image="expand"/>
+                                <connections>
+                                    <action selector="expand:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Pqf-v1-Pba"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1888,19 +1898,22 @@
                             <constraint firstItem="PLg-jK-GqE" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="1.45" id="63T-My-bz1"/>
                             <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="pvD-Ec-TYS" secondAttribute="bottom" id="765-8f-BAH"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="bottom" secondItem="0M6-Hv-9rG" secondAttribute="bottom" id="Axn-u5-hoC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5dC-vK-dq1" secondAttribute="trailing" constant="4" id="CSe-JP-eGZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pvD-Ec-TYS" secondAttribute="trailing" constant="-20" id="HXP-iU-nVe"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="top" id="IK2-w0-d8L"/>
+                            <constraint firstItem="5dC-vK-dq1" firstAttribute="trailing" secondItem="xfK-MD-GxX" secondAttribute="trailing" id="InV-IX-A1f"/>
+                            <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="5dC-vK-dq1" secondAttribute="bottom" constant="8" id="KSm-en-vX0"/>
                             <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="xfK-MD-GxX" secondAttribute="bottom" constant="215" id="L4Y-a6-r1K"/>
+                            <constraint firstItem="PBj-vz-GnE" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="Mhq-57-sEE"/>
                             <constraint firstItem="vYT-Ql-bjG" firstAttribute="centerY" secondItem="oX9-88-ONJ" secondAttribute="centerY" id="N2F-8E-iQv"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="130" id="O1V-rd-pnP"/>
+                            <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="PBj-vz-GnE" secondAttribute="bottom" constant="-7" id="P97-sj-zvE"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="SUL-mO-Ikf"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="T1B-cq-ZJm"/>
                             <constraint firstItem="SVI-Ay-hUz" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="18" id="ZMt-NY-Yg7"/>
                             <constraint firstAttribute="leadingMargin" secondItem="WYM-s6-heQ" secondAttribute="leading" constant="4" id="a7V-ZV-y1k"/>
-                            <constraint firstItem="5dC-vK-dq1" firstAttribute="top" secondItem="oX9-88-ONJ" secondAttribute="bottom" constant="27" id="as4-gi-kf4"/>
                             <constraint firstItem="pvD-Ec-TYS" firstAttribute="leading" secondItem="onG-gr-wcO" secondAttribute="leadingMargin" constant="-20" id="c8p-Do-iwV"/>
                             <constraint firstItem="vYT-Ql-bjG" firstAttribute="centerX" secondItem="oX9-88-ONJ" secondAttribute="centerX" id="crO-DD-DpK"/>
+                            <constraint firstItem="5dC-vK-dq1" firstAttribute="top" secondItem="xfK-MD-GxX" secondAttribute="top" id="ghI-Ur-1mJ"/>
                             <constraint firstItem="0M6-Hv-9rG" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="1.45" id="goD-p6-2Ja"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="trailing" secondItem="PLg-jK-GqE" secondAttribute="trailing" id="kCt-My-5hd"/>
                             <constraint firstItem="YFy-Cr-ce3" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="kEi-aT-Dc5"/>
@@ -1915,6 +1928,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="O1V-rd-pnP"/>
+                                <exclude reference="ghI-Ur-1mJ"/>
                                 <exclude reference="L4Y-a6-r1K"/>
                             </mask>
                         </variation>
@@ -1956,6 +1970,7 @@
                         <outlet property="roomNameLabel" destination="SVI-Ay-hUz" id="S9g-IB-6cR"/>
                         <outlet property="scroller" destination="pvD-Ec-TYS" id="coL-U6-niq"/>
                         <outlet property="segmentedControl" destination="YFy-Cr-ce3" id="u07-Ug-m7o"/>
+                        <outlet property="showingLabel" destination="PBj-vz-GnE" id="YQC-46-fdL"/>
                         <outlet property="startButton" destination="oX9-88-ONJ" id="rU0-Ss-TNX"/>
                         <outlet property="status1" destination="2rA-9G-cAT" id="GnP-cH-jWQ"/>
                         <outlet property="status2" destination="BsH-Qz-xOB" id="lrm-BL-vvG"/>
@@ -2314,7 +2329,7 @@
         <image name="TVShowsSelected" width="106" height="84"/>
         <image name="TextFieldBackground" width="193" height="51"/>
         <image name="back" width="32" height="22"/>
-        <image name="expand" width="17" height="17"/>
+        <image name="expand" width="38" height="38"/>
         <image name="namegoeshere" width="125" height="22"/>
         <image name="password" width="75" height="33"/>
         <image name="ready" width="100" height="40"/>
