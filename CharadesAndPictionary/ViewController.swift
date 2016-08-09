@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBOutlet weak var errorMessageTrailing: NSLayoutConstraint!
     @IBOutlet weak var avatar: UIView!
     
     func onClickAvatar() {
@@ -95,6 +96,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func adjustContraint() {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        if screenWidth == 414 {
+            errorMessageTrailing.constant = 15
+        } else if screenWidth == 375 {
+            errorMessageTrailing.constant = 2
+        } else if screenWidth < 375 {
+            errorMessageTrailing.constant = -11
+        }
+    }
+    
     func checkForErrorsInput() -> Bool {
         var failed: Bool = false
         if StringUtil.isStringEmpty(nameField.text!) {
@@ -141,6 +154,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passError.hidden = true
         
         self.view.setWhiteGradientBackground()
+        adjustContraint()
         
         avatar.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.83, 0.83);
         let avatarExists = NSUserDefaults.standardUserDefaults().objectForKey("avatarImage")

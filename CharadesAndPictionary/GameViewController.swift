@@ -145,7 +145,7 @@ class GameViewController: UIViewController {
             
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            print(screenWidth)
+            
             if screenWidth == 414 {
                 self.scroller.contentSize = CGSizeMake(screenWidth, 180)
                 self.scroller.showsHorizontalScrollIndicator = false
