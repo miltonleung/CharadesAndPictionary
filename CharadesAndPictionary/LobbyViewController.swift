@@ -158,6 +158,27 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
+    func setConstraints() {
+        self.collectionViewFullTop.active = false
+        self.collectionViewFullBottom.active = false
+    }
+    
+    @IBOutlet weak var collectionViewTrailing: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewTop: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewFullBottom: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewFullTop: NSLayoutConstraint!
+    @IBAction func expand(sender: UIButton) {
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration(0.5, animations: { _ in
+            self.collectionViewTop.active = false
+            self.collectionViewFullTop.active = true
+            self.collectionViewBottom.active = false
+            self.collectionViewFullBottom.active = true
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+    }
     
     
     func categoryAction(listName: String) {
@@ -200,6 +221,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         setupGame("movies")
         
         clearPlayers()
+        
+        setConstraints()
         
         collectionView.hidden = true
         
