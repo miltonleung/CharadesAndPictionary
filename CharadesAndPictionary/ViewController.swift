@@ -54,43 +54,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
-                    if self.passwordField.text! == attributes["password"] as! String {
-                        if let players = attributes["players"] as? [String: AnyObject] {
-                            var existingPlayers = [String]()
-                            
-                            for (_, data) in players {
-                                for (name, _) in data as! [String: AnyObject] {
-                                    existingPlayers.append(name)
-                                }
-                            }
-                            
-                            if !existingPlayers.contains(myName) {
-                                if let leader = attributes["leader"] as? String {
-                                    if leader == myName {
-                                        isLeader = true
-                                    } else {
-                                        isLeader = false
-                                    }
-                                } else {
-                                    ModelInterface.sharedInstance.setLeader(editedText!, name: myName)
-                                }
-                                myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
-                                self.performSegueWithIdentifier("lobbySegue", sender: nil)
-                            } else {
-                                self.nameError.hidden = false
-                                self.nameError.image = UIImage(named: "existsMessage")
-                                
-                            }
-                        } else {
-                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
-                            self.lobbyRoom = editedText
-                            
-                            self.performSegueWithIdentifier("lobbySegue", sender: nil)
-                        }
-                    } else {
+                    guard self.passwordField.text! == attributes["password"] as! String else {
                         self.passError.hidden = false
                         self.passError.image = UIImage(named: "wrongMessage")
+                        return
                     }
+                    if let players = attributes["players"] as? [String: AnyObject] {
+                        var existingPlayers = [String]()
+                        
+                        for (_, data) in players {
+                            for (name, _) in data as! [String: AnyObject] {
+                                existingPlayers.append(name)
+                            }
+                        }
+                        
+                        guard !existingPlayers.contains(myName) else {
+                            self.nameError.hidden = false
+                            self.nameError.image = UIImage(named: "existsMessage")
+                            return
+                        }
+                        if let leader = attributes["leader"] as? String {
+                            if leader == myName {
+                                isLeader = true
+                            } else {
+                                isLeader = false
+                            }
+                        } else {
+                            ModelInterface.sharedInstance.setLeader(editedText!, name: myName)
+                        }
+                        myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                        self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                    } else {
+                        myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                        self.lobbyRoom = editedText
+                        
+                        self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                    }
+                    
                 }
             })
         }
@@ -528,11 +528,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //        } catch let error as NSError {
     //            print("Error: \(error)")
     //        }
-    //        
+    //
     //        if let doc = Kanna.HTML(html: pageHTML!, encoding: NSUTF8StringEncoding) {
     //            for link in doc.xpath("//a[starts-with(@href,'/movies/?id=')]/b") {
     //                listMovies.append(link.text!)
-    //                
+    //
     //            }
     //        }
     //    }
