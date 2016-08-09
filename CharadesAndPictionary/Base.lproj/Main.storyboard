@@ -1560,7 +1560,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xfK-MD-GxX">
                                 <rect key="frame" x="140" y="150" width="420" height="178"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T3Q-pf-aie">
                                     <size key="itemSize" width="106" height="84"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1687,9 +1687,13 @@
                                     <action selector="backButton:" destination="5dO-jh-rTK" eventType="touchUpInside" id="V9U-bM-gEe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dC-vK-dq1">
-                                <rect key="frame" x="625" y="93" width="51" height="30"/>
-                                <state key="normal" title="expand"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dC-vK-dq1">
+                                <rect key="frame" x="612" y="97" width="77" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="3oR-XF-LAE"/>
+                                    <constraint firstAttribute="height" constant="30" id="uHr-ZU-Qdt"/>
+                                </constraints>
+                                <state key="normal" image="expand"/>
                                 <connections>
                                     <action selector="expand:" destination="5dO-jh-rTK" eventType="touchUpInside" id="Pqf-v1-Pba"/>
                                 </connections>
@@ -1887,7 +1891,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="5dC-vK-dq1" secondAttribute="trailing" constant="4" id="CSe-JP-eGZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pvD-Ec-TYS" secondAttribute="trailing" constant="-20" id="HXP-iU-nVe"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="PLg-jK-GqE" secondAttribute="top" id="IK2-w0-d8L"/>
-                            <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="xfK-MD-GxX" secondAttribute="bottom" constant="50" id="L4Y-a6-r1K"/>
+                            <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="xfK-MD-GxX" secondAttribute="bottom" constant="215" id="L4Y-a6-r1K"/>
                             <constraint firstItem="vYT-Ql-bjG" firstAttribute="centerY" secondItem="oX9-88-ONJ" secondAttribute="centerY" id="N2F-8E-iQv"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="130" id="O1V-rd-pnP"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="SUL-mO-Ikf"/>
@@ -1932,6 +1936,7 @@
                         <outlet property="collectionViewTop" destination="IK2-w0-d8L" id="3Jb-1s-0iL"/>
                         <outlet property="collectionViewTrailing" destination="kCt-My-5hd" id="9Kt-ht-8DQ"/>
                         <outlet property="countdownView" destination="vYT-Ql-bjG" id="cQo-19-HQK"/>
+                        <outlet property="expand" destination="5dC-vK-dq1" id="Wbo-Lc-T05"/>
                         <outlet property="famousButton" destination="0M6-Hv-9rG" id="eRO-W9-kBm"/>
                         <outlet property="leadingFifth" destination="Zp2-EK-kz1" id="OAV-4M-QFE"/>
                         <outlet property="leadingFirst" destination="3a6-Nc-rcj" id="74D-HF-vsZ"/>
@@ -2309,6 +2314,7 @@
         <image name="TVShowsSelected" width="106" height="84"/>
         <image name="TextFieldBackground" width="193" height="51"/>
         <image name="back" width="32" height="22"/>
+        <image name="expand" width="17" height="17"/>
         <image name="namegoeshere" width="125" height="22"/>
         <image name="password" width="75" height="33"/>
         <image name="ready" width="100" height="40"/>

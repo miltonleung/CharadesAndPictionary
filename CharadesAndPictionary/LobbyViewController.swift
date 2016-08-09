@@ -127,12 +127,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             for button in stockCategories! {
                 button.hidden = false
             }
+            expand.hidden = true
             collectionView.hidden = true
         case 1:
             for button in stockCategories! {
                 button.hidden = true
             }
             collectionView.hidden = false
+            expand.hidden = false
+            collectionView.flashScrollIndicators()
         default:
             break;
         }
@@ -162,6 +165,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.collectionViewFullTop.active = false
         self.collectionViewFullBottom.active = false
     }
+    @IBOutlet weak var expand: UIButton!
     
     @IBOutlet weak var collectionViewTrailing: NSLayoutConstraint!
     @IBOutlet weak var collectionViewTop: NSLayoutConstraint!
@@ -170,14 +174,31 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionViewFullTop: NSLayoutConstraint!
     @IBAction func expand(sender: UIButton) {
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.5, animations: { _ in
-            self.collectionViewTop.active = false
-            self.collectionViewFullTop.active = true
-            self.collectionViewBottom.active = false
-            self.collectionViewFullBottom.active = true
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-        
+        if sender.selected {
+            sender.selected = false
+            sender.setImage(UIImage(named: "expand"), forState: .Normal)
+            UIView.animateWithDuration(0.25, animations: { _ in
+                self.readyButton.hidden = false
+                self.collectionViewTop.active = true
+                self.collectionViewFullTop.active = false
+                self.collectionViewBottom.active = true
+                self.collectionViewFullBottom.active = false
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+            
+        } else {
+            sender.selected = true
+            sender.setImage(UIImage(named: "collapse"), forState: .Normal)
+            UIView.animateWithDuration(0.25, animations: { _ in
+                self.readyButton.hidden = true
+
+                self.collectionViewTop.active = false
+                self.collectionViewFullTop.active = true
+                self.collectionViewBottom.active = false
+                self.collectionViewFullBottom.active = true
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
     }
     
     
@@ -224,6 +245,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         setConstraints()
         
+        expand.hidden = true
         collectionView.hidden = true
         
         countdownView.hidden = true
