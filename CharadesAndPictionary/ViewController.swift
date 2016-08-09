@@ -44,22 +44,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
             NSUserDefaults.standardUserDefaults().setObject(roomField.text, forKey: "room")
             NSUserDefaults.standardUserDefaults().setObject(passwordField.text, forKey: "password")
             myName = nameField.text!
-            ModelInterface.sharedInstance.checkForRoom({ room -> Void in
-                if self.isAvailable(editedText!, room: room) {
+            ModelInterface.sharedInstance.checkForRoom(editedText!, completion: { room -> Void in
+                if room.isEmpty {
                     ModelInterface.sharedInstance.addRoom(editedText!, password: self.passwordField.text!)
                     myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
                     self.lobbyRoom = editedText
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
                 } else {
-                    let attributes = room[editedText!] as! [String: AnyObject]
                     self.lobbyRoom = editedText!
-                    guard self.passwordField.text! == attributes["password"] as! String else {
+                    guard self.passwordField.text! == room["password"] as! String else {
                         self.passError.hidden = false
                         self.passError.image = UIImage(named: "wrongMessage")
                         return
                     }
-                    if let players = attributes["players"] as? [String: AnyObject] {
+                    if let players = room["players"] as? [String: AnyObject] {
                         var existingPlayers = [String]()
                         
                         for (_, data) in players {
@@ -73,7 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             self.nameError.image = UIImage(named: "existsMessage")
                             return
                         }
-                        if let leader = attributes["leader"] as? String {
+                        if let leader = room["leader"] as? String {
                             if leader == myName {
                                 isLeader = true
                             } else {
@@ -129,20 +128,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return failed
         
-    }
-    
-    func isAvailable(roomName :String, room: [String: AnyObject]) -> Bool {
-        if room.isEmpty {
-            return true
-        }
-        else {
-            for (existingName, _) in room {
-                if existingName == roomName {
-                    return false
-                }
-            }
-        }
-        return true
     }
     
     override func viewDidLoad() {

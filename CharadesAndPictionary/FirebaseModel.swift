@@ -11,7 +11,7 @@ import Firebase
 
 protocol FirebaseModelProtocol {
     func readCategories(completion: ([String: AnyObject] -> Void))
-    func checkForRoom(completion: [String: AnyObject] -> Void)
+    func checkForRoom(roomName: String, completion: [String: AnyObject] -> Void)
     func addPlayer(roomName: String) -> String
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
@@ -44,8 +44,8 @@ extension ModelInterface: FirebaseModelProtocol {
         
     }
     
-    func checkForRoom(completion: [String: AnyObject] -> Void) {
-        let roomPath = ref.child("rooms")
+    func checkForRoom(roomName: String, completion: [String: AnyObject] -> Void) {
+        let roomPath = ref.child("rooms/\(roomName)")
         roomPath.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
             if let roomData = snapshot.value as? [String: AnyObject] {

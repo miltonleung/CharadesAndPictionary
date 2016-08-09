@@ -9,12 +9,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "491901143.572015"
+            filePath = "CharadesAndPictionary/GameViewController.swift"
+            timestampString = "491905686.891887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "willEnterBackground()"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/GameViewController.swift"
-            timestampString = "491905686.891887"
+            filePath = "CharadesAndPictionary/ViewController.swift"
+            timestampString = "492419498.437709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "willEnterBackground()"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "submit()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
