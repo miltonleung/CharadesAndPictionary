@@ -1866,7 +1866,7 @@
                                     <constraint firstItem="vvO-2k-T4u" firstAttribute="centerX" secondItem="ZfH-HW-UKV" secondAttribute="centerX" id="zkH-aV-svF"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-vz-GnE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-vz-GnE">
                                 <rect key="frame" x="294.5" y="130" width="111" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="showing public lists">
@@ -1905,7 +1905,6 @@
                             <constraint firstItem="S8z-qR-w0Z" firstAttribute="top" secondItem="xfK-MD-GxX" secondAttribute="bottom" constant="215" id="L4Y-a6-r1K"/>
                             <constraint firstItem="PBj-vz-GnE" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="Mhq-57-sEE"/>
                             <constraint firstItem="vYT-Ql-bjG" firstAttribute="centerY" secondItem="oX9-88-ONJ" secondAttribute="centerY" id="N2F-8E-iQv"/>
-                            <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="lBg-Ys-Qvv" secondAttribute="bottom" constant="130" id="O1V-rd-pnP"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="top" secondItem="PBj-vz-GnE" secondAttribute="bottom" constant="-7" id="P97-sj-zvE"/>
                             <constraint firstItem="84y-5b-UCo" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" multiplier="0.55" id="SUL-mO-Ikf"/>
                             <constraint firstItem="xfK-MD-GxX" firstAttribute="centerX" secondItem="onG-gr-wcO" secondAttribute="centerX" id="T1B-cq-ZJm"/>
@@ -1927,7 +1926,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="O1V-rd-pnP"/>
                                 <exclude reference="ghI-Ur-1mJ"/>
                                 <exclude reference="L4Y-a6-r1K"/>
                             </mask>
@@ -1946,7 +1944,6 @@
                         <outlet property="collectionView" destination="xfK-MD-GxX" id="0sN-Hf-TdP"/>
                         <outlet property="collectionViewBottom" destination="Axn-u5-hoC" id="4d8-30-0DW"/>
                         <outlet property="collectionViewFullBottom" destination="L4Y-a6-r1K" id="QO9-k8-s7E"/>
-                        <outlet property="collectionViewFullTop" destination="O1V-rd-pnP" id="70S-OA-pAq"/>
                         <outlet property="collectionViewTop" destination="IK2-w0-d8L" id="3Jb-1s-0iL"/>
                         <outlet property="collectionViewTrailing" destination="kCt-My-5hd" id="9Kt-ht-8DQ"/>
                         <outlet property="countdownView" destination="vYT-Ql-bjG" id="cQo-19-HQK"/>

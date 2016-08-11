@@ -24,7 +24,8 @@ protocol FirebaseModelProtocol {
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
     func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String)
-    func fetchLists(completion: ([String: AnyObject] -> Void))
+    func fetchPublicLists(completion: ([String: AnyObject] -> Void))
+    func fetchPrivateLists(completion: ([String: AnyObject] -> Void))
     func addToList(listName: String, entry: String)
     func addToCount(listName: String)
     func fetchSingleList(listKey: String, completion: ([String] -> Void))
@@ -138,8 +139,15 @@ extension ModelInterface: FirebaseModelProtocol {
                 "description": description,
                 "list": key])
     }
-    func fetchLists(completion: ([String: AnyObject] -> Void)) {
+    func fetchPublicLists(completion: ([String: AnyObject] -> Void)) {
         ref.child("modules/community/public").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            if let playersDict = snapshot.value as? [String : AnyObject] {
+                completion(playersDict)
+            }
+        })
+    }
+    func fetchPrivateLists(completion: ([String: AnyObject] -> Void)) {
+        ref.child("modules/community/private").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             if let playersDict = snapshot.value as? [String : AnyObject] {
                 completion(playersDict)
             }
