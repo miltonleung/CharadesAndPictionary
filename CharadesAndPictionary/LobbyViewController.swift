@@ -575,6 +575,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if segue.identifier == "newListSegue" {
             let newList = segue.destinationViewController as! NewListViewController
             newList.players = players
+            newList.isPublic = isPublic
         } else if segue.identifier == "buildListSegue" {
             let buildList = segue.destinationViewController as! BuildListViewController
             buildList.module = selectedModule

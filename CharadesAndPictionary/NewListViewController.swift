@@ -23,6 +23,7 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var selectedIcon:String?
     var selectedIndex: NSIndexPath?
+    var isPublic:Bool?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -112,6 +113,8 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func darkState() {
+        newListView.layer.cornerRadius = 24
+        self.newListView.layer.borderWidth = 2
         self.newListView.layer.borderColor = UIColor(red: 94/255.0, green: 94/255.0, blue: 94/255.0, alpha: 1.0).CGColor
         self.newListView.layer.backgroundColor = UIColor(red: 92/255.0, green: 92/255.0, blue: 92/255.0, alpha: 1.0).CGColor
         buildAList.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
@@ -172,7 +175,11 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         super.viewDidLoad()
         
-        lightState()
+        if isPublic == true {
+            lightState()
+        } else {
+            darkState()
+        }
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
