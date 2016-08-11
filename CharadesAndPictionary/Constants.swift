@@ -16,6 +16,8 @@ var isLeader = false
 
 let ref = FIRDatabase.database().reference()
 
+let id = UIDevice.currentDevice().identifierForVendor!.UUIDString
+
 var countDownTime = 8
 
 var isPrivate = false

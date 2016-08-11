@@ -45,10 +45,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             NSUserDefaults.standardUserDefaults().setObject(roomField.text, forKey: "room")
             NSUserDefaults.standardUserDefaults().setObject(passwordField.text, forKey: "password")
             myName = nameField.text!
+            let id = UIDevice.currentDevice().identifierForVendor!.UUIDString
             ModelInterface.sharedInstance.checkForRoom(editedText!, completion: { room -> Void in
                 if room.isEmpty {
                     ModelInterface.sharedInstance.addRoom(editedText!, password: self.passwordField.text!)
-                    myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                    myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: [id])
                     self.lobbyRoom = editedText
                     
                     self.performSegueWithIdentifier("lobbySegue", sender: nil)
@@ -59,6 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         self.passError.image = UIImage(named: "wrongMessage")
                         return
                     }
+                    let id = UIDevice.currentDevice().identifierForVendor!.UUIDString
                     if let players = room["players"] as? [String: AnyObject] {
                         var existingPlayers = [String]()
                         
@@ -82,10 +84,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             ModelInterface.sharedInstance.setLeader(editedText!, name: myName)
                         }
-                        myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                        if var ids = room["ids"] as? [String] {
+                            ids.append(id)
+                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: ids)
+                        } else {
+                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: [id])
+                        }
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)
                     } else {
-                        myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!)
+                        if var ids = room["ids"] as? [String] {
+                            ids.append(id)
+                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: ids)
+                        } else {
+                            myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: [id])
+                        }
                         self.lobbyRoom = editedText
                         
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)

@@ -12,18 +12,18 @@ import Firebase
 protocol FirebaseModelProtocol {
     func readCategories(completion: ([String: AnyObject] -> Void))
     func checkForRoom(roomName: String, completion: [String: AnyObject] -> Void)
-    func addPlayer(roomName: String) -> String
+    func addPlayer(roomName: String, ids: [String]) -> String
     func updateScore(roomName: String, player: String, newScore: [String])
     func readRoom(roomName: String, completion: ([String: AnyObject] -> Void))
     func updateDone(roomName: String, done: [Int], category: String)
     func updateTurn(roomName: String, currentSelection: Int, currentPlayer: String, category: String)
     func readRoomOnce(roomName: String, completion: ([String: AnyObject] -> Void))
     func iamready(roomName: String, ready: [String])
-    func iamleaving(roomName: String, ready: [String])
-    func iamleavinggame(roomName: String, ready: [String], currentPlayer: String)
+    func iamleaving(roomName: String, ready: [String], ids: [String])
+    func iamleavinggame(roomName: String, ready: [String], ids: [String], currentPlayer: String)
     func startGame(roomName: String, startTime: Int)
     func removeListener(roomName: String)
-    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String)
+    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String, ids: [String])
     func fetchPublicLists(completion: ([String: AnyObject] -> Void))
     func fetchPrivateLists(completion: ([String: AnyObject] -> Void))
     func addToList(listName: String, entry: String)
@@ -60,11 +60,12 @@ extension ModelInterface: FirebaseModelProtocol {
         }
     }
     
-    func addPlayer(roomName: String) -> String{
+    func addPlayer(roomName: String, ids: [String]) -> String{
         let key = ref.child("rooms/\(roomName)/players").childByAutoId().key
         let avatarImage = myAvatarImage as! AnyObject
         let player = [myName: avatarImage]
         ref.updateChildValues(["/rooms/\(roomName)/players/\(key)": player])
+        ref.child("rooms/\(roomName)/ids").setValue(ids)
         return key
     }
     
@@ -110,20 +111,23 @@ extension ModelInterface: FirebaseModelProtocol {
     func iamready(roomName: String, ready: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
     }
-    func iamleaving(roomName: String, ready: [String]) {
+    func iamleaving(roomName: String, ready: [String], ids: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
         ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
+        ref.child("rooms/\(roomName)/ids").setValue(ids)
         print(myPlayerKey)
     }
-    func iamleavinggame(roomName: String, ready: [String],currentPlayer: String) {
+    func iamleavinggame(roomName: String, ready: [String], ids: [String], currentPlayer: String) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
         ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
         ref.child("rooms/\(roomName)/currentPlayer").setValue(currentPlayer)
+        ref.child("rooms/\(roomName)/ids").setValue(ids)
     }
-    func iamleavinggame(roomName: String, ready: [String]) {
+    func iamleavinggame(roomName: String, ready: [String], ids: [String]) {
         ref.child("rooms/\(roomName)/ready").setValue(ready)
         ref.child("rooms/\(roomName)/players/\(myPlayerKey!)").removeValue()
         ref.child("rooms/\(roomName)/currentPlayer").removeValue()
+        ref.child("rooms/\(roomName)/ids").setValue(ids)
     }
     func startGame(roomName: String, startTime: Int) {
         ref.child("rooms/\(roomName)/startTime").setValue(startTime)
@@ -131,12 +135,13 @@ extension ModelInterface: FirebaseModelProtocol {
     func removeListener(roomName: String) {
         ref.child("rooms/\(roomName)").removeAllObservers()
     }
-    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String) {
+    func makeRoom(roomName: String, authors: [String], icon: String, description: String, publicOrPrivate: String, ids: [String]) {
         let key = ref.child("modules/community/\(publicOrPrivate)/\(roomName)").childByAutoId().key
         ref.child("modules/community/\(publicOrPrivate)/\(roomName)").setValue(
             [   "icon": icon,
                 "author": authors,
                 "description": description,
+                "ids": ids,
                 "list": key])
     }
     func fetchPublicLists(completion: ([String: AnyObject] -> Void)) {

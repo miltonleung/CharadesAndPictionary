@@ -72,6 +72,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var privateList:[String: AnyObject]?
     var isPublic:Bool = true
     
+    var ids: [String]?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -211,13 +213,21 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         if sender.selected {
             sender.selected = false
             sender.setTitle("showing public lists", forState: .Normal)
-            setLists(publicList!)
+            if let _ = publicList {
+                setLists(publicList!)
+            } else {
+                collectionView.reloadData()
+            }
             isPublic = true
             
         } else {
             sender.selected = true
             sender.setTitle("showing private lists", forState: .Normal)
-            setPrivateLists(privateList!)
+            if let _ = privateList {
+                setPrivateLists(privateList!)
+            } else {
+                collectionView.reloadData()
+            }
             isPublic = false
         }
     }
@@ -303,6 +313,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             ready?.removeAtIndex(index!)
             
         }
+        if ids!.contains(id) {
+            let index = ids?.indexOf(id)
+            ids?.removeAtIndex(index!)
+        }
         if players!.count == 1 {
             ModelInterface.sharedInstance.removeListener(roomName!)
         }
@@ -320,7 +334,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
                 ModelInterface.sharedInstance.removeLeader(roomName!)
             }
         }
-        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!)
+        ModelInterface.sharedInstance.iamleaving(roomName!, ready: ready!, ids: ids!)
         
     }
     
@@ -418,6 +432,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
                     self.category = category
                     self.locateList(category)
                 }
+            }
+            
+            if let ids = room["ids"] as? [String] {
+                self.ids = ids
             }
             
             if let leader = room["leader"] as? String {
@@ -521,15 +539,15 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func showPrivateList(modules: [String: AnyObject]) -> Bool {
-        let authors = modules["author"] as! [String]
+        let listIDs = modules["ids"] as! [String]
         var tempSet = Set<String>()
-        for author in authors {
-            tempSet.insert(author)
+        for id in listIDs {
+            tempSet.insert(id)
         }
-        for player in players! {
-            tempSet.insert(player)
+        for id in ids! {
+            tempSet.insert(id)
         }
-        return tempSet.count < players!.count + authors.count
+        return tempSet.count < listIDs.count + ids!.count
     }
     
     func setPrivateLists(modules: [String: AnyObject]) {
@@ -575,6 +593,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else if segue.identifier == "newListSegue" {
             let newList = segue.destinationViewController as! NewListViewController
             newList.players = players
+            newList.ids = ids
             newList.isPublic = isPublic
         } else if segue.identifier == "buildListSegue" {
             let buildList = segue.destinationViewController as! BuildListViewController

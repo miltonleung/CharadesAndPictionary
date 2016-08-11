@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     var avatars: [[String]]?
     var nextPlayer: String?
     var category:String?
+    var ids:[String]?
     
     @IBOutlet weak var scroller: UIScrollView!
     
@@ -132,6 +133,10 @@ class GameViewController: UIViewController {
                 self.next.hidden = true
             }
             
+            if let ids = players["ids"] as? [String] {
+                self.ids = ids
+            }
+            
             if let leader = players["leader"] as? String {
                 if leader == myName {
                     isLeader = true
@@ -184,6 +189,10 @@ class GameViewController: UIViewController {
             let index = ready?.indexOf(myName)
             ready?.removeAtIndex(index!)
         }
+        if ids!.contains(id) {
+            let index = ids?.indexOf(id)
+            ids?.removeAtIndex(index!)
+        }
         var newLeader:String?
         if isLeader == true {
             if players!.count >= 1 {
@@ -199,9 +208,9 @@ class GameViewController: UIViewController {
             }
         }
         if currentPlayer == myName && ready!.count >= 1 {
-            ModelInterface.sharedInstance.iamleavinggame(roomName!, ready: ready!, currentPlayer: newLeader!)
+            ModelInterface.sharedInstance.iamleavinggame(roomName!, ready: ready!, ids: ids!, currentPlayer: newLeader!)
         } else if currentPlayer == myName {
-            ModelInterface.sharedInstance.iamleavinggame(roomName!, ready: ready!)
+            ModelInterface.sharedInstance.iamleavinggame(roomName!, ready: ready!, ids: ids!)
         }
         
     }

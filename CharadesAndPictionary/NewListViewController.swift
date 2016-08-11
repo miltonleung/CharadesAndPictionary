@@ -33,6 +33,7 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     var players:[String]?
+    var ids: [String]?
     
     func createAction() {
         if !checkForErrorsInput() {
@@ -46,7 +47,7 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
             if description?.characters.count == 0 {
                 description = " "
             }
-            ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: description!, publicOrPrivate: publicOrPrivate!)
+            ModelInterface.sharedInstance.makeRoom(listName.text!, authors: players!, icon: selectedIcon!, description: description!, publicOrPrivate: publicOrPrivate!, ids: ids!)
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
