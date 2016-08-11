@@ -68,6 +68,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     var selectedName:String?
     var selectedList: [String]?
     
+    var publicList:[String: AnyObject]?
+    var privateList:[String: AnyObject]?
+    var isPublic:Bool = true
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -168,7 +172,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func setConstraints() {
-        self.collectionViewFullTop.active = false
         self.collectionViewFullBottom.active = false
     }
     
@@ -176,7 +179,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionViewTop: NSLayoutConstraint!
     @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
     @IBOutlet weak var collectionViewFullBottom: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewFullTop: NSLayoutConstraint!
     @IBAction func expand(sender: UIButton) {
         self.view.layoutIfNeeded()
         if sender.selected {
@@ -184,8 +186,6 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             sender.setImage(UIImage(named: "expand"), forState: .Normal)
             UIView.animateWithDuration(0.25, animations: { _ in
                 self.readyButton.hidden = false
-                self.collectionViewTop.active = true
-                self.collectionViewFullTop.active = false
                 self.collectionViewBottom.active = true
                 self.collectionViewFullBottom.active = false
                 self.view.layoutIfNeeded()
@@ -196,9 +196,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             sender.setImage(UIImage(named: "collapse"), forState: .Normal)
             UIView.animateWithDuration(0.25, animations: { _ in
                 self.readyButton.hidden = true
-
-                self.collectionViewTop.active = false
-                self.collectionViewFullTop.active = true
+                
                 self.collectionViewBottom.active = false
                 self.collectionViewFullBottom.active = true
                 self.view.layoutIfNeeded()
@@ -208,14 +206,19 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     @IBAction func showingLabel(sender: UIButton) {
+        items = ["add"]
+        itemsImage = ["Add"]
         if sender.selected {
             sender.selected = false
             sender.setTitle("showing public lists", forState: .Normal)
+            setLists(publicList!)
+            isPublic = true
             
         } else {
             sender.selected = true
             sender.setTitle("showing private lists", forState: .Normal)
-            
+            setLists(privateList!)
+            isPublic = false
         }
     }
     
@@ -489,21 +492,32 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
             
         })
-        
-        ModelInterface.sharedInstance.fetchLists( { modules -> Void in
-            self.modules = modules
-            for (name, _) in modules {
-                if !self.items.contains(name) {
-                    self.items.insert(name, atIndex: 1)
-                    let list = modules[name] as! [String: AnyObject]
-                    let image = list["icon"] as! String
-                    self.itemsImage.insert(image, atIndex: 1)
-                    self.collectionView.reloadData()
-                }
+        ModelInterface.sharedInstance.fetchPublicLists( { modules -> Void in
+            self.publicList = modules
+            if self.isPublic {
+                self.setLists(modules)
             }
         })
         
-        
+        ModelInterface.sharedInstance.fetchPrivateLists( { modules -> Void in
+            self.privateList = modules
+            if !self.isPublic {
+                self.setLists(modules)
+            }
+        })
+    }
+    
+    func setLists(modules: [String: AnyObject]) {
+        self.modules = modules
+        for (name, _) in modules {
+            if !self.items.contains(name) {
+                self.items.insert(name, atIndex: 1)
+                let list = modules[name] as! [String: AnyObject]
+                let image = list["icon"] as! String
+                self.itemsImage.insert(image, atIndex: 1)
+            }
+        }
+        self.collectionView.reloadData()
     }
     
     func locateList(listName: String) {
