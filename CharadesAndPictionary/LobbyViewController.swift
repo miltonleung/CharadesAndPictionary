@@ -645,8 +645,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else {
             selectedName = items[indexPath.item]
             selectedModule = modules!["\(items[indexPath.item])"]
-            let currentAuthors = selectedModule!["author"] as! [String]
-            if currentAuthors.contains(myName) {
+            let currentAuthors = selectedModule!["ids"] as! [String]
+            if currentAuthors.contains(id) {
                 performSegueWithIdentifier("buildListSegue", sender: nil)
             } else {
                 performSegueWithIdentifier("selectListSegue", sender: nil)

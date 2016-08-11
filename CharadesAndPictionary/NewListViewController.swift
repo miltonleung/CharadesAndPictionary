@@ -178,8 +178,10 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if isPublic == true {
             lightState()
+            isPrivate = false
         } else {
             darkState()
+            isPrivate = true
         }
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
