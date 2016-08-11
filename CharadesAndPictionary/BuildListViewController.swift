@@ -18,6 +18,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     var moduleName:String?
     
     var delegate:BuildListViewControllerDelegate?
+    var listIsPublic:Bool?
     
     @IBOutlet weak var entryErrorMessage: UILabel!
     
@@ -111,7 +112,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         if !checkForErrorsInput() {
             let listKey = module!["list"] as! String
             ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
-            ModelInterface.sharedInstance.addToCount(moduleName!)
+            ModelInterface.sharedInstance.addToCount(listIsPublic!, listName: moduleName!)
         }
     }
     

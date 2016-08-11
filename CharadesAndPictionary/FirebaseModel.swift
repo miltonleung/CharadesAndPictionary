@@ -27,7 +27,7 @@ protocol FirebaseModelProtocol {
     func fetchPublicLists(completion: ([String: AnyObject] -> Void))
     func fetchPrivateLists(completion: ([String: AnyObject] -> Void))
     func addToList(listName: String, entry: String)
-    func addToCount(listName: String)
+    func addToCount(isPublic:Bool, listName: String)
     func fetchSingleList(listKey: String, completion: ([String] -> Void))
     func fetchListCount(listName: String, completion: (Int -> Void))
     func addRoom(editedText: String, password: String)
@@ -172,8 +172,14 @@ extension ModelInterface: FirebaseModelProtocol {
             }
         }
     }
-    func addToCount(listName: String) {
-        ref.child("modules/community/public/\(listName)/count").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+    func addToCount(isPublic: Bool, listName: String) {
+        var privacy: String?
+        if isPublic {
+            privacy = "public"
+        } else {
+            privacy = "private"
+        }
+        ref.child("modules/community/\(privacy!)/\(listName)/count").runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
             var count = currentData.value as? Int
             if count == nil {
                 count = 0

@@ -217,7 +217,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         } else {
             sender.selected = true
             sender.setTitle("showing private lists", forState: .Normal)
-            setLists(privateList!)
+            setPrivateLists(privateList!)
             isPublic = false
         }
     }
@@ -520,6 +520,31 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.collectionView.reloadData()
     }
     
+    func showPrivateList(modules: [String: AnyObject]) -> Bool {
+        let authors = modules["author"] as! [String]
+        var tempSet = Set<String>()
+        for author in authors {
+            tempSet.insert(author)
+        }
+        for player in players! {
+            tempSet.insert(player)
+        }
+        return tempSet.count < players!.count + authors.count
+    }
+    
+    func setPrivateLists(modules: [String: AnyObject]) {
+        self.modules = modules
+        for (name, attributes) in modules {
+            if !self.items.contains(name) && showPrivateList(attributes as! [String : AnyObject]) {
+                self.items.insert(name, atIndex: 1)
+                let list = modules[name] as! [String: AnyObject]
+                let image = list["icon"] as! String
+                self.itemsImage.insert(image, atIndex: 1)
+            }
+        }
+        self.collectionView.reloadData()
+    }
+    
     func locateList(listName: String) {
         if stockLists.contains(listName) {
             selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
@@ -554,6 +579,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             let buildList = segue.destinationViewController as! BuildListViewController
             buildList.module = selectedModule
             buildList.moduleName = selectedName
+            buildList.listIsPublic = isPublic
             buildList.delegate = self
         } else if segue.identifier == "selectListSegue" {
             let selectList = segue.destinationViewController as! SelectListViewController

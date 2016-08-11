@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "492567026.364623"
+            timestampString = "492567222.528826"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "setupGame(_:)"
             landmarkType = "5">
          </BreakpointContent>
