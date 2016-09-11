@@ -230,4 +230,7 @@ extension ModelInterface: FirebaseModelProtocol {
     func removeLeader(roomName: String) {
         ref.child("rooms/\(roomName)/leader").removeValue()
     }
+    func removeReady(roomName: String) {
+        ref.child("rooms/\(roomName)/ready").removeValue()
+    }
 }

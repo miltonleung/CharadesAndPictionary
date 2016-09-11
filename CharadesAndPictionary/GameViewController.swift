@@ -107,6 +107,12 @@ class GameViewController: UIViewController {
                 self.scores = [String: [String]]()
             }
             self.ready = players["ready"] as? [String]
+            guard self.ready != nil && (self.ready?.contains(myName))! else {
+                ModelInterface.sharedInstance.removeListener(self.roomName!)
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+                self.performSegueWithIdentifier("lobbySegue", sender: nil)
+                return
+            }
             let playersData = players["players"] as! [String: AnyObject]
             var existingPlayers = [String]()
             var existingAvatars = [[String]]()

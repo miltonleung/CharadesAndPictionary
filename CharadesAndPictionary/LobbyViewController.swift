@@ -83,6 +83,11 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var countdownView: UIView!
     @IBOutlet weak var readyButton: UIButton!
     @IBAction func readyButton(sender: UIButton) {
+        
+        guard !timerRunning else {
+            return
+        }
+        
         if isReady == false {
             isReady = true
             sender.selected = true
@@ -233,6 +238,10 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func categoryAction(listName: String) {
+        guard !timerRunning else {
+            return
+        }
+        
         selectedList = NSUserDefaults.standardUserDefaults().arrayForKey("\(listName)") as? [String]
         
         
@@ -510,6 +519,20 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
             
         })
+        ModelInterface.sharedInstance.readRoomOnce(roomName!, completion: { room -> Void in
+            if let ready = room["ready"] as? [String] {
+                self.ready = ready
+            }
+            if isLeader == true {
+                if self.ready != nil {
+                    if !(self.ready?.isEmpty)! {
+                        ModelInterface.sharedInstance.removeReady(self.roomName!)
+                        self.readyButton.selected = false
+                    }
+                }
+            }
+        })
+        
         ModelInterface.sharedInstance.fetchPublicLists( { modules -> Void in
             self.publicList = modules
             if self.isPublic {
