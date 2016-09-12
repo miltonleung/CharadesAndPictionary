@@ -33,9 +33,8 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var entryField: UITextField!
     @IBAction func addEntry(sender: AnyObject) {
         addEntrytoList()
-        entryField.text = ""
-        
     }
+    @IBOutlet weak var doneButton: UIButton!
     @IBAction func done(sender: AnyObject) {
         if entryField.text?.characters.count > 0 {
             addEntrytoList()
@@ -59,6 +58,10 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         
         setAppearance()
         updateCount()
+        
+        if isLeader {
+            doneButton.setTitle("select", forState: .Normal)
+        }
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -102,7 +105,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
     
     func updateCount() {
         
-        ModelInterface.sharedInstance.fetchListCount(moduleName!, completion: { count -> Void in
+        ModelInterface.sharedInstance.fetchListCount(listIsPublic!, listName: moduleName!, completion: { count -> Void in
             self.entryCounter.text = "\(count)"
         })
         
@@ -113,6 +116,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
             let listKey = module!["list"] as! String
             ModelInterface.sharedInstance.addToList(listKey, entry: entryField.text!)
             ModelInterface.sharedInstance.addToCount(listIsPublic!, listName: moduleName!)
+            entryField.text = ""
         }
     }
     
@@ -120,6 +124,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     func setAppearance() {
+        entryErrorMessage.text = ""
         buildListView.layer.cornerRadius = 24
         self.buildListView.layer.borderWidth = 2
         self.buildListView.layer.borderColor = UIColor(red: 82/255.0, green: 82/255.0, blue: 82/255.0, alpha: 1.0).CGColor

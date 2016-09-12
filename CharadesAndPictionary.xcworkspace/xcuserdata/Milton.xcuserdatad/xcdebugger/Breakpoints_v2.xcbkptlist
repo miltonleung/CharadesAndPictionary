@@ -38,16 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495324627.898566"
+            filePath = "CharadesAndPictionary/BuildListViewController.swift"
+            timestampString = "495330548.549496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "538"
-            endingLineNumber = "538"
-            landmarkName = "setupGame(_:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "updateCount()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495322462.842539"
+            filePath = "CharadesAndPictionary/BuildListViewController.swift"
+            timestampString = "495330548.549496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "showingLabel(_:)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "updateCount()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.BuildListViewController.updateCount () -&gt; ()"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/BuildListViewController.swift"
+                  timestampString = "495330974.008121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.BuildListViewController.(updateCount () -&gt; ()).(closure #1)"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/BuildListViewController.swift"
+                  timestampString = "495330974.00824"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/BuildListViewController.swift"
+            timestampString = "495328343.051922"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "addEntry(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,14 +121,94 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495322462.842539"
+            filePath = "CharadesAndPictionary/FirebaseModel.swift"
+            timestampString = "495329675.445984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "showingLabel(_:)"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "fetchListCount(_:listName:completion:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.ModelInterface.fetchListCount (Swift.Bool, listName : Swift.String, completion : (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
+                  timestampString = "495330974.009716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.ModelInterface.(fetchListCount (Swift.Bool, listName : Swift.String, completion : (Swift.Int) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
+                  timestampString = "495330974.009828"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/FirebaseModel.swift"
+            timestampString = "495329675.445984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "fetchListCount(_:listName:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.ModelInterface.(fetchListCount (Swift.Bool, listName : Swift.String, completion : (Swift.Int) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
+                  timestampString = "495330974.010616"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CharadesAndPictionary.ModelInterface.(fetchListCount (Swift.Bool, listName : Swift.String, completion : (Swift.Int) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "CharadesAndPictionary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
+                  timestampString = "495330974.010724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "268">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,28 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495324627.898566"
+            timestampString = "495330973.740874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "564"
-            endingLineNumber = "564"
-            landmarkName = "showPrivateList(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495323806.690964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
+            landmarkName = "collectionView(_:didSelectItemAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

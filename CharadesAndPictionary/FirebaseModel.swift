@@ -29,7 +29,7 @@ protocol FirebaseModelProtocol {
     func addToList(listName: String, entry: String)
     func addToCount(isPublic:Bool, listName: String)
     func fetchSingleList(listKey: String, completion: ([String] -> Void))
-    func fetchListCount(listName: String, completion: (Int -> Void))
+    func fetchListCount(listIsPublic: Bool, listName: String, completion: (Int -> Void))
     func addRoom(editedText: String, password: String)
     
 }
@@ -210,8 +210,14 @@ extension ModelInterface: FirebaseModelProtocol {
             }
         })
     }
-    func fetchListCount(listName: String, completion: (Int -> Void)) {
-        ref.child("modules/community/public/\(listName)/count").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+    func fetchListCount(listIsPublic: Bool, listName: String, completion: (Int -> Void)) {
+        var privacy: String?
+        if listIsPublic {
+            privacy = "public"
+        } else {
+            privacy = "private"
+        }
+        ref.child("modules/community/\(privacy!)/\(listName)/count").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             if let listCount = snapshot.value as? Int {
                 // ...
                 completion(listCount)

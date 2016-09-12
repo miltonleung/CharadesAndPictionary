@@ -16,6 +16,7 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
     
     var module:AnyObject?
     var moduleName:String?
+    var listIsPublic:Bool?
     
     var delegate:SelectListViewControllerDelegate?
     
@@ -86,7 +87,7 @@ class SelectListViewController: UIViewController, UICollectionViewDataSource, UI
 
     func updateCount() {
         
-        ModelInterface.sharedInstance.fetchListCount(moduleName!, completion: { count -> Void in
+        ModelInterface.sharedInstance.fetchListCount(listIsPublic!, listName: moduleName!, completion: { count -> Void in
             self.entryCounter.text = "\(count)"
         })
         

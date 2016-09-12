@@ -61,7 +61,7 @@ class GameViewController: UIViewController {
     @IBAction func selectPlayer(sender: AnyObject) {
         if currentPlayer == myName {
             if myName == nameLabels![sender.tag].text {
-                label.text = "Can't guess your own answer"
+                label.text = "Can't guess your own"
             }
             else if done!.count != movies?.count {
                 updateButtonOnTap(sender)
@@ -245,6 +245,10 @@ class GameViewController: UIViewController {
             name.hidden = true
         }
         
+        for avatar in avatarViews! {
+            avatar.hidden = true
+        }
+        
         var results = [[String]]()
 
         for name in ready! {
@@ -261,6 +265,8 @@ class GameViewController: UIViewController {
             playerButtons![i].setTitle("\(results[i].count)", forState: UIControlState.Normal)
             nameLabels![i].hidden = false
             nameLabels![i].text = "\(ready![i])"
+            avatarViews![i].hidden = false
+            avatarViews![i].setAvatarGameView(avatars![i])
         }
     }
     

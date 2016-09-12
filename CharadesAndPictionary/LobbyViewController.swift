@@ -405,7 +405,19 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
     @IBOutlet weak var leadingSixth: NSLayoutConstraint!
     // Sets up the first person to go and the first thing to see
     func setupGame(category: String) {
+        ModelInterface.sharedInstance.fetchPublicLists( { modules -> Void in
+            self.publicList = modules
+            if self.isPublic {
+                self.setLists(modules)
+            }
+        })
         
+        ModelInterface.sharedInstance.fetchPrivateLists( { modules -> Void in
+            self.privateList = modules
+            if !self.isPublic {
+                self.setLists(modules)
+            }
+        })
         
         ModelInterface.sharedInstance.readRoom(roomName!, completion: { room -> Void in
             //            self.players = room["scores"] as? [String: [String]]
@@ -533,19 +545,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
         })
         
-        ModelInterface.sharedInstance.fetchPublicLists( { modules -> Void in
-            self.publicList = modules
-            if self.isPublic {
-                self.setLists(modules)
-            }
-        })
         
-        ModelInterface.sharedInstance.fetchPrivateLists( { modules -> Void in
-            self.privateList = modules
-            if !self.isPublic {
-                self.setLists(modules)
-            }
-        })
     }
     
     func setLists(modules: [String: AnyObject]) {
@@ -628,6 +628,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
             let selectList = segue.destinationViewController as! SelectListViewController
             selectList.module = selectedModule
             selectList.moduleName = selectedName
+            selectList.listIsPublic = isPublic
             selectList.delegate = self
         }
         
