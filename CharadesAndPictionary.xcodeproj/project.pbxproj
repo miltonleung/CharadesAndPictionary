@@ -12,7 +12,6 @@
 		520956B71D1B9F1D00FFDE3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520956B51D1B9F1D00FFDE3E /* Main.storyboard */; };
 		520956B91D1B9F1D00FFDE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520956B81D1B9F1D00FFDE3E /* Assets.xcassets */; };
 		520956BC1D1B9F1D00FFDE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520956BA1D1B9F1D00FFDE3E /* LaunchScreen.storyboard */; };
-		520956C71D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520956C61D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift */; };
 		520956D21D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520956D11D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift */; };
 		5215842D1D2A13AD00F6E503 /* CircularLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215842C1D2A13AD00F6E503 /* CircularLoaderView.swift */; };
 		5215842F1D2A182700F6E503 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215842E1D2A182700F6E503 /* CountdownView.swift */; };
@@ -67,7 +66,6 @@
 		520956BB1D1B9F1D00FFDE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		520956BD1D1B9F1D00FFDE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		520956C21D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharadesAndPictionaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		520956C61D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharadesAndPictionaryTests.swift; sourceTree = "<group>"; };
 		520956C81D1B9F1D00FFDE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		520956CD1D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharadesAndPictionaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		520956D11D1B9F1D00FFDE3E /* CharadesAndPictionaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharadesAndPictionaryUITests.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 		520956C51D1B9F1D00FFDE3E /* CharadesAndPictionaryTests */ = {
 			isa = PBXGroup;
 			children = (
-				520956C61D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift */,
 				520956C81D1B9F1D00FFDE3E /* Info.plist */,
 			);
 			path = CharadesAndPictionaryTests;
@@ -309,13 +306,16 @@
 					520956AD1D1B9F1D00FFDE3E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = AX2D84BZ47;
+						LastSwiftMigration = 0800;
 					};
 					520956C11D1B9F1D00FFDE3E = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 520956AD1D1B9F1D00FFDE3E;
 					};
 					520956CC1D1B9F1D00FFDE3E = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 520956AD1D1B9F1D00FFDE3E;
 					};
 				};
@@ -453,7 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				520956C71D1B9F1D00FFDE3E /* CharadesAndPictionaryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,9 +591,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CharadesAndPictionary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = milton.OopsGuessAgain;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milton.GuessAgain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -608,9 +608,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CharadesAndPictionary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = milton.OopsGuessAgain;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milton.GuessAgain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -623,6 +624,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionaryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CharadesAndPictionary.app/CharadesAndPictionary";
 			};
 			name = Debug;
@@ -635,6 +637,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionaryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CharadesAndPictionary.app/CharadesAndPictionary";
 			};
 			name = Release;
@@ -646,6 +649,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionaryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = CharadesAndPictionary;
 			};
 			name = Debug;
@@ -657,6 +661,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = milton.CharadesAndPictionaryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = CharadesAndPictionary;
 			};
 			name = Release;

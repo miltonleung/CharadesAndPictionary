@@ -183,13 +183,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         setupTextFields()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        let gesture = UITapGestureRecognizer(target: self, action: Selector("onClickAvatar"))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.onClickAvatar))
         avatar.addGestureRecognizer(gesture)
         
         
@@ -314,7 +314,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func deleteText(button:UIButton) {
-        if let textField = passwordField, range = textField.selectedTextRange {
+        if let textField = passwordField, let range = textField.selectedTextRange {
             if range.empty {
                 // If the selection is empty, delete the character behind the cursor
                 let start = textField.positionFromPosition(range.start, inDirection: .Left, offset: 1)

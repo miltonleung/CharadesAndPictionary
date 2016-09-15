@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var viewController: ViewController = mainStoryboard.instantiateViewControllerWithIdentifier("mainViewController") as! ViewController
+        let viewController: ViewController = mainStoryboard.instantiateViewControllerWithIdentifier("mainViewController") as! ViewController
         
         self.window?.rootViewController = viewController
         

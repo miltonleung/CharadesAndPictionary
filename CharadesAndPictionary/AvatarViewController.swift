@@ -368,7 +368,7 @@ class AvatarViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.insertSubview(blurEffectView, atIndex: 0)
         
-        let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        let closeTap = UITapGestureRecognizer(target: self, action: #selector(AvatarViewController.closeView))
         view.subviews.first?.addGestureRecognizer(closeTap)
         
         previewBoxes = [previewBox0, previewBox1, previewBox2, previewBox3, previewBox4, previewBox5, previewBox6, previewBox7]

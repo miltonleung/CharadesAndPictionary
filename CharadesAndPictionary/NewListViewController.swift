@@ -190,16 +190,16 @@ class NewListViewController: UIViewController, UICollectionViewDelegate, UIColle
         blurEffectView.alpha = 0.5
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.insertSubview(blurEffectView, atIndex: 0)
-        let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        let closeTap = UITapGestureRecognizer(target: self, action: #selector(NewListViewController.closeView))
         view.subviews.first?.addGestureRecognizer(closeTap)
         
         listNameError.hidden = true
         descriptionError.hidden = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewListViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewListViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
         
-        tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        tap = UITapGestureRecognizer(target: self, action: #selector(NewListViewController.dismissKeyboard))
         view.addGestureRecognizer(tap!)
         tap?.enabled = false
         

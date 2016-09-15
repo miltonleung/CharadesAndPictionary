@@ -69,7 +69,7 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         blurEffectView.alpha = 0.5
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         view.insertSubview(blurEffectView, atIndex: 0)
-        let closeTap = UITapGestureRecognizer(target: self, action: Selector("closeView"))
+        let closeTap = UITapGestureRecognizer(target: self, action: #selector(BuildListViewController.closeView))
         view.subviews.first?.addGestureRecognizer(closeTap)
         
         listName.text = moduleName
@@ -77,12 +77,12 @@ class BuildListViewController: UIViewController, UITextFieldDelegate {
         let authors = module!["author"] as! [String]
         listAuthors.text = "by \(authors[0]) and others"
         
-        let tap = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(BuildListViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BuildListViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BuildListViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
     }
     
     func checkForErrorsInput() -> Bool {

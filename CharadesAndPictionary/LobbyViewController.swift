@@ -302,7 +302,7 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         canStart = false
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LobbyViewController.willEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
     
     func invalidateTimer() {
@@ -690,7 +690,7 @@ extension LobbyViewController: SelectListViewControllerDelegate, BuildListViewCo
             self.category = listName
         }
         ModelInterface.sharedInstance.fetchSingleList(key, completion: { listValue -> Void in
-            var list = listValue
+            let list = listValue
             
             var temp_done = [Int]()
             

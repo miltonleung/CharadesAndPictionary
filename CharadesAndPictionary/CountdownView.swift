@@ -19,8 +19,8 @@ class CountdownView: UIView {
         progressIndicatorView.frame = bounds
         progressIndicatorView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateProgress", name: "timeChange", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "resetProgress", name: "timeStop", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CountdownView.updateProgress), name: "timeChange", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CountdownView.resetProgress), name: "timeStop", object: nil)
 
     
     

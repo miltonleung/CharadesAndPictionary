@@ -186,7 +186,7 @@ class GameViewController: UIViewController {
         })
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "willEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.willEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
     }
     
