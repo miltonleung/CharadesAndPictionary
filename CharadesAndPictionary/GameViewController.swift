@@ -188,6 +188,8 @@ class GameViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.willEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
+        UIApplication.sharedApplication().idleTimerDisabled = true
+        
     }
     
     func willEnterBackground() {
@@ -201,7 +203,7 @@ class GameViewController: UIViewController {
         }
         var newLeader:String?
         if isLeader == true {
-            if players!.count >= 1 {
+            if players!.count > 1 {
                 for player in players! {
                     if player != myName {
                         newLeader = player

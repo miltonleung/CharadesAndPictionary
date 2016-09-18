@@ -303,6 +303,8 @@ class LobbyViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LobbyViewController.willEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+        UIApplication.sharedApplication().idleTimerDisabled = false
     }
     
     func invalidateTimer() {

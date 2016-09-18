@@ -6,17 +6,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/GameViewController.swift"
-            timestampString = "495324627.898566"
+            timestampString = "495865197.02876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "willEnterBackground()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,7 +74,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/BuildListViewController.swift"
-                  timestampString = "495330974.008121"
+                  timestampString = "495865478.20138"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -89,7 +89,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/BuildListViewController.swift"
-                  timestampString = "495330974.00824"
+                  timestampString = "495865478.203172"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -138,12 +138,12 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
-                  timestampString = "495330974.009716"
+                  timestampString = "495865478.210181"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "220"
                   endingLineNumber = "220"
-                  offsetFromSymbolStart = "320">
+                  offsetFromSymbolStart = "296">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,7 +153,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
-                  timestampString = "495330974.009828"
+                  timestampString = "495865478.211854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "221"
@@ -186,7 +186,7 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
-                  timestampString = "495330974.010616"
+                  timestampString = "495865478.21653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "221"
@@ -201,12 +201,12 @@
                   moduleName = "CharadesAndPictionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Milton/Developer/CharadesAndPictionary/CharadesAndPictionary/FirebaseModel.swift"
-                  timestampString = "495330974.010724"
+                  timestampString = "495865478.218369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "221"
                   endingLineNumber = "221"
-                  offsetFromSymbolStart = "268">
+                  offsetFromSymbolStart = "244">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -218,13 +218,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CharadesAndPictionary/LobbyViewController.swift"
-            timestampString = "495330973.740874"
+            timestampString = "495865197.02876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "673"
-            endingLineNumber = "673"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
             landmarkName = "collectionView(_:didSelectItemAtIndexPath:)"
-            landmarkType = "5">
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/ViewController.swift"
+            timestampString = "495865572.873313"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "submit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CharadesAndPictionary/ViewController.swift"
+            timestampString = "495865600.844554"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "submit()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

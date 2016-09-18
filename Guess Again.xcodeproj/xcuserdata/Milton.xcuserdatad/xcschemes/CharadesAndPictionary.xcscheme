@@ -55,7 +55,7 @@
             BlueprintIdentifier = "520956AD1D1B9F1D00FFDE3E"
             BuildableName = "CharadesAndPictionary.app"
             BlueprintName = "CharadesAndPictionary"
-            ReferencedContainer = "container:CharadesAndPictionary.xcodeproj">
+            ReferencedContainer = "container:Guess Again.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "520956AD1D1B9F1D00FFDE3E"
             BuildableName = "CharadesAndPictionary.app"
             BlueprintName = "CharadesAndPictionary"
-            ReferencedContainer = "container:CharadesAndPictionary.xcodeproj">
+            ReferencedContainer = "container:Guess Again.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

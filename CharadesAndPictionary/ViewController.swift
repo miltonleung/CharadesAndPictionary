@@ -91,6 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                         self.performSegueWithIdentifier("lobbySegue", sender: nil)
                     } else {
+                        ModelInterface.sharedInstance.setLeader(editedText!, name: myName)
                         if var ids = room["ids"] as? [String] {
                             ids.append(id)
                             myPlayerKey = ModelInterface.sharedInstance.addPlayer(editedText!, ids: ids)
@@ -203,6 +204,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordField.inputView = emojiInputView
         passwordField.delegate = self
         
+        UIApplication.sharedApplication().idleTimerDisabled = false        
     }
     
     func setupTextFields() {
